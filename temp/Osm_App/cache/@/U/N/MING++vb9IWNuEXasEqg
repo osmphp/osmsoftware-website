@@ -1,3 +1,0 @@
-0
-base_urls
-a:3:{s:3:"api";O:8:"stdClass":2:{s:8:"base_url";s:16:"{{base_url}}/api";s:15:"area_class_name";s:23:"Osm\Framework\Areas\Api";}s:5:"admin";O:8:"stdClass":2:{s:8:"base_url";s:18:"{{base_url}}/admin";s:15:"area_class_name";s:25:"Osm\Framework\Areas\Admin";}s:5:"front";O:8:"stdClass":2:{s:8:"base_url";s:12:"{{base_url}}";s:15:"area_class_name";s:25:"Osm\Framework\Areas\Front";}}
