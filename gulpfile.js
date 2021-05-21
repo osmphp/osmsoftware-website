@@ -5,7 +5,7 @@ const {exec, spawn} = require('child_process');
 
 const config = {
     'Osm_Tools': [],
-    'Osm_App': []
+    'Osm_App': ['_front__tailwind']
 }
 
 const osmc = fs.existsSync('vendor/osmphp/core/bin/compile.php')
