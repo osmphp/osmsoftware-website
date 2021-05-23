@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace My\Samples;
 
-use My\App as BaseApp;
+use Osm\App\App as BaseApp;
 
 class App extends BaseApp
 {
