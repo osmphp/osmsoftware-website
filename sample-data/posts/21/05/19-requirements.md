@@ -8,7 +8,7 @@ As [mentioned before](18-welcome.md), this very website is based on the `osmphp/
 
 ## Header 
 
-## Meta { .meta }
+## Meta ## { .meta }
 
     {
         "series": {
