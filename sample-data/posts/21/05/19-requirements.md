@@ -8,18 +8,13 @@ As [mentioned before](18-welcome.md), this very website is based on the `osmphp/
 
 ## Header 
 
-## Meta ## {#meta}
+## meta
 
     {
-        "series": {
-            "building-osmcommerce.com": {
-                "title": "Building osmcommerce.com",
-                "part": 1
-            }
-        }
+        "series": {"Building osmcommerce.com": {"part": 1} }
     }
 
-### Summary { .meta-summary }
+### meta.summary
 
 Before diving into implementation details, let's write the requirements of how
 `osmcommerce.com` website is expected to work.

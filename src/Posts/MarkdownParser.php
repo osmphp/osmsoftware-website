@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace My\Posts;
 
 use Carbon\Carbon;
+use My\Posts\Exceptions\InvalidJson;
 use My\Posts\Exceptions\InvalidPath;
 use My\Posts\Exceptions\TooManyDuplicateHeadings;
 use Osm\Core\App;
@@ -12,6 +13,7 @@ use Osm\Core\Exceptions\NotImplemented;
 use Osm\Core\Exceptions\NotSupported;
 use Osm\Core\Object_;
 use function Osm\__;
+use function Osm\merge;
 
 /**
  * @property string $path
@@ -65,11 +67,11 @@ class MarkdownParser extends Object_
 
     protected function get_model(): ?\stdClass {
         return $this->exists
-            ? (object)[
+            ? merge((object)[
                 'title' => $this->title,
                 'created_at' => $this->created_at,
                 'url_key' => $this->url_key,
-            ]
+            ], $this->meta)
             : null;
     }
 
@@ -153,6 +155,23 @@ class MarkdownParser extends Object_
         $this->toc = new \stdClass();
 
         return preg_replace_callback(static::SECTION_PATTERN, function($match) {
+            if ($match['title'] === 'meta') {
+                if (($json = json_decode($match['text'])) === null) {
+                    throw new InvalidJson(__(
+                        "Invalid JSON in 'meta' section"));
+                }
+                $this->meta = merge($this->meta, $json);
+
+                return '';
+            }
+
+            if (str_starts_with($match['title'], 'meta.')) {
+                $property = substr($match['title'], strlen('meta.'));
+                $this->meta->$property = $match['text'];
+
+                return '';
+            }
+
             $id = $this->generateUniqueId($match['title']);
 
             $this->toc->$id = (object)[
@@ -183,10 +202,12 @@ class MarkdownParser extends Object_
     }
 
     protected function generateId(string $heading): string {
-        $heading = mb_strtolower($heading);
-        $heading = preg_replace('/[^\w\d\- ]+/u', ' ', $heading);
-        $heading = preg_replace('/\s+/u', '-', $heading);
-        $heading = preg_replace('/\-+$/u', '', $heading);
-        throw new NotImplemented($this);
+        $id = mb_strtolower($heading);
+
+        $id = preg_replace('/[^\w\d\- ]+/u', ' ', $id);
+        $id = preg_replace('/\s+/u', '-', $id);
+        $id = preg_replace('/\-+$/u', '', $id);
+
+        return $id;
     }
 }
