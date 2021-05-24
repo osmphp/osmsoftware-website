@@ -4,6 +4,26 @@ As [mentioned before](18-welcome.md), this very website is based on the `osmphp/
 
 {{ toc }}
 
+## Header
+
+## Header 
+
+## Meta { .meta }
+
+    {
+        "series": {
+            "building-osmcommerce.com": {
+                "title": "Building osmcommerce.com",
+                "part": 1
+            }
+        }
+    }
+
+### Summary { .meta-summary }
+
+Before diving into implementation details, let's write the requirements of how
+`osmcommerce.com` website is expected to work.
+
 ## Editing workflow
 
 There are actually two projects:
