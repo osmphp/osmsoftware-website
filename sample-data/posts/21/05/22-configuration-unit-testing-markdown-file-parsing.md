@@ -105,7 +105,7 @@ Let's create configuration and environment files both for main and sample applic
 6. Finally, create mentioned databases on the virtual machine:
 
        mysql -u root -p -e "CREATE DATABASE osmcommerce; GRANT ALL PRIVILEGES ON osmcommerce.* TO 'vagrant'@'localhost'" 
-       mysql -u root -p -e "CREATE DATABASE osmcommerce_test; GRANT ALL PRIVILEGES ON osmcommerce.* TO 'vagrant'@'localhost'" 
+       mysql -u root -p -e "CREATE DATABASE osmcommerce_test; GRANT ALL PRIVILEGES ON osmcommerce_test.* TO 'vagrant'@'localhost'" 
 
 ## `My_Posts` module
 
