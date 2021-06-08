@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace My\Tests;
 
+use My\Posts\Indexer;
 use Osm\Framework\TestCase;
-use My\Posts\Db;
 
 class test_02_db_indexing extends TestCase
 {
@@ -16,12 +16,18 @@ class test_02_db_indexing extends TestCase
         // GIVEN the sample posts
 
         // WHEN you index the `welcome.md`
-        Db\Indexer::new(['path' => '21/05/18-welcome.md'])->run();
+        Indexer::new(['path' => '21/05/18-welcome.md'])->run();
 
         // THEN it's in the database
-        $this->assertTrue($this->db->table('posts')
+        $this->assertNotNull($id = $this->db->table('posts')
             ->where('path', '21/05/18-welcome.md')
-            ->exists()
+            ->value('id')
+        );
+
+        // AND in search
+        $this->assertNotNull($this->app->search->index('posts')
+            ->where('id', '=', $id)
+            ->id()
         );
     }
 
@@ -29,12 +35,18 @@ class test_02_db_indexing extends TestCase
         // GIVEN the sample posts
 
         // WHEN you index the `welcome.md`
-        Db\Indexer::new()->run();
+        Indexer::new()->run();
 
         // THEN they all are in the database
-        $this->assertTrue($this->db->table('posts')
+        $this->assertNotNull($id = $this->db->table('posts')
             ->where('path', '21/05/18-welcome.md')
-            ->exists()
+            ->value('id')
+        );
+
+        // AND in search
+        $this->assertNotNull($this->app->search->index('posts')
+            ->where('id', '=', $id)
+            ->id()
         );
     }
 
@@ -45,12 +57,20 @@ class test_02_db_indexing extends TestCase
         ]);
 
         // WHEN you index the the blog posts
-        Db\Indexer::new()->run();
+        Indexer::new()->run();
 
         // THEN the database record is marked as deleted
-        $this->assertEquals(1, $this->db->table('posts')
+        $post = $this->db->table('posts')
             ->where('path', 'fake.md')
-            ->value('deleted')
+            ->first(['id', 'deleted_at']);
+
+        $this->assertNotNull($post);
+        $this->assertNotNull($post->deleted_at);
+
+        // AND search entry is deleted
+        $this->assertNull($this->app->search->index('posts')
+            ->where('id', '=', $post->id)
+            ->id()
         );
     }
 }

@@ -24,7 +24,8 @@ class M01_posts extends Migration
         $this->db->create('posts', function (Blueprint $table) {
             $table->increments('id');
             $table->string('path')->unique();
-            $table->boolean('deleted')->default(false);
+            $table->dateTime('modified_at')->nullable();
+            $table->dateTime('deleted_at')->nullable();
         });
     }
 

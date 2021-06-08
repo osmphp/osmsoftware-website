@@ -10,7 +10,7 @@
     ],
     "require": {
         "php": ">=8.0",
-        "osmphp/framework": "^0.7",
+        "osmphp/framework": "^0.8",
         "nesbot/carbon": "^2.48",
         "michelf/php-markdown": "^1.9"
     },

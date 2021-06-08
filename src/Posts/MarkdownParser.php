@@ -21,6 +21,7 @@ use function Osm\merge;
  * @property string $root_path
  * @property string $absolute_path
  * @property bool $exists
+ * @property Carbon $modified_at
  * @property ?\stdClass $model
  * @property Carbon $created_at
  * @property string $url_key
@@ -209,5 +210,10 @@ class MarkdownParser extends Object_
         $id = preg_replace('/\-+$/u', '', $id);
 
         return $id;
+    }
+
+    protected function get_modified_at(): Carbon {
+        $this->assumeExists();
+        return Carbon::createFromTimestamp(filemtime($this->absolute_path));
     }
 }
