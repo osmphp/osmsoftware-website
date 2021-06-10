@@ -13,7 +13,7 @@
         </p>
         <p class="col-span-6 lg:col-start-2 lg:col-span-4 text-lg mt-8 text-center">
             <a class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-                href="/todo" title="Read Blog"
+                href="/blog" title="Read Blog"
             >
                 Read Blog
             </a>
