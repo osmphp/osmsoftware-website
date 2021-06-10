@@ -1,4 +1,4 @@
-# Osm: Eagle (13) - `osmcommerce.com` home page
+# Home page
 
 This is the third blog post in the series describing how `osmcommerce.com` was built. This post covers creating the project, and rendering the home page.
 

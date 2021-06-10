@@ -7,10 +7,15 @@ namespace My\Tests;
 use My\Posts\Indexer;
 use Osm\Framework\TestCase;
 
-class test_02_db_indexing extends TestCase
+class test_02__indexing extends TestCase
 {
     public string $app_class_name = \My\Samples\App::class;
     public bool $use_db = true;
+
+    protected function tearDown(): void {
+        Indexer::new()->clearSearchIndex();
+        parent::tearDown();
+    }
 
     public function test_db_indexing_one_file() {
         // GIVEN the sample posts

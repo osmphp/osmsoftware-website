@@ -58,6 +58,12 @@ class Indexer extends Object_
             ['path' => $this->path]));
     }
 
+    public function clearSearchIndex(): void {
+        foreach ($this->search->index('posts')->ids() as $id) {
+            $this->search->index('posts')->delete($id);
+        }
+    }
+
     protected function get_root_path(): string {
         global $osm_app; /* @var App $osm_app */
 
@@ -129,7 +135,7 @@ class Indexer extends Object_
                 ? array_keys((array)$parser->meta->series)
                 : [],
             'year' => $parser->created_at->year,
-            'month' => $parser->created_at->month,
+            'month' => $parser->created_at->format("Y-m"),
             'created_at' => $parser->created_at->format("Y-m-d\TH:i:s")
         ];
 

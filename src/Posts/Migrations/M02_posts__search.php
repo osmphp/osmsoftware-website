@@ -42,7 +42,7 @@ class M02_posts__search extends Migration
                 ->sortable();
             $index->int('year')
                 ->filterable();
-            $index->int('month')
+            $index->string  ('month')
                 ->filterable();
         });
     }

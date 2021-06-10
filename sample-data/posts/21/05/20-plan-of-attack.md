@@ -1,4 +1,4 @@
-# Osm: Eagle (12) - plan of attack
+# Plan of attack
 
 As [mentioned before](18-welcome.md), this very website is based on the `osmphp/framework` package. This blog post is the second in the series describing how it was built. This post covers the "plan of attack" - where to start, what to do next, and what to finish with.
 
