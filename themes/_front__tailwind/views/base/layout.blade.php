@@ -3,6 +3,7 @@
 <head>
     <title>{{ $title }}</title>
     <link href="{{ $asset('styles.css') }}" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
 </head>
     <header class="container mx-auto">
     </header>

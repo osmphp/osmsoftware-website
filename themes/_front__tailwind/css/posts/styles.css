@@ -1,0 +1,9 @@
+@layer components {
+    a.link, .prose a {
+        @apply underline text-blue-600 font-normal;
+    }
+
+    a.link:visited, .prose a {
+        @apply text-purple-600;
+    }
+}

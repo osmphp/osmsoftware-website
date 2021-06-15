@@ -4,6 +4,13 @@ This is the 7-th blog post in the "Building `osmcommerce.com`" series. This post
 
 {{ toc }}
 
+## meta
+
+    {
+        "series": "Building osmcommerce.com", 
+        "series_part": 7
+    }
+
 ## The first test
 
 Let's create the first test showcasing the usage:

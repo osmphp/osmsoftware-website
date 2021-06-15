@@ -4,6 +4,13 @@ This is the 6-th blog post in the "Building `osmcommerce.com`" series. This post
 
 {{ toc }}
 
+## meta
+
+    {
+        "series": "Building osmcommerce.com", 
+        "series_part": 6
+    }
+
 ## Migration
 
 Create a migration file `src/Posts/Migrations/M02_posts__search.php`, and define an index and its fields:

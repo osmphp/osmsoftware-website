@@ -1,3 +1,6 @@
+<?php
+global $osm_app; /* @var \Osm\Core\App $osm_app */
+?>
 <x-base::layout title='Osm Commerce'>
     <section class="col-span-12 py-12 grid grid-cols-6">
         <h1 class="col-span-6 lg:col-start-2 lg:col-span-4 text-2xl sm:text-4xl font-bold">
@@ -13,7 +16,7 @@
         </p>
         <p class="col-span-6 lg:col-start-2 lg:col-span-4 text-lg mt-8 text-center">
             <a class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-                href="/blog" title="Read Blog"
+                href="{{ "{$osm_app->http->base_url}/blog/" }}" title="Read Blog"
             >
                 Read Blog
             </a>

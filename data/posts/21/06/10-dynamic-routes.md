@@ -4,6 +4,13 @@ This is the 8-th blog post in the "Building `osmcommerce.com`" series. In, this 
 
 {{ toc }}
 
+## meta
+
+    {
+        "series": "Building osmcommerce.com", 
+        "series_part": 8
+    }
+    
 ## Blog routes
 
 The blog will have these routes:

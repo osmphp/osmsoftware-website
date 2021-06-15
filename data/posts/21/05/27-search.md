@@ -2,6 +2,25 @@
 
 {{ toc }}
 
+## meta
+
+    {
+        "tags": ["Framework documentation"]
+    }
+
+## meta.list_text
+
+Full-text search and faceted navigation is a common feature for e-commerce
+applications. SQL solutions are often not optimal, and dedicated search engines,
+such as ElasticSearch or Algolia, are used instead.
+
+On the other hand, search and facets are useful not only for browsing a product
+catalog. In fact, any non-trivial data set benefits from it.
+
+The `osmphp/framework` package provides a unified set of classes for putting
+data into a search index and searching over it. As an example, do consider an
+e-shop product catalog, although it works with any data set.
+
 ## Introduction
 
 Full-text search and faceted navigation is a common feature for e-commerce applications. SQL solutions are often not optimal, and dedicated search engines, such as ElasticSearch or Algolia, are used instead.

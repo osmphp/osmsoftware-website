@@ -4,6 +4,13 @@ This is the third blog post in the series describing how `osmcommerce.com` was b
 
 {{ toc }}
 
+## meta
+
+    {
+        "series": "Building osmcommerce.com", 
+        "series_part": 3
+    }
+
 ## My local setup
 
 Locally, I "host" all the projects on a virtual Vagrant machine in order to make the development configuration as close to production as possible.

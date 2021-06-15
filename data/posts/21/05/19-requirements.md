@@ -7,7 +7,8 @@ As [mentioned before](18-welcome.md), this very website is based on the `osmphp/
 ## meta
 
     {
-        "series": {"Building osmcommerce.com": {"part": 1} }
+        "series": "Building osmcommerce.com", 
+        "series_part": 1
     }
 
 ### meta.summary

@@ -35,7 +35,6 @@ class M02_posts__search extends Migration
                 ->searchable()
                 ->filterable();
             $index->string('series')
-                ->array()
                 ->searchable()
                 ->filterable();
             $index->string('created_at')

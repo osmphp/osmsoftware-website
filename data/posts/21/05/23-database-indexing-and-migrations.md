@@ -4,6 +4,13 @@ This is the 5-th blog post in the "Building `osmcommerce.com`" series. This post
 
 {{ toc }}
 
+## meta
+
+    {
+        "series": "Building osmcommerce.com", 
+        "series_part": 5
+    }
+
 ## Motivation
 
 Later, when implementing a comment system, each comment will be associated with a blog post, and for that, a unique ID is needed. Markdown file path may change, so it's not a good option. Instead, each blog post is registered in the database `posts` table, and a record ID is used as blog post's unique identifier.

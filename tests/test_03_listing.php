@@ -54,7 +54,7 @@ class test_03_listing extends TestCase
         // WHEN you retrieve the posts for a given month
         $posts = Posts::new([
             'search_query' => $this->app->search->index('posts')
-                ->where('series', '=', 'Building osmcommerce.com')
+                ->where('series', '=', 'building-osmcommerce-com')
                 ->orderBy('created_at', desc: true)
                 ->limit(5),
         ]);

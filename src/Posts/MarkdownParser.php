@@ -5,13 +5,17 @@ declare(strict_types=1);
 namespace My\Posts;
 
 use Carbon\Carbon;
+use Michelf\MarkdownExtra;
 use My\Posts\Exceptions\InvalidJson;
 use My\Posts\Exceptions\InvalidPath;
 use My\Posts\Exceptions\TooManyDuplicateHeadings;
+use My\Posts\Hints\Series;
+use My\Posts\Hints\Tag;
 use Osm\Core\App;
 use Osm\Core\Exceptions\NotImplemented;
 use Osm\Core\Exceptions\NotSupported;
 use Osm\Core\Object_;
+use Osm\Framework\Http\Http;
 use function Osm\__;
 use function Osm\merge;
 
@@ -22,7 +26,10 @@ use function Osm\merge;
  * @property string $absolute_path
  * @property bool $exists
  * @property Carbon $modified_at
- * @property ?\stdClass $model
+ * @property Tag[]|null $tags
+ * @property ?Series $series
+ * @property ?string $list_text
+ * @property ?string $list_html
  * @property Carbon $created_at
  * @property string $url_key
  * @property string $original_text
@@ -31,6 +38,9 @@ use function Osm\merge;
  * @property \stdClass $toc
  * @property \stdClass $meta
  * @property string $text
+ * @property string $url
+ * @property Http $http
+ * @property string $html
  */
 class MarkdownParser extends Object_
 {
@@ -64,16 +74,6 @@ class MarkdownParser extends Object_
 
     protected function get_exists(): bool {
         return file_exists($this->absolute_path);
-    }
-
-    protected function get_model(): ?\stdClass {
-        return $this->exists
-            ? merge((object)[
-                'title' => $this->title,
-                'created_at' => $this->created_at,
-                'url_key' => $this->url_key,
-            ], $this->meta)
-            : null;
     }
 
     protected function get_created_at(): Carbon {
@@ -159,7 +159,8 @@ class MarkdownParser extends Object_
             if ($match['title'] === 'meta') {
                 if (($json = json_decode($match['text'])) === null) {
                     throw new InvalidJson(__(
-                        "Invalid JSON in 'meta' section"));
+                        "Invalid JSON in 'meta' section of ':file' file",
+                        ['file' => $this->path]));
                 }
                 $this->meta = merge($this->meta, $json);
 
@@ -215,5 +216,72 @@ class MarkdownParser extends Object_
     protected function get_modified_at(): Carbon {
         $this->assumeExists();
         return Carbon::createFromTimestamp(filemtime($this->absolute_path));
+    }
+
+    protected function get_url(): string {
+        return "{$this->http->base_url}/blog/" .
+            "{$this->created_at->format("y/m")}/{$this->url_key}.html";
+    }
+
+    protected function get_http(): Http {
+        global $osm_app; /* @var App $osm_app */
+
+        return $osm_app->http;
+    }
+
+    protected function get_html(): string {
+        return $this->html($this->text);
+    }
+
+    protected function html(?string $markdown): ?string {
+        if (!$markdown) {
+            return null;
+        }
+
+        $html = MarkdownExtra::defaultTransform($markdown);
+
+        // fix code blocks
+        return str_replace("\n</code>", '</code>', $html);
+    }
+
+    protected function get_tags(): ?array {
+        if (empty($this->meta->tags)) {
+            return null;
+        }
+
+        $tags = [];
+
+        foreach ($this->meta->tags as $title) {
+            $tags[] = (object)[
+                'title' => $title,
+                'url_key' => $this->generateId($title),
+            ];
+        }
+
+        return $tags;
+    }
+
+    protected function get_series(): ?\stdClass {
+        if (empty($this->meta->series)) {
+            return null;
+        }
+
+        if (empty($this->meta->series_part)) {
+            return null;
+        }
+
+        return (object)[
+            'title' => $this->meta->series,
+            'url_key' => $this->generateId($this->meta->series),
+            'part' => $this->meta->series_part,
+        ];
+    }
+
+    protected function get_list_text(): ?string {
+        return $this->meta->list_text ?? null;
+    }
+
+    protected function get_list_html(): ?string {
+        return $this->html($this->list_text);
     }
 }

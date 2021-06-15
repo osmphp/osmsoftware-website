@@ -4,6 +4,14 @@ As [mentioned before](18-welcome.md), this very website is based on the `osmphp/
 
 {{ toc }}
 
+## meta
+
+    {
+        "series": "Building osmcommerce.com", 
+        "series_part": 2
+    }
+
+
 ## Create the project, and render the home page
 
 Make a minimum that counts as a website - a project with a styled home page.

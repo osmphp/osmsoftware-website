@@ -4,6 +4,13 @@ This is the fourth blog post in the series describing how `osmcommerce.com` was 
 
 {{ toc }}
 
+## meta
+
+    {
+        "series": "Building osmcommerce.com", 
+        "series_part": 4
+    }
+
 ## Main vs sample application
 
 As described in [Applications and modules](/todo), there are several applications in the codebase, each having a different set of modules (different features), different configuration, different data storage.

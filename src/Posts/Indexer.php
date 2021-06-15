@@ -130,10 +130,10 @@ class Indexer extends Object_
         $data = [
             'title' => $parser->title,
             'text' => $parser->text,
-            'tags' => $parser->meta->tags ?? [],
-            'series' => isset($parser->meta->series)
-                ? array_keys((array)$parser->meta->series)
+            'tags' => $parser->tags
+                ? array_map(fn($tag) => $tag->url_key, $parser->tags)
                 : [],
+            'series' => $parser->series?->url_key ?? null,
             'year' => $parser->created_at->year,
             'month' => $parser->created_at->format("Y-m"),
             'created_at' => $parser->created_at->format("Y-m-d\TH:i:s")
