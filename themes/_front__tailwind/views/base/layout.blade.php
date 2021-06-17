@@ -5,8 +5,12 @@
     <link href="{{ $asset('styles.css') }}" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
 </head>
-    <header class="container mx-auto">
+    @if(isset($header))
+    <header class="container mx-auto fixed top-0 left-0 right-0">
+        {{ $header }}
     </header>
+    <div class="h-10"></div>
+    @endif
     <div class="container mx-auto px-4 grid grid-cols-12">
         {{ $slot }}
     </div>

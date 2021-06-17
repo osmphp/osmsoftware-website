@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace My\Posts\Routes\Front;
 
-use My\Posts\MarkdownParser;
+use My\Posts\Post;
 use My\Posts\Posts;
 use Osm\Core\App;
 use Osm\Framework\Http\Exceptions\NotFound;
@@ -25,7 +25,7 @@ class RenderPost extends Route
             "{$this->year}/{$this->month}/??-{$this->url_key}.md") as $path)
         {
             return view_response('posts::pages.post', [
-                'post' => MarkdownParser::new([
+                'post' => Post::new([
                     'path' => mb_substr($path, mb_strlen("{$this->root_path}/")),
                 ]),
             ]);

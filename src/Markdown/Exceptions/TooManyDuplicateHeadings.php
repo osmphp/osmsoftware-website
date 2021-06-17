@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace My\Posts\Exceptions;
+namespace My\Markdown\Exceptions;
 
 class TooManyDuplicateHeadings extends \Exception
 {

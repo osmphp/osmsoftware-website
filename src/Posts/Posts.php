@@ -17,8 +17,8 @@ use Osm\Framework\Search\Result;
  * @property Db $db
  * @property Collection $db_records
  * @property int $count
- * @property MarkdownParser[] $parsers
- * @property MarkdownParser[] $items
+ * @property Post[] $parsers
+ * @property Post[] $items
  */
 class Posts extends Object_
 {
@@ -45,8 +45,8 @@ class Posts extends Object_
     protected function get_parsers(): Collection {
         return $this->db_records
             ->keyBy('id')
-            ->map(fn($post) => MarkdownParser::new(['path' => $post->path]))
-            ->filter(fn(MarkdownParser $file) => $file->exists);
+            ->map(fn($post) => Post::new(['path' => $post->path]))
+            ->filter(fn(Post $file) => $file->exists);
     }
 
     protected function get_items(): array {

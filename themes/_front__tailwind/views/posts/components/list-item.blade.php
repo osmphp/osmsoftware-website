@@ -1,6 +1,6 @@
 <?php
 global $osm_app; /* @var \Osm\Core\App $osm_app */
-/* @var \My\Posts\MarkdownParser $post */
+/* @var \My\Posts\Post $post */
 ?>
 <article>
     <h2 class="text-lg  font-bold mt-8 underline">

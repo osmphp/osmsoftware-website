@@ -1,8 +1,11 @@
 <?php
 global $osm_app; /* @var \Osm\Core\App $osm_app */
-/* @var \My\Posts\MarkdownParser $post */
+/* @var \My\Posts\Post $post */
 ?>
 <x-base::layout :title='$post->title . " | Blog | Osm Commerce"'>
+    <x-slot name="header">
+        <x-posts::header />
+    </x-slot>
     <article class="col-start-1 col-span-12 md:col-start-4 md:col-span-9
         xl:col-start-4 xl:col-span-6"
     >

@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace My\Posts;
 
 use Carbon\Carbon;
-use My\Posts\Exceptions\InvalidPath;
+use My\Markdown\Exceptions\InvalidPath;
 use Osm\Core\App;
 use Osm\Core\Object_;
 use Osm\Framework\Db\Db;
@@ -71,7 +71,7 @@ class Indexer extends Object_
     }
 
     protected function indexFile(string $path): void {
-        $parser = MarkdownParser::new(['path' => $path]);
+        $parser = Post::new(['path' => $path]);
 
         if ($id = $this->db->table('posts')
             ->where('path', $path)
@@ -126,7 +126,7 @@ class Indexer extends Object_
         }
     }
 
-    protected function afterSaved(int $id, MarkdownParser $parser): void {
+    protected function afterSaved(int $id, Post $parser): void {
         $data = [
             'title' => $parser->title,
             'text' => $parser->text,
