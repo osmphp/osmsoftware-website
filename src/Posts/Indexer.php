@@ -8,6 +8,7 @@ use Carbon\Carbon;
 use My\Markdown\Exceptions\InvalidPath;
 use Osm\Core\App;
 use Osm\Core\Object_;
+use Osm\Framework\Cache\Cache;
 use Osm\Framework\Db\Db;
 use Osm\Framework\Search\Search;
 use function Osm\__;
@@ -17,6 +18,7 @@ use function Osm\__;
  * @property string $root_path
  * @property Db $db
  * @property Search $search
+ * @property Cache $cache
  */
 class Indexer extends Object_
 {
@@ -25,6 +27,8 @@ class Indexer extends Object_
             $this->indexPath($this->path);
             $this->markDeletedFiles();
         });
+
+        $this->cache->deleteItem('blog_categories');
     }
 
     protected function indexPath(?string $path): void {
@@ -126,17 +130,20 @@ class Indexer extends Object_
         }
     }
 
-    protected function afterSaved(int $id, Post $parser): void {
+    protected function afterSaved(int $id, Post $post): void {
         $data = [
-            'title' => $parser->title,
-            'text' => $parser->text,
-            'tags' => $parser->tags
-                ? array_map(fn($tag) => $tag->url_key, $parser->tags)
+            'title' => $post->title,
+            'text' => $post->text,
+            'tags' => $post->tags
+                ? array_map(fn($tag) => $tag->url_key, $post->tags)
                 : [],
-            'series' => $parser->series?->url_key ?? null,
-            'year' => $parser->created_at->year,
-            'month' => $parser->created_at->format("Y-m"),
-            'created_at' => $parser->created_at->format("Y-m-d\TH:i:s")
+            'series' => $post->series?->url_key ?? null,
+            'year' => $post->created_at->year,
+            'month' => $post->created_at->format("Y-m"),
+            'created_at' => $post->created_at->format("Y-m-d\TH:i:s"),
+            'category' => $post->category
+                ? ['all', $post->category]
+                : ['all'],
         ];
 
         if ($this->existsInSearch($id)) {
@@ -159,5 +166,11 @@ class Indexer extends Object_
     protected function existsInSearch(int $id): bool {
         return $this->search->index('posts')
             ->where('id', '=', $id)->id() !== null;
+    }
+
+    protected function get_cache(): Cache {
+        global $osm_app; /* @var App $osm_app */
+
+        return $osm_app->cache;
     }
 }

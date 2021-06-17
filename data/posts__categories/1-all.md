@@ -1,4 +1,4 @@
-# Recent Posts
+# All Posts
 
 ## meta.description
 

@@ -11,7 +11,7 @@
     </header>
     <div class="h-10"></div>
     @endif
-    <div class="container mx-auto px-4 grid grid-cols-12">
+    <div class="container mx-auto px-4 grid grid-cols-12 gap-4">
         {{ $slot }}
     </div>
     <footer class="container mx-auto">

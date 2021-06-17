@@ -16,6 +16,26 @@ global $osm_app; /* @var \Osm\Core\App $osm_app */
         @endforeach
     </section>
     <section class="hidden md:block md:col-start-1 md:col-span-3 row-start-1">
-        <p>Navigation goes here ...</p>
+        @if ($posts->categories)
+            <h2 class="text-xl font-bold mt-8 mb-4">Categories</h2>
+            <ul>
+                @foreach($posts->categories as $category)
+                    @if ($category->current)
+                        <li class="font-bold">
+                            {!! $category->title_html !!}
+                            ({{ $category->count }})
+                        </li>
+                    @else
+                        <li>
+                            <a href="{{ $category->url }}"
+                                title="{{ $category->title }}"
+                            >
+                                {!! $category->title_html !!}
+                                ({{ $category->count }})</a>
+                        </li>
+                    @endif
+                @endforeach
+            </ul>
+        @endif
     </section>
 </x-base::layout>

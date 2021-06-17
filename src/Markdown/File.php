@@ -12,27 +12,28 @@ use Osm\Core\Exceptions\NotSupported;
 use Osm\Core\Object_;
 use function Osm\__;
 use function Osm\merge;
+use Osm\Core\Attributes\Serialized;
 
 /**
- * @property string $path
+ * @property string $path #[Serialized]
  *
- * @property string $root_path Define getter in derived classes
- * @property string $absolute_path
- * @property bool $exists
- * @property Carbon $modified_at
- * @property string $original_text
- * @property ?string $title
- * @property \stdClass $toc
- * @property \stdClass $meta
- * @property string $text
- * @property string $html
+ * @property string $root_path #[Serialized] Define getter in derived classes
+ * @property string $absolute_path #[Serialized]
+ * @property bool $exists #[Serialized]
+ * @property Carbon $modified_at #[Serialized]
+ * @property string $original_text #[Serialized]
+ * @property ?string $title #[Serialized]
+ * @property ?string $title_html #[Serialized]
+ * @property \stdClass $toc #[Serialized]
+ * @property \stdClass $meta #[Serialized]
+ * @property string $text #[Serialized]
+ * @property string $html #[Serialized]
  */
 class File extends Object_
 {
     const MAX_DUPLICATE_HEADINGS = 100;
 
     // Regex patterns
-    const PATH_PATTERN = '|^(?<year>[0-9]{2})/(?<month>[0-9]{2})/(?<day>[0-9]{2})-(?<url_key>.*)\.md$|u';
     const H1_PATTERN = '/^#\s*(?<title>[^#{\r\n]+)\s*/mu';
     const SECTION_PATTERN = '/^(?<depth>#+)\s*(?<title>[^#{\r\n]+)#*[ \t]*(?:{(?<attributes>[^}\r\n]*)})?\r?$\s*(?<text>[\s\S]*?)(?=^#|\Z)/mu';
 
@@ -169,8 +170,12 @@ class File extends Object_
         return Carbon::createFromTimestamp(filemtime($this->absolute_path));
     }
 
-    protected function get_html(): string {
+    protected function get_html(): ?string {
         return $this->html($this->text);
+    }
+
+    protected function get_title_html(): string {
+        return $this->inlineHtml($this->title);
     }
 
     protected function html(?string $markdown): ?string {
@@ -182,5 +187,15 @@ class File extends Object_
 
         // fix code blocks
         return str_replace("\n</code>", '</code>', $html);
+    }
+
+    protected function inlineHtml(?string $markdown): ?string {
+        if (!$markdown) {
+            return null;
+        }
+
+        $html = $this->html($markdown);
+
+        return str_replace(['<p>', '</p>'], '', $html);
     }
 }

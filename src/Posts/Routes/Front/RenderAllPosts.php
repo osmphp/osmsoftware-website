@@ -20,7 +20,11 @@ class RenderAllPosts extends Route
         return view_response('posts::pages.all', [
             'posts' => Posts::new([
                 'search_query' => $this->search->index('posts')
+                    ->facetBy('category')
+                    ->facetBy('year')
+                    ->facetBy('month')
                     ->orderBy('created_at', desc: true),
+                'current_category' => 'all',
             ]),
         ]);
     }

@@ -40,9 +40,15 @@ class M02_posts__search extends Migration
             $index->string('created_at')
                 ->sortable();
             $index->int('year')
-                ->filterable();
-            $index->string  ('month')
-                ->filterable();
+                ->filterable()
+                ->faceted();
+            $index->string('month')
+                ->filterable()
+                ->faceted();
+            $index->string('category')
+                ->array()
+                ->filterable()
+                ->faceted();
         });
     }
 

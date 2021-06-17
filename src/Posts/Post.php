@@ -22,9 +22,12 @@ use function Osm\__;
  * @property string $url_key
  * @property string $url
  * @property Http $http
+ * @property ?string $category
  */
 class Post extends File
 {
+    const PATH_PATTERN = '|^(?<year>[0-9]{2})/(?<month>[0-9]{2})/(?<day>[0-9]{2})-(?<url_key>.*)\.md$|u';
+
     protected function get_root_path(): string {
         global $osm_app; /* @var App $osm_app */
 
@@ -34,6 +37,11 @@ class Post extends File
     protected function get_created_at(): Carbon {
         $this->parsePath();
         return $this->created_at;
+    }
+
+    protected function get_url_key(): string {
+        $this->parsePath();
+        return $this->url_key;
     }
 
     protected function parsePath(): void {
@@ -98,5 +106,9 @@ class Post extends File
 
     protected function get_list_html(): ?string {
         return $this->html($this->list_text);
+    }
+
+    protected function get_category(): ?string {
+        return $this->meta->category ?? null;
     }
 }
