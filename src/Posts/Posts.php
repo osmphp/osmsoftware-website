@@ -17,6 +17,7 @@ use My\Categories\Module as CategoryModule;
 use My\Categories\Category as CategoryFile;
 
 /**
+ * @property PageType $page_type
  * @property Query $search_query
  * @property ?string $current_category
  *
@@ -28,6 +29,8 @@ use My\Categories\Category as CategoryFile;
  * @property Post[] $items
  * @property Category[]|null $categories
  * @property CategoryModule $category_module
+ * @property Filter[] $filters
+ * @property array $http_query
  */
 class Posts extends Object_
 {
@@ -119,5 +122,28 @@ class Posts extends Object_
         global $osm_app; /* @var App $osm_app */
 
         return $osm_app->modules[CategoryModule::class];
+    }
+
+    protected function get_filters(): array {
+        return [
+            'q' => Filter\Search::new([
+                'name' => 'q',
+                'collection' => $this,
+            ]),
+            'category' => Filter\Category::new([
+                'name' => 'category',
+                'collection' => $this,
+            ]),
+            'date' => Filter\Date::new([
+                'name' => 'date',
+                'collection' => $this,
+            ]),
+        ];
+    }
+
+    protected function get_http_query(): array {
+        global $osm_app; /* @var App $osm_app */
+
+        return $osm_app->http->query;
     }
 }
