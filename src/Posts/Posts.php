@@ -24,8 +24,10 @@ use Osm\Framework\Search\Search;
  * @property ?int $limit
  *
  * @property Query $query
+ * @property Query[] $facet_queries
  * @property ?string $current_category
- * @property Result $search_result
+ * @property Result $result
+ * @property Result[] $facet_results
  * @property Db $db
  * @property Search $search
  * @property Collection $db_records
@@ -38,12 +40,12 @@ use Osm\Framework\Search\Search;
  */
 class Posts extends Object_
 {
-    protected function get_search_result() {
+    protected function get_result() {
         return $this->query->get();
     }
 
     protected function get_count(): int {
-        return $this->search_result->count;
+        return $this->result->count;
     }
 
     protected function get_db(): Db {
@@ -54,7 +56,7 @@ class Posts extends Object_
 
     protected function get_db_records(): Collection {
         return $this->db->table('posts')
-            ->whereIn('id', $this->search_result->ids)
+            ->whereIn('id', $this->result->ids)
             ->get(['id', 'path']);
     }
 
@@ -68,7 +70,7 @@ class Posts extends Object_
     protected function get_items(): array {
         $items = [];
 
-        foreach ($this->search_result->ids as $id) {
+        foreach ($this->result->ids as $id) {
             $items[$id] = $this->files[$id] ?? null;
         }
 
@@ -76,11 +78,11 @@ class Posts extends Object_
     }
 
     protected function get_categories(): ?array {
-        if (empty($this->search_result->facets['category']->counts)) {
+        if (empty($this->result->facets['category']->counts)) {
             return null;
         }
 
-        $counts = $this->search_result->facets['category']->counts;
+        $counts = $this->result->facets['category']->counts;
         $categories = [];
 
         foreach ($counts as $count) {
@@ -184,5 +186,44 @@ class Posts extends Object_
         global $osm_app; /* @var App $osm_app */
 
         return $osm_app->search;
+    }
+
+    protected function get_facet_queries(): array {
+        $queries = [];
+
+        foreach ($this->filters as $filter) {
+            if ($filter->require_facet_query && !$this->limit) {
+                $query = $this->createFacetQuery($filter);
+
+                $filter->requestFacets($query);
+
+                $queries[$filter->name] = $query;
+            }
+        }
+
+        return $queries;
+    }
+
+    protected function createFacetQuery(Filter $filterToBeOmitted): Query {
+        $query = $this->search->index('posts');
+
+        foreach ($this->filters as $filter) {
+            if ($filter === $filterToBeOmitted) {
+                continue;
+            }
+
+            if (empty($filter->applied_filters)) {
+                continue;
+            }
+
+            $filter->apply($query);
+        }
+
+        return $query;
+    }
+
+    protected function get_facet_results(): array {
+        return array_map(fn(Query $query) => $query->get(),
+            $this->facet_queries);
     }
 }

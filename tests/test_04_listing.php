@@ -10,7 +10,7 @@ use My\Posts\PageType;
 use My\Posts\Posts;
 use Osm\Framework\TestCase;
 
-class test_09_listing extends TestCase
+class test_04_listing extends TestCase
 {
     public string $app_class_name = \My\Samples\App::class;
     public bool $use_db = true;
