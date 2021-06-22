@@ -12,5 +12,4 @@ use My\Categories\Category as CategoryFile;
  */
 class Category extends AppliedFilter
 {
-
 }

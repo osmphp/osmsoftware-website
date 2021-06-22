@@ -9,6 +9,7 @@ use My\Posts\Filter;
 use My\Categories\Module as CategoryModule;
 use Osm\Core\App;
 use Osm\Core\BaseModule;
+use Osm\Framework\Search\Query;
 
 /**
  * @property CategoryModule $category_module
@@ -25,6 +26,7 @@ class Category extends Filter
         if ($this->collection->page_type->category) {
             return [AppliedFilter\Category::new([
                 'category' => $this->collection->page_type->category,
+                'filter' => $this,
             ])];
         }
 
@@ -38,6 +40,7 @@ class Category extends Filter
             if (isset($this->category_module->categories[$urlKey])) {
                 $appliedFilters[$urlKey] = AppliedFilter\Category::new([
                     'category' => $this->category_module->categories[$urlKey],
+                    'filter' => $this,
                 ]);
             }
         }
@@ -50,5 +53,23 @@ class Category extends Filter
         global $osm_app; /* @var App $osm_app */
 
         return $osm_app->modules[CategoryModule::class];
+    }
+
+    public function apply(Query $query): void {
+        $urlKeys = [];
+        foreach ($this->applied_filters as $appliedFilter) {
+            $urlKeys[] = $appliedFilter->category->url_key;
+        }
+
+        $query->where('category', 'in', $urlKeys);
+    }
+
+    public function requestFacets(Query $query): void {
+        $query->facetBy('category');
+    }
+
+    protected function get_require_facet_query(): bool {
+        return !empty($this->applied_filters) &&
+            !$this->collection->page_type->category;
     }
 }

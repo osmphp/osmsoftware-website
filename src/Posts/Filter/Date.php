@@ -4,8 +4,11 @@ declare(strict_types=1);
 
 namespace My\Posts\Filter;
 
+use Carbon\Carbon;
 use My\Posts\AppliedFilter;
 use My\Posts\Filter;
+use Osm\Framework\Search\Query;
+use Osm\Framework\Search\Where;
 
 class Date extends Filter
 {
@@ -22,6 +25,7 @@ class Date extends Filter
             return [AppliedFilter\Date::new([
                 'year' => $this->collection->page_type->year,
                 'month' => $this->collection->page_type->month,
+                'filter' => $this,
             ])];
         }
 
@@ -44,6 +48,7 @@ class Date extends Filter
                     'month' => isset($match['month'])
                         ? (int)$match['month']
                         : null,
+                    'filter' => $this,
                 ]);
 
                 if (!isset($match['month'])) {
@@ -67,5 +72,34 @@ class Date extends Filter
         }
 
         return array_values($appliedFilters);
+    }
+
+    protected function get_require_facet_query(): bool {
+        return !empty($this->applied_filters) &&
+            !$this->collection->page_type->year;
+    }
+
+    public function apply(Query $query): void {
+        $query->or(function(Where $clause) {
+            foreach ($this->applied_filters as $appliedFilter) {
+                if ($appliedFilter->month) {
+                    $date = Carbon::createFromDate($appliedFilter->year,
+                        $appliedFilter->month,1);
+
+                    $clause->where('month', '=',
+                        $date->format("Y-m"));
+                }
+                else {
+                    $clause->where('year', '=',
+                        $appliedFilter->year);
+                }
+            }
+        });
+    }
+
+    public function requestFacets(Query $query): void {
+        $query
+            ->facetBy('year')
+            ->facetBy('month');
     }
 }

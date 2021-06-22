@@ -6,6 +6,7 @@ namespace My\Tests;
 
 use Illuminate\Support\Collection;
 use My\Posts\Indexer;
+use My\Posts\PageType;
 use My\Posts\Posts;
 use Osm\Framework\TestCase;
 
@@ -29,10 +30,12 @@ class test_09_listing extends TestCase
 
         // WHEN you retrieve the posts for a given month
         $posts = Posts::new([
-            'search_query' => $this->app->search->index('posts')
-                ->where('month', '=', '2021-05')
-                ->orderBy('created_at', desc: true)
-                ->limit(5),
+            'page_type' => PageType\Month::new([
+                'year' => 2021,
+                'month' => 5,
+            ]),
+            'http_query' => [],
+            'limit' => 5,
         ]);
 
         // THEN their data is loaded into memory from the search engine,
@@ -48,15 +51,16 @@ class test_09_listing extends TestCase
         ], (new Collection($posts->items))->pluck('title')->toArray());
     }
 
-    public function test_series() {
+    public function test_category() {
         // GIVEN the sample posts are indexed
 
         // WHEN you retrieve the posts for a given month
         $posts = Posts::new([
-            'search_query' => $this->app->search->index('posts')
-                ->where('series', '=', 'building-osmcommerce-com')
-                ->orderBy('created_at', desc: true)
-                ->limit(5),
+            'page_type' => PageType\Category::new([
+                'category_url_key' => 'osmcommerce-com',
+            ]),
+            'http_query' => [],
+            'limit' => 5,
         ]);
 
         // THEN their data is loaded into memory from the search engine,
@@ -73,9 +77,11 @@ class test_09_listing extends TestCase
 
         // WHEN you retrieve the posts for a given month
         $posts = Posts::new([
-            'search_query' => $this->app->search->index('posts')
-                ->search('create module')
-                ->limit(5),
+            'page_type' => PageType\Search::new(),
+            'http_query' => [
+                'q' => 'create module',
+            ],
+            'limit' => 5,
         ]);
 
         // THEN their data is loaded into memory from the search engine,

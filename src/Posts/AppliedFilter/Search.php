@@ -11,5 +11,4 @@ use My\Posts\AppliedFilter;
  */
 class Search extends AppliedFilter
 {
-
 }

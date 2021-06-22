@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace My\Posts\Routes\Front;
 
+use My\Posts\PageType;
 use My\Posts\Posts;
 use Osm\Core\App;
 use Osm\Framework\Http\Route;
@@ -19,11 +20,7 @@ class RenderAllPosts extends Route
     public function run(): Response {
         return view_response('posts::pages.all', [
             'posts' => Posts::new([
-                'search_query' => $this->search->index('posts')
-                    ->facetBy('category')
-                    ->facetBy('year')
-                    ->facetBy('month')
-                    ->orderBy('created_at', desc: true),
+                'page_type' => PageType\Home::new(),
                 'current_category' => 'all',
             ]),
         ]);

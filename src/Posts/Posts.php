@@ -15,14 +15,19 @@ use Osm\Framework\Search\Query;
 use Osm\Framework\Search\Result;
 use My\Categories\Module as CategoryModule;
 use My\Categories\Category as CategoryFile;
+use Osm\Framework\Search\Search;
 
 /**
  * @property PageType $page_type
- * @property Query $search_query
- * @property ?string $current_category
+ * @property array $http_query
+ * @property ?int $offset
+ * @property ?int $limit
  *
+ * @property Query $query
+ * @property ?string $current_category
  * @property Result $search_result
  * @property Db $db
+ * @property Search $search
  * @property Collection $db_records
  * @property int $count
  * @property Post[] $files
@@ -30,12 +35,11 @@ use My\Categories\Category as CategoryFile;
  * @property Category[]|null $categories
  * @property CategoryModule $category_module
  * @property Filter[] $filters
- * @property array $http_query
  */
 class Posts extends Object_
 {
     protected function get_search_result() {
-        return $this->search_query->get();
+        return $this->query->get();
     }
 
     protected function get_count(): int {
@@ -145,5 +149,40 @@ class Posts extends Object_
         global $osm_app; /* @var App $osm_app */
 
         return $osm_app->http->query;
+    }
+
+    protected function get_query(): Query {
+        $query = $this->search->index('posts');
+
+        foreach ($this->filters as $filter) {
+            if (!empty($filter->applied_filters)) {
+                $filter->apply($query);
+            }
+
+            if (!$filter->require_facet_query && !$this->limit) {
+                $filter->requestFacets($query);
+            }
+        }
+
+        if (!$this->filters['q']->unparsed_value) {
+            $query->orderBy('created_at', desc: true);
+        }
+
+        if ($this->offset) {
+            $query->offset($this->offset);
+        }
+
+        if ($this->limit) {
+            $query->limit($this->limit);
+        }
+
+        return $query;
+    }
+
+
+    protected function get_search(): Search {
+        global $osm_app; /* @var App $osm_app */
+
+        return $osm_app->search;
     }
 }

@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 namespace My\Posts;
 
+use Osm\Core\Exceptions\NotImplemented;
 use Osm\Core\Object_;
+use Osm\Framework\Search\Query;
 
 /**
  * @property string $name
@@ -13,9 +15,18 @@ use Osm\Core\Object_;
  * @property array $http_query
  * @property ?string $unparsed_value
  * @property AppliedFilter[] $applied_filters
+ * @property bool $require_facet_query
  */
 class Filter extends Object_
 {
+    public function apply(Query $query): void {
+        throw new NotImplemented($this);
+    }
+
+    public function requestFacets(Query $query): void {
+        throw new NotImplemented($this);
+    }
+
     protected function get_http_query(): array {
         return $this->collection->http_query;
     }
