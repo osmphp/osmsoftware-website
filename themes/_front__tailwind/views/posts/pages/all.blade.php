@@ -16,6 +16,7 @@ global $osm_app; /* @var \Osm\Core\App $osm_app */
         @endforeach
     </section>
     <section class="hidden md:block md:col-start-1 md:col-span-3 row-start-1">
+        <x-posts::applied_filters :posts="$posts"/>
         @if ($posts->categories)
             <h2 class="text-xl font-bold mt-8 mb-4">Categories</h2>
             <ul>
