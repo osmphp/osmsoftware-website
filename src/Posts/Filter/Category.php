@@ -10,6 +10,7 @@ use My\Categories\Module as CategoryModule;
 use Osm\Core\App;
 use Osm\Core\BaseModule;
 use Osm\Framework\Search\Query;
+use function Osm\url_encode;
 
 /**
  * @property CategoryModule $category_module
@@ -71,5 +72,32 @@ class Category extends Filter
     protected function get_require_facet_query(): bool {
         return !empty($this->applied_filters) &&
             !$this->collection->page_type->category;
+    }
+
+    /**
+     * @param AppliedFilter\Category[] $appliedFilters
+     * @return string
+     */
+    public function url(array $appliedFilters): string {
+        $url = '';
+
+        foreach ($this->sort($appliedFilters) as $appliedFilter) {
+            if ($url) {
+                $url .= ' ';
+            }
+
+            $url .= $appliedFilter->category->url_key;
+        }
+
+        return url_encode($url);
+
+    }
+
+    protected function sort(array $appliedFilters): array {
+        usort($appliedFilters,
+            fn(AppliedFilter\Category $a, AppliedFilter\Category $b) =>
+                $a->category->url_key <=> $b->category->url_key);
+
+        return $appliedFilters;
     }
 }

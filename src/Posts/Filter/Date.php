@@ -9,6 +9,7 @@ use My\Posts\AppliedFilter;
 use My\Posts\Filter;
 use Osm\Framework\Search\Query;
 use Osm\Framework\Search\Where;
+use function Osm\url_encode;
 
 class Date extends Filter
 {
@@ -30,7 +31,6 @@ class Date extends Filter
         }
 
         $appliedFilters = [];
-        $wholeYears = [];
 
         if (!$this->unparsed_value) {
             return $appliedFilters;
@@ -50,10 +50,22 @@ class Date extends Filter
                         : null,
                     'filter' => $this,
                 ]);
+            }
+        }
 
-                if (!isset($match['month'])) {
-                    $wholeYears[] = (int)$match['year'];
-                }
+        return $this->normalize($appliedFilters);
+    }
+
+    /**
+     * @param AppliedFilter\Date[] $appliedFilters
+     * @return AppliedFilter\Date[]
+     */
+    protected function normalize(array $appliedFilters): array {
+        $wholeYears = [];
+
+        foreach ($appliedFilters as $appliedFilter) {
+            if (!$appliedFilter->month) {
+                $wholeYears[] = $appliedFilter->year;
             }
         }
 
@@ -70,6 +82,24 @@ class Date extends Filter
                 unset($appliedFilters[$key]);
             }
         }
+
+        usort($appliedFilters,
+            function(AppliedFilter\Date $a, AppliedFilter\Date $b) {
+                if ($result = ($a->year <=> $b->year) !== 0) {
+                    return $result;
+                }
+
+                if (!$a->month) {
+                    return -1;
+                }
+
+                if (!$b->month) {
+                    return 1;
+                }
+
+                return $a->month <=> $b->month;
+            }
+        );
 
         return array_values($appliedFilters);
     }
@@ -101,5 +131,27 @@ class Date extends Filter
         $query
             ->facetBy('year')
             ->facetBy('month');
+    }
+
+    public function url(array $appliedFilters): string {
+        $url = '';
+
+        foreach ($this->normalize($appliedFilters) as $appliedFilter) {
+            if ($url) {
+                $url .= ' ';
+            }
+
+            if ($appliedFilter->month) {
+                $date = Carbon::createFromDate($appliedFilter->year,
+                    $appliedFilter->month,1);
+                $url .= $date->format("Y-m");
+            }
+            else {
+                $url .= $appliedFilter->year;
+            }
+        }
+
+        return url_encode($url);
+
     }
 }

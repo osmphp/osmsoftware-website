@@ -34,4 +34,12 @@ class Filter extends Object_
     protected function get_unparsed_value(): ?string {
         return $this->http_query[$this->name] ?? null;
     }
+
+    /**
+     * @param AppliedFilter[] $appliedFilters
+     * @return string
+     */
+    public function url(array $appliedFilters): string {
+        throw new NotImplemented($this);
+    }
 }

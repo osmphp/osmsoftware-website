@@ -22,6 +22,7 @@ use Osm\Framework\Search\Search;
  * @property array $http_query
  * @property ?int $offset
  * @property ?int $limit
+ * @property string $base_url
  *
  * @property Query $query
  * @property Query[] $facet_queries
@@ -37,6 +38,7 @@ use Osm\Framework\Search\Search;
  * @property Category[]|null $categories
  * @property CategoryModule $category_module
  * @property Filter[] $filters
+ * @property string $url_state
  */
 class Posts extends Object_
 {
@@ -153,6 +155,12 @@ class Posts extends Object_
         return $osm_app->http->query;
     }
 
+    protected function get_base_url(): string {
+        global $osm_app; /* @var App $osm_app */
+
+        return $osm_app->http->base_url;
+    }
+
     protected function get_query(): Query {
         $query = $this->search->index('posts');
 
@@ -225,5 +233,17 @@ class Posts extends Object_
     protected function get_facet_results(): array {
         return array_map(fn(Query $query) => $query->get(),
             $this->facet_queries);
+    }
+
+    public function url(): Url {
+        return Url::new([
+            'collection' => $this,
+            'url_state' => $this->url_state,
+        ]);
+    }
+
+    protected function get_url_state(): array {
+        return array_map(fn(Filter $filter) => $filter->applied_filters,
+            $this->filters);
     }
 }

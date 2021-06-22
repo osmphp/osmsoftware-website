@@ -7,6 +7,7 @@ namespace My\Posts\Filter;
 use My\Posts\AppliedFilter;
 use My\Posts\Filter;
 use Osm\Framework\Search\Query;
+use function Osm\url_encode;
 
 /**
  */
@@ -35,5 +36,13 @@ class Search extends Filter
 
     public function requestFacets(Query $query): void {
         // search filter has no facets to count
+    }
+
+    /**
+     * @param AppliedFilter[] $appliedFilters
+     * @return string
+     */
+    public function url(array $appliedFilters): string {
+        return url_encode($appliedFilters[0]->phrase);
     }
 }
