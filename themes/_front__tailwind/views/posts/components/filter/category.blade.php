@@ -8,15 +8,17 @@ global $osm_app; /* @var \Osm\Core\App $osm_app */
         @if ($item->visible)
             <li>
                 <a href="{{ $item->applied ? $item->remove_url : $item->add_url }}"
-                    title="{{ $item->title }}"
+                    title="{{ $item->title }}" class="block pl-6 relative"
                 >
-                    <span>
+                    <span class="absolute left-0">
                         @if ($item->applied)
                             <i class="fas fa-check"></i>
                         @endif
                     </span>
-                    {!! $item->title_html !!}
-                    ({{ $item->count }})</a>
+                    <span>
+                        {!! $item->title_html !!}
+                        ({{ $item->count }})
+                    </span></a>
             </li>
         @endif
     @endforeach

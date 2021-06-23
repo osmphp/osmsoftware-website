@@ -6,7 +6,7 @@ global $osm_app; /* @var \Osm\Core\App $osm_app */
     <x-slot name="header">
         <x-posts::header />
     </x-slot>
-    <section class="col-start-1 col-span-12 md:col-start-4 md:col-span-9">
+    <section class="col-start-1 col-span-12 md:col-start-5 md:col-span-8 lg:col-start-4 md:col-span-9">
         <h1 class="text-2xl sm:text-4xl font-bold mt-8">
             {{ \Osm\__("Latest Posts") }}
         </h1>
@@ -15,7 +15,7 @@ global $osm_app; /* @var \Osm\Core\App $osm_app */
             <x-posts::list-item :post="$post" />
         @endforeach
     </section>
-    <section class="hidden md:block md:col-start-1 md:col-span-3 row-start-1">
+    <section class="hidden md:block md:col-start-1 md:col-span-4 lg:col-span-3 row-start-1">
         <x-posts::applied_filters :posts="$posts"/>
 
         @foreach ($posts->filters as $filter)

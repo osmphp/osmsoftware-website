@@ -5,7 +5,8 @@
 ## meta
 
     {
-        "tags": ["Framework documentation"]
+        "tags": ["Framework documentation"],
+        "category": "framework"
     }
 
 ## meta.list_text
