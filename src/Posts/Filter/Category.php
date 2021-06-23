@@ -75,8 +75,7 @@ class Category extends Filter
     }
 
     protected function get_require_facet_query(): bool {
-        return !empty($this->applied_filters) &&
-            !$this->collection->page_type->category;
+        return !empty($this->applied_filters);
     }
 
     /**
@@ -139,8 +138,8 @@ class Category extends Filter
     }
 
     protected function get_facet(): \stdClass|Facet {
-        return empty($this->applied_filters)
-            ? $this->collection->result->facets['category']
-            : $this->collection->facet_results['category']->facets['category'];
+        return $this->require_facet_query
+            ? $this->collection->facet_results['category']->facets['category']
+            : $this->collection->result->facets['category'];
     }
 }

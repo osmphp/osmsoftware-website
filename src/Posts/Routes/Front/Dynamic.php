@@ -43,17 +43,15 @@ class Dynamic extends Route
         $r->get('', AddTrailingSlash::class);
         $r->get('/{year:\d+}', AddTrailingSlash::class);
         $r->get('/{year:\d+}/{month:\d+}', AddTrailingSlash::class);
-        $r->get('/tags/{tag}', AddTrailingSlash::class);
-        $r->get('/series/{series}', AddTrailingSlash::class);
+        $r->get('/{category:(?!search)\w[^/]*}', AddTrailingSlash::class);
 
         $r->get('/', RenderAllPosts::class);
         $r->get('/search', RenderSearchResults::class);
         $r->get('/{year:\d+}/{month:\d+}/{url_key}.html',
             RenderPost::class);
-        $r->get('/{year:\d+}/', RenderYearPosts::class);
+        $r->get('/{year:\d+}/', RenderCategoryPosts::class);
         $r->get('/{year:\d+}/{month:\d+}/', RenderMonthPosts::class);
-        $r->get('/tags/{tag}/', RenderTagPosts::class);
-        $r->get('/series/{series}/', RenderSeriesPosts::class);
+        $r->get('/{category:\w[^/]*}/', RenderCategoryPosts::class);
     }
 
     protected function get_prefix(): string {

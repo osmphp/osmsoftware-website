@@ -21,7 +21,6 @@ use Osm\Framework\Search\Search;
  *
  * @property Query $query
  * @property Query[] $facet_queries
- * @property ?string $current_category
  * @property Result $result
  * @property Result[] $facet_results
  * @property Db $db
