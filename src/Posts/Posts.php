@@ -38,6 +38,7 @@ use Osm\Framework\Search\Search;
  * @property Category[]|null $categories
  * @property CategoryModule $category_module
  * @property Filter[] $filters
+ * @property AppliedFilter[] $applied_filters
  * @property string $url_state
  */
 class Posts extends Object_
@@ -245,5 +246,16 @@ class Posts extends Object_
     protected function get_url_state(): array {
         return array_map(fn(Filter $filter) => $filter->applied_filters,
             $this->filters);
+    }
+
+    protected function get_applied_filters(): array {
+        $appliedFilters = [];
+
+        foreach ($this->filters as $filter) {
+            $appliedFilters = array_merge($appliedFilters,
+                $filter->applied_filters);
+        }
+
+        return $appliedFilters;
     }
 }

@@ -10,6 +10,7 @@ use Osm\Core\Object_;
 /**
  * @property Posts $collection
  * @property array $url_state
+ * @property string $prefix
  */
 class Url extends Object_ implements \Stringable
 {
@@ -101,7 +102,7 @@ class Url extends Object_ implements \Stringable
 
             $this->url_state['category'] = [];
 
-            return "/{$appliedFilter->category->url_key}/";
+            return "{$this->prefix}/{$appliedFilter->category->url_key}/";
         }
 
         if (count($this->url_state['date']) == 1) {
@@ -111,13 +112,13 @@ class Url extends Object_ implements \Stringable
             $this->url_state['date'] = [];
 
             return $appliedFilter->month
-                ? "/{$appliedFilter->year}/{$appliedFilter->month}/"
-                : "/{$appliedFilter->year}/";
+                ? "{$this->prefix}/{$appliedFilter->year}/{$appliedFilter->month}/"
+                : "{$this->prefix}/{$appliedFilter->year}/";
         }
 
         return count($this->url_state['q']) == 1
-            ? '/search'
-            : '/';
+            ? "{$this->prefix}/search"
+            : "{$this->prefix}/";
     }
 
     protected function query(): string {
@@ -139,5 +140,9 @@ class Url extends Object_ implements \Stringable
 
     public function __toString(): string {
         return "{$this->collection->base_url}{$this->route()}{$this->query()}";
+    }
+
+    protected function get_prefix(): string {
+        return '/blog';
     }
 }

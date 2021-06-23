@@ -1,5 +1,3 @@
-@import "./font-awesome-all.css";
-
 @layer components {
     a.link, .prose a {
         @apply underline text-blue-600 font-normal;
