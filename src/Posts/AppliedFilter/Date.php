@@ -23,7 +23,7 @@ class Date extends AppliedFilter
         if ($this->month) {
             $date = Carbon::createFromDate($this->year, $this->month,1);
 
-            return $date->format("Y-m");
+            return $date->format("Y M");
         }
         else {
             return (string)$this->year;

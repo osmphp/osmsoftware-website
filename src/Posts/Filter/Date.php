@@ -112,8 +112,7 @@ class Date extends Filter
     }
 
     protected function get_require_facet_query(): bool {
-        return !empty($this->applied_filters) &&
-            !$this->collection->page_type->year;
+        return !empty($this->applied_filters);
     }
 
     public function apply(Query $query): void {
@@ -189,6 +188,9 @@ class Date extends Filter
                 'months' => [],
             ]);
         }
+
+        uasort($yearItems, fn(FilterItem\Year $a, FilterItem\Year $b)
+            => -1 * ($a->value <=> $b->value));
 
         foreach ($this->month_facet->counts as $facetItem) {
             $monthItem = FilterItem\Month::new([
