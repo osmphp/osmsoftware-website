@@ -8,10 +8,8 @@ global $osm_app; /* @var \Osm\Core\App $osm_app */
     </x-slot>
     <section class="col-start-1 col-span-12 md:col-start-4 md:col-span-9">
         <h1 class="text-2xl sm:text-4xl font-bold my-8">
-            {{ \Osm\__(":year :month Posts", [
-                'year' => $posts->page_type->year,
-                'month' => \Carbon\Carbon::createFromDate($posts->page_type->year,
-                    $posts->page_type->month, 1)->format('F'),
+            {{ \Osm\__("Search results for ':phrase'", [
+                'phrase' => $posts->filters['q']->unparsed_value,
             ]) }}
         </h1>
 

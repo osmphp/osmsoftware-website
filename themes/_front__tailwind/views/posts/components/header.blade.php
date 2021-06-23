@@ -13,7 +13,7 @@ global $osm_app; /* @var \Osm\Core\App $osm_app */
         OSM
     </li>
     <li class="w-32 h-10 flex-grow flex items-center">
-        <form action="{{ "{$osm_app->http->base_url}/search" }}" class="flex-grow">
+        <form action="{{ "{$osm_app->http->base_url}/blog/search" }}" class="flex-grow">
             <div class="flex border-b py-1 border-solid border-gray-500">
                 <button type="submit"
                     class="w-6 h-6 mr-2 flex items-center justify-center
@@ -23,7 +23,8 @@ global $osm_app; /* @var \Osm\Core\App $osm_app */
                 </button>
                 <input type="text" name="q"
                     placeholder="{{ \Osm\__("Search blog (press '/')") }}"
-                    class="w-20 flex-grow focus:outline-none">
+                    class="w-20 flex-grow focus:outline-none"
+                    value="{{ $osm_app->http->query['q'] ?? '' }}">
             </div>
         </form>
     </li>

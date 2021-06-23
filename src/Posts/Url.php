@@ -112,7 +112,7 @@ class Url extends Object_ implements \Stringable
             $this->url_state['date'] = [];
 
             return $appliedFilter->month
-                ? "{$this->prefix}/{$appliedFilter->year}/{$appliedFilter->month}/"
+                ? "{$this->prefix}/{$appliedFilter->date->format('Y/m')}/"
                 : "{$this->prefix}/{$appliedFilter->year}/";
         }
 

@@ -7,13 +7,15 @@ global $osm_app; /* @var \Osm\Core\App $osm_app */
         <x-posts::header />
     </x-slot>
     <section class="col-start-1 col-span-12 md:col-start-4 md:col-span-9">
-        <h1 class="text-2xl sm:text-4xl font-bold mt-8">
+        <h1 class="text-2xl sm:text-4xl font-bold my-8">
             {{ \Osm\__(":year Posts", ['year' => $posts->page_type->year]) }}
         </h1>
 
-        @foreach($posts->items as $post)
+        @forelse($posts->items as $post)
             <x-posts::list-item :post="$post" />
-        @endforeach
+        @empty
+            <p>{{ \Osm\__("No results found matching your selection.") }}</p>
+        @endforelse
     </section>
     <section class="hidden md:block md:col-start-1 md:col-span-3 row-start-1">
         <x-posts::applied_filters :posts="$posts"/>
