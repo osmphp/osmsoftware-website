@@ -17,26 +17,12 @@ global $osm_app; /* @var \Osm\Core\App $osm_app */
     </section>
     <section class="hidden md:block md:col-start-1 md:col-span-3 row-start-1">
         <x-posts::applied_filters :posts="$posts"/>
-        @if ($posts->categories)
-            <h2 class="text-xl font-bold mt-8 mb-4">Categories</h2>
-            <ul>
-                @foreach($posts->categories as $category)
-                    @if ($category->current)
-                        <li class="font-bold">
-                            {!! $category->title_html !!}
-                            ({{ $category->count }})
-                        </li>
-                    @else
-                        <li>
-                            <a href="{{ $category->url }}"
-                                title="{{ $category->title }}"
-                            >
-                                {!! $category->title_html !!}
-                                ({{ $category->count }})</a>
-                        </li>
-                    @endif
-                @endforeach
-            </ul>
-        @endif
+
+        @foreach ($posts->filters as $filter)
+            @if ($filter->component)
+                <x-dynamic-component :component="$filter->component"
+                    :filter="$filter" />
+            @endif
+        @endforeach
     </section>
 </x-base::layout>

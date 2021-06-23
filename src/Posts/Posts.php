@@ -5,16 +5,11 @@ declare(strict_types=1);
 namespace My\Posts;
 
 use Illuminate\Support\Collection;
-use My\Posts\Hints\Category;
 use Osm\Core\App;
-use Osm\Core\BaseModule;
-use Osm\Core\Exceptions\NotImplemented;
 use Osm\Core\Object_;
 use Osm\Framework\Db\Db;
 use Osm\Framework\Search\Query;
 use Osm\Framework\Search\Result;
-use My\Categories\Module as CategoryModule;
-use My\Categories\Category as CategoryFile;
 use Osm\Framework\Search\Search;
 
 /**
@@ -35,8 +30,6 @@ use Osm\Framework\Search\Search;
  * @property int $count
  * @property Post[] $files
  * @property Post[] $items
- * @property Category[]|null $categories
- * @property CategoryModule $category_module
  * @property Filter[] $filters
  * @property AppliedFilter[] $applied_filters
  * @property string $url_state
@@ -78,59 +71,6 @@ class Posts extends Object_
         }
 
         return $items;
-    }
-
-    protected function get_categories(): ?array {
-        if (empty($this->result->facets['category']->counts)) {
-            return null;
-        }
-
-        $counts = $this->result->facets['category']->counts;
-        $categories = [];
-
-        foreach ($counts as $count) {
-            if (isset($this->category_module->categories[$count->value])) {
-                $category = $this->category_module->categories[$count->value];
-
-            }
-            else {
-                $category = CategoryFile::new([
-                    'title' => $count->value,
-                    'title_html' => $count->value,
-                    'url_key' => $count->value,
-                    'sort_order' => null,
-                ]);
-            }
-            $categories[] = (object)[
-                'title' => $category->title,
-                'title_html' => $category->title_html,
-                'url' => $category->url(),
-                'count' => $count->count,
-                'current' => $category->url_key === $this->current_category,
-                'sort_order' => $category->sort_order,
-            ];
-        }
-
-        usort($categories,
-            function(\stdClass|Category $a, \stdClass|Category $b) {
-                if ($a->sort_order === null) {
-                    return 1;
-                }
-
-                if ($b->sort_order === null) {
-                    return -1;
-                }
-
-                return $a->sort_order <=> $b->sort_order;
-            });
-
-        return $categories;
-    }
-
-    protected function get_category_module(): CategoryModule|BaseModule {
-        global $osm_app; /* @var App $osm_app */
-
-        return $osm_app->modules[CategoryModule::class];
     }
 
     protected function get_filters(): array {

@@ -7,13 +7,18 @@ namespace My\Posts\Filter;
 use My\Posts\AppliedFilter;
 use My\Posts\Filter;
 use My\Categories\Module as CategoryModule;
+use My\Posts\FilterItem;
 use Osm\Core\App;
 use Osm\Core\BaseModule;
+use Osm\Core\Exceptions\NotImplemented;
+use Osm\Framework\Search\Hints\Result\Facet;
 use Osm\Framework\Search\Query;
 use function Osm\url_encode;
 
 /**
  * @property CategoryModule $category_module
+ * @property FilterItem\Category[] $items
+ * @property \stdClass|Facet $facet
  */
 class Category extends Filter
 {
@@ -99,5 +104,43 @@ class Category extends Filter
                 $a->category->url_key <=> $b->category->url_key);
 
         return $appliedFilters;
+    }
+
+    protected function get_component(): string {
+        return 'posts::filter.category';
+    }
+
+    protected function get_visible(): bool {
+        if (!parent::get_visible()) {
+            return false;
+        }
+
+        foreach ($this->items as $item) {
+            if ($item->visible) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    protected function get_items(): array {
+        $items = [];
+
+        foreach ($this->facet->counts as $facetItem) {
+            $items[] = FilterItem\Category::new([
+                'filter' => $this,
+                'value' => $facetItem->value,
+                'count' => $facetItem->count,
+            ]);
+        }
+
+        return $items;
+    }
+
+    protected function get_facet(): \stdClass|Facet {
+        return empty($this->applied_filters)
+            ? $this->collection->result->facets['category']
+            : $this->collection->facet_results['category']->facets['category'];
     }
 }

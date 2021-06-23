@@ -7,6 +7,7 @@ namespace My\Posts;
 use Osm\Core\Exceptions\NotImplemented;
 use Osm\Core\Object_;
 use Osm\Framework\Search\Query;
+use function Osm\__;
 
 /**
  * @property string $name
@@ -16,6 +17,10 @@ use Osm\Framework\Search\Query;
  * @property ?string $unparsed_value
  * @property AppliedFilter[] $applied_filters
  * @property bool $require_facet_query
+ * @property string $component Blade component to render this filter with
+ * @property bool $visible
+ * @property string $title
+ * @property string $title_html
  */
 class Filter extends Object_
 {
@@ -41,5 +46,17 @@ class Filter extends Object_
      */
     public function url(array $appliedFilters): string {
         throw new NotImplemented($this);
+    }
+
+    protected function get_title(): string {
+        return __("Categories");
+    }
+
+    protected function get_title_html(): string {
+        return htmlspecialchars($this->title);
+    }
+
+    protected function get_visible(): bool {
+        return $this->component !== null;
     }
 }
