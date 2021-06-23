@@ -14,6 +14,7 @@ use Osm\Core\Exceptions\NotImplemented;
 use Osm\Framework\Search\Hints\Result\Facet;
 use Osm\Framework\Search\Query;
 use function Osm\url_encode;
+use function Osm\__;
 
 /**
  * @property CategoryModule $category_module
@@ -141,5 +142,9 @@ class Category extends Filter
         return $this->require_facet_query
             ? $this->collection->facet_results['category']->facets['category']
             : $this->collection->result->facets['category'];
+    }
+
+    protected function get_title(): string {
+        return __("Categories");
     }
 }

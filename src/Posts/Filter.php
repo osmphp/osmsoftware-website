@@ -49,7 +49,7 @@ class Filter extends Object_
     }
 
     protected function get_title(): string {
-        return __("Categories");
+        throw new NotImplemented($this);
     }
 
     protected function get_title_html(): string {
@@ -58,5 +58,9 @@ class Filter extends Object_
 
     protected function get_visible(): bool {
         return $this->component !== null;
+    }
+
+    protected function get_items(): array {
+        throw new NotImplemented($this);
     }
 }

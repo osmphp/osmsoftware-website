@@ -7,10 +7,17 @@ namespace My\Posts\Filter;
 use Carbon\Carbon;
 use My\Posts\AppliedFilter;
 use My\Posts\Filter;
+use My\Posts\FilterItem;
+use Osm\Framework\Search\Hints\Result\Facet;
 use Osm\Framework\Search\Query;
 use Osm\Framework\Search\Where;
 use function Osm\url_encode;
+use function Osm\__;
 
+/**
+ * @property \stdClass|Facet $year_facet
+ * @property \stdClass|Facet $month_facet
+ */
 class Date extends Filter
 {
     const PATTERN = '/(?<year>\d+)(?:-(?<month>\d+))?/';
@@ -153,5 +160,68 @@ class Date extends Filter
 
         return url_encode($url);
 
+    }
+
+    protected function get_component(): string {
+        return 'posts::filter.date';
+    }
+
+    protected function get_year_facet(): \stdClass|Facet {
+        return $this->require_facet_query
+            ? $this->collection->facet_results['date']->facets['year']
+            : $this->collection->result->facets['year'];
+    }
+
+    protected function get_month_facet(): \stdClass|Facet {
+        return $this->require_facet_query
+            ? $this->collection->facet_results['date']->facets['month']
+            : $this->collection->result->facets['month'];
+    }
+
+    protected function get_items(): array {
+        $yearItems = [];
+
+        foreach ($this->year_facet->counts as $facetItem) {
+            $yearItems[$facetItem->value] = FilterItem\Year::new([
+                'filter' => $this,
+                'value' => $facetItem->value,
+                'count' => $facetItem->count,
+                'months' => [],
+            ]);
+        }
+
+        foreach ($this->month_facet->counts as $facetItem) {
+            $monthItem = FilterItem\Month::new([
+                'filter' => $this,
+                'value' => $facetItem->value,
+                'count' => $facetItem->count,
+            ]);
+
+            if (!isset($yearItems[$monthItem->year])) {
+                continue;
+            }
+
+            $yearItems[$monthItem->year]->months[$monthItem->month - 1] = $monthItem;
+        }
+
+        foreach ($yearItems as $yearItem) {
+            $months = [];
+
+            for ($month = 0; $month < 12; $month++) {
+                $months[] = $yearItem->months[$month] ?? FilterItem\Month::new([
+                    'filter' => $this,
+                    'value' => $yearItem->value . '-' . ($month + 1),
+                    'count' => 0,
+                ]);
+            }
+
+            $yearItem->months = $months;
+        }
+
+        return array_values($yearItems);
+    }
+
+    protected function get_title(): string {
+        return __("Archive");
     }
 }

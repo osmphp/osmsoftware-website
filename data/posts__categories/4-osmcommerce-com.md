@@ -1,4 +1,4 @@
-# `osmcommerce.com`
+# osmcommerce.com
 
 ## meta.description
 

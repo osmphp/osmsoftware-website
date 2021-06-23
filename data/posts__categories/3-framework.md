@@ -1,4 +1,4 @@
-# Osm Framework
+# Framework
 
 ## meta.description
 
