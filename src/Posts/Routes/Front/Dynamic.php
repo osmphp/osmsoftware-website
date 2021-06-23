@@ -49,7 +49,7 @@ class Dynamic extends Route
         $r->get('/search', RenderSearchResults::class);
         $r->get('/{year:\d+}/{month:\d+}/{url_key}.html',
             RenderPost::class);
-        $r->get('/{year:\d+}/', RenderCategoryPosts::class);
+        $r->get('/{year:\d+}/', RenderYearPosts::class);
         $r->get('/{year:\d+}/{month:\d+}/', RenderMonthPosts::class);
         $r->get('/{category:\w[^/]*}/', RenderCategoryPosts::class);
     }

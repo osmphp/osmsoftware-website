@@ -26,10 +26,7 @@ class RenderCategoryPosts extends Route
         }
 
         return view_response('posts::pages.category', [
-            'category' => $pageType->category,
-            'posts' => Posts::new([
-                'page_type' => $pageType,
-            ]),
+            'posts' => Posts::new(['page_type' => $pageType]),
         ]);
     }
 

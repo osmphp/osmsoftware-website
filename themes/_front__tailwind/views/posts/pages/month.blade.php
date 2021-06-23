@@ -8,9 +8,12 @@ global $osm_app; /* @var \Osm\Core\App $osm_app */
     </x-slot>
     <section class="col-start-1 col-span-12 md:col-start-4 md:col-span-9">
         <h1 class="text-2xl sm:text-4xl font-bold mt-8">
-            {!! $posts->page_type->category->title_html !!}
+            {{ \Osm\__(":year :month Posts", [
+                'year' => $posts->page_type->year,
+                'month' => \Carbon\Carbon::createFromDate($posts->page_type->year,
+                    $posts->page_type->month, 1)->format('F'),
+            ]) }}
         </h1>
-        {!! $posts->page_type->category->description_html !!}
 
         @foreach($posts->items as $post)
             <x-posts::list-item :post="$post" />
