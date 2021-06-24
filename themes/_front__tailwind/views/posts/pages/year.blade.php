@@ -14,7 +14,9 @@ global $osm_app; /* @var \Osm\Core\App $osm_app */
         @forelse($posts->items as $post)
             <x-posts::list-item :post="$post" />
         @empty
-            <p>{{ \Osm\__("No results found matching your selection.") }}</p>
+            <p class="my-4">
+                {{ \Osm\__("No posts match your selection.") }}
+            </p>
         @endforelse
     </section>
     <section class="hidden md:block md:col-start-1 md:col-span-3 row-start-1">
