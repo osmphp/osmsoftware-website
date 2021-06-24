@@ -7,6 +7,7 @@ namespace My\Posts\AppliedFilter;
 use Carbon\Carbon;
 use My\Posts\AppliedFilter;
 use My\Posts\Url;
+use Osm\Core\Traits\DebuggableProperties;
 use function Osm\__;
 
 /**
@@ -16,6 +17,8 @@ use function Osm\__;
  */
 class Date extends AppliedFilter
 {
+    use DebuggableProperties;
+
     protected function get_title(): string {
         return $this->month ? __("Month"): __("Year");
     }

@@ -67,7 +67,7 @@ class Date extends Filter
      * @param AppliedFilter\Date[] $appliedFilters
      * @return AppliedFilter\Date[]
      */
-    protected function normalize(array $appliedFilters): array {
+    public function normalize(array $appliedFilters): array {
         $wholeYears = [];
 
         foreach ($appliedFilters as $appliedFilter) {
@@ -92,7 +92,7 @@ class Date extends Filter
 
         usort($appliedFilters,
             function(AppliedFilter\Date $a, AppliedFilter\Date $b) {
-                if ($result = ($a->year <=> $b->year) !== 0) {
+                if (($result = ($a->year <=> $b->year)) !== 0) {
                     return $result;
                 }
 

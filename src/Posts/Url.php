@@ -24,6 +24,19 @@ class Url extends Object_ implements \Stringable
     }
 
     public function addDateFilter(int $year, int $month = null): static {
+        if ($month) {
+            foreach (array_keys($this->url_state['date']) as $key) {
+                $appliedFilter = $this->url_state['date'][$key];
+
+                if ($appliedFilter->year == $year && !$appliedFilter->month) {
+                    unset($this->url_state['date'][$key]);
+                }
+            }
+
+            $this->url_state['date'] = array_values(
+                $this->url_state['date']);
+        }
+
         $this->url_state['date'][] = AppliedFilter\Date::new([
             'year' => $year,
             'month' => $month,
@@ -139,6 +152,9 @@ class Url extends Object_ implements \Stringable
     }
 
     public function __toString(): string {
+        $this->url_state['date'] = $this->collection->filters['date']->normalize(
+            $this->url_state['date']);
+
         return "{$this->collection->base_url}{$this->route()}{$this->query()}";
     }
 
