@@ -6,7 +6,7 @@ As [mentioned before](18-welcome.md), this very website is based on the `osmphp/
 
 ### meta.list_text
 
-Now that the [requirements are written](19-osmcommerce-com-requirements.md), let's divide it into task items. 
+Now that the [requirements are written](19-osmcommerce-com-requirements.md), let's divide them into task items. 
 
 ## Create the project, and render the home page
 

@@ -9,7 +9,7 @@ global $osm_app; /* @var \Osm\Core\App $osm_app */
     <article class="col-start-1 col-span-12 md:col-start-4 md:col-span-9
         xl:col-start-4 xl:col-span-6"
     >
-        <h1 class="text-2xl sm:text-4xl font-bold">
+        <h1 class="text-2xl sm:text-4xl font-bold my-8">
             {{ $post->title }}
         </h1>
         <p>{{ $post->created_at->format('d M Y') }}</p>

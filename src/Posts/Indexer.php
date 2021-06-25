@@ -134,10 +134,6 @@ class Indexer extends Object_
         $data = [
             'title' => $post->title,
             'text' => $post->text,
-            'tags' => $post->tags
-                ? array_map(fn($tag) => $tag->url_key, $post->tags)
-                : [],
-            'series' => $post->series?->url_key ?? null,
             'year' => $post->created_at->year,
             'month' => $post->created_at->format("Y-m"),
             'created_at' => $post->created_at->format("Y-m-d\TH:i:s"),

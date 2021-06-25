@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
 </head>
     @if(isset($header))
-    <header class="container mx-auto fixed top-0 left-0 right-0">
+    <header class="container mx-auto fixed top-0 left-0 right-0 z-10">
         {{ $header }}
     </header>
     <div class="h-10"></div>
