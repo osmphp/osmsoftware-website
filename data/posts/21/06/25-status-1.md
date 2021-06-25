@@ -1,6 +1,13 @@
 # 2021 Jun 14 - Jun 25
 
+The main feature delivered this week is multi-select layered navigation for the `osmcommerce.com` blog.  
+ 
 {{ toc }}
+
+### meta.list_text
+
+The main feature delivered this week is multi-select layered navigation for
+the `osmcommerce.com` blog.
 
 ## `osmcommerce.com` Website v0.1.1
 
