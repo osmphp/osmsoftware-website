@@ -5,17 +5,15 @@ declare(strict_types=1);
 namespace My\Posts;
 
 use Carbon\Carbon;
+use My\Categories\Module as CategoryModule;
 use My\Markdown\File;
 use My\Markdown\Exceptions\InvalidPath;
-use My\Posts\Hints\Series;
-use My\Posts\Hints\Tag;
 use Osm\Core\App;
+use Osm\Core\BaseModule;
 use Osm\Framework\Http\Http;
 use function Osm\__;
 
 /**
- * @property Tag[]|null $tags
- * @property ?Series $series
  * @property ?string $list_text
  * @property ?string $list_html
  * @property Carbon $created_at
@@ -23,6 +21,8 @@ use function Osm\__;
  * @property string $url
  * @property Http $http
  * @property ?string $category
+ * @property string[] $categories
+ * @property CategoryModule $category_module
  */
 class Post extends File
 {
@@ -67,39 +67,6 @@ class Post extends File
         return $osm_app->http;
     }
 
-    protected function get_tags(): ?array {
-        if (empty($this->meta->tags)) {
-            return null;
-        }
-
-        $tags = [];
-
-        foreach ($this->meta->tags as $title) {
-            $tags[] = (object)[
-                'title' => $title,
-                'url_key' => $this->generateId($title),
-            ];
-        }
-
-        return $tags;
-    }
-
-    protected function get_series(): ?\stdClass {
-        if (empty($this->meta->series)) {
-            return null;
-        }
-
-        if (empty($this->meta->series_part)) {
-            return null;
-        }
-
-        return (object)[
-            'title' => $this->meta->series,
-            'url_key' => $this->generateId($this->meta->series),
-            'part' => $this->meta->series_part,
-        ];
-    }
-
     protected function get_list_text(): ?string {
         return $this->meta->list_text ?? null;
     }
@@ -109,6 +76,28 @@ class Post extends File
     }
 
     protected function get_category(): ?string {
-        return $this->meta->category ?? null;
+        foreach ($this->category_module->categories as $category) {
+            if (str_starts_with($this->url_key, $category->url_key . '-')) {
+                return $category->url_key;
+            }
+        }
+
+        return null;
+    }
+
+    protected function get_categories(): array {
+        $categories = $this->meta->categories ?? [];
+
+        if ($this->category) {
+            array_unshift($categories, $this->category);
+        }
+
+        return array_unique($categories);
+    }
+
+    protected function get_category_module(): CategoryModule|BaseModule {
+        global $osm_app; /* @var App $osm_app */
+
+        return $osm_app->modules[CategoryModule::class];
     }
 }

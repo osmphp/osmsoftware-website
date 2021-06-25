@@ -23,7 +23,7 @@ global $osm_app; /* @var \Osm\Core\App $osm_app */
         <x-posts::applied_filters :posts="$posts"/>
 
         @foreach ($posts->filters as $filter)
-            @if ($filter->component)
+            @if ($filter->visible)
                 <x-dynamic-component :component="$filter->component"
                     :filter="$filter" />
             @endif

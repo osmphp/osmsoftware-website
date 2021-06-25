@@ -1,16 +1,12 @@
-# Plan of attack
+# Project Plan
 
 As [mentioned before](18-welcome.md), this very website is based on the `osmphp/framework` package. This blog post is the second in the series describing how it was built. This post covers the "plan of attack" - where to start, what to do next, and what to finish with.
 
 {{ toc }}
 
-## meta
+### meta.list_text
 
-    {
-        "series": "Building osmcommerce.com", 
-        "series_part": 2
-    }
-
+Now that the [requirements are written](19-osmcommerce-com-requirements.md), let's divide it into task items. 
 
 ## Create the project, and render the home page
 

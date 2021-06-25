@@ -141,7 +141,7 @@ class Indexer extends Object_
             'year' => $post->created_at->year,
             'month' => $post->created_at->format("Y-m"),
             'created_at' => $post->created_at->format("Y-m-d\TH:i:s"),
-            'category' => $post->category,
+            'category' => $post->categories,
         ];
 
         if ($this->existsInSearch($id)) {
