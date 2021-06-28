@@ -122,17 +122,8 @@ class Post extends File
             return null;
         }
 
-        $markdown = preg_replace_callback(static::LINK_PATTERN_1, function($match) {
-            return ($url = $this->resolveRelativeUrl($match['url']))
-                ? "[{$match['title']}]({$url})"
-                : $match[0];
-        }, $markdown);
-
-        $markdown = preg_replace_callback(static::LINK_PATTERN_2, function($match) {
-            return ($url = $this->resolveRelativeUrl($match['url']))
-                ? "<{$url}>"
-                : $match[0];
-        }, $markdown);
+        $markdown = $this->transformRelativeLinks($markdown);
+        $markdown = $this->transformTags($markdown);
 
         return parent::html($markdown);
     }
@@ -145,5 +136,39 @@ class Post extends File
                 'path' => mb_substr($absolutePath, mb_strlen("{$this->root_path}/")),
             ])->url
             : null;
+    }
+
+    protected function transformRelativeLinks(string $markdown): string {
+        $markdown = preg_replace_callback(static::LINK_PATTERN_1, function($match) {
+            return ($url = $this->resolveRelativeUrl($match['url']))
+                ? "[{$match['title']}]({$url})"
+                : $match[0];
+        }, $markdown);
+
+        return preg_replace_callback(static::LINK_PATTERN_2, function($match) {
+            return ($url = $this->resolveRelativeUrl($match['url']))
+                ? "<{$url}>"
+                : $match[0];
+        }, $markdown);
+    }
+
+    protected function transformTags(string $markdown): string {
+        return preg_replace_callback(static::TAG_PATTERN, function($match) {
+            return $this->renderTag($match['tag']);
+        }, $markdown);
+    }
+
+    protected function renderTag(string $tag): string {
+        return $tag == 'toc' ? $this->renderToc() : "{{ {$tag} }}";
+    }
+
+    protected function renderToc(): string {
+        $markdown = '';
+
+        foreach ($this->toc as $urlKey => $tocEntry) {
+            $markdown .= str_repeat(' ', ($tocEntry->depth - 2) * 4)
+                . "* [" . $tocEntry->title . "](#{$urlKey})\n";
+        }
+        return "{$markdown}\n";
     }
 }

@@ -40,7 +40,7 @@ class File extends Object_
     // obsolete patterns
     const HEADER_PATTERN = '/^(?<depth>#+)\s*(?<title>[^#{\r\n]+)#*[ \t]*(?:{(?<attributes>[^}\r\n]*)})?\r?$/mu';
     const IMAGE_LINK_PATTERN = "/!\\[(?<description>[^\\]]*)\\]\\((?<url>[^\\)]+)\\)/u";
-    const TAG_PATTERN = "/(?<whitespace> {4})?(?<opening_backtick>`)?{{\\s*(?<tag>[^ }]*)(?<args>.*)}}(?<closing_backtick>`)?/u";
+    const TAG_PATTERN = "/{{\s*(?<tag>[^ }]+)\s*}}/u";
 
     protected function get_absolute_path(): string {
         return "{$this->root_path}/{$this->path}";
@@ -134,7 +134,8 @@ class File extends Object_
             ];
 
             // by default, keep the section in the text
-            return $match[0];
+            return "{$match['depth']} {$match['title']} {$match['depth']} " .
+                "{#{$id}} \n\n{$match['text']}";
         }, $text);
     }
 
