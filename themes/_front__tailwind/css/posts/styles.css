@@ -6,4 +6,8 @@
     a.link:visited, .prose a {
         @apply text-purple-600;
     }
+
+    .prose img {
+        @apply mx-auto my-0;
+    }
 }

@@ -52,6 +52,7 @@ class Dynamic extends Route
         $r->get('/{year:\d+}/', RenderYearPosts::class);
         $r->get('/{year:\d+}/{month:\d+}/', RenderMonthPosts::class);
         $r->get('/{category:\w[^/]*}/', RenderCategoryPosts::class);
+        $r->get('/{image_path:.*\.(?:jpg|gif|png)}', RenderImage::class);
     }
 
     protected function get_prefix(): string {
