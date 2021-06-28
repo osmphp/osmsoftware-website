@@ -3,7 +3,7 @@ global $osm_app; /* @var \Osm\Core\App $osm_app */
 /* @var \My\Posts\Post $post */
 ?>
 <article>
-    <h2 class="text-lg  font-bold mt-8 underline">
+    <h2 class="text-lg  font-bold mt-8 underline my-5">
         <a href="{{ $post->url }}" title="{{ $post->title }}">
             {{ $post->title }}
         </a>

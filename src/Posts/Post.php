@@ -11,6 +11,7 @@ use My\Markdown\File;
 use My\Markdown\Exceptions\InvalidPath;
 use Osm\Core\App;
 use Osm\Core\BaseModule;
+use Osm\Core\Exceptions\NotImplemented;
 use Osm\Framework\Http\Http;
 use function Osm\__;
 
@@ -29,6 +30,12 @@ use function Osm\__;
 class Post extends File
 {
     const PATH_PATTERN = '|^(?<year>[0-9]{2})/(?<month>[0-9]{2})/(?<day>[0-9]{2})-(?<url_key>.*)\.md$|u';
+
+    // [title](url)
+    const LINK_PATTERN_1 = '/\[(?<title>[^]]*)\]\((?<url>[^)]*)\)/u';
+
+    // <url>
+    const LINK_PATTERN_2 = '/\<(?<url>[^>]*)\>/u';
 
     protected function get_root_path(): string {
         global $osm_app; /* @var App $osm_app */
@@ -108,5 +115,35 @@ class Post extends File
             fn(string $urlKey) => $this->category_module->categories[$urlKey],
             $this->categories
         ));
+    }
+
+    protected function html(?string $markdown): ?string {
+        if (!$markdown) {
+            return null;
+        }
+
+        $markdown = preg_replace_callback(static::LINK_PATTERN_1, function($match) {
+            return ($url = $this->resolveRelativeUrl($match['url']))
+                ? "[{$match['title']}]({$url})"
+                : $match[0];
+        }, $markdown);
+
+        $markdown = preg_replace_callback(static::LINK_PATTERN_2, function($match) {
+            return ($url = $this->resolveRelativeUrl($match['url']))
+                ? "<{$url}>"
+                : $match[0];
+        }, $markdown);
+
+        return parent::html($markdown);
+    }
+
+    protected function resolveRelativeUrl(string $path): ?string {
+        $absolutePath = realpath(dirname($this->absolute_path) . '/' . $path);
+
+        return $absolutePath
+            ? Post::new([
+                'path' => mb_substr($absolutePath, mb_strlen("{$this->root_path}/")),
+            ])->url
+            : null;
     }
 }
