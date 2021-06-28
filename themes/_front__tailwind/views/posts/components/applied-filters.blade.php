@@ -6,10 +6,10 @@ global $osm_app; /* @var \Osm\Core\App $osm_app */
     <h2 class="text-xl font-bold mt-8 mb-4">
         {{ \Osm\__("Applied Filters") }}
     </h2>
-    <ul>
+    <ul class="flex flex-wrap">
         @foreach ($posts->applied_filters as $appliedFilter)
-            <li>
-                <span>{!! $appliedFilter->title_html !!}</span>:
+            <li class="mr-4">
+                {{--<span>{!! $appliedFilter->title_html !!}</span>:--}}
                 <span>{!! $appliedFilter->value_html !!}</span>
                 <a href="{{ $appliedFilter->clear_url }}"
                     title="{{ \Osm\__("Clear") }}"

@@ -1,6 +1,6 @@
 # 2021 Jun 14 - Jun 25
 
-The main feature delivered this week is multi-select layered navigation for the `osmcommerce.com` blog.  
+The main delivered feature is multi-select layered navigation for the `osmcommerce.com` blog.  
  
 {{ toc }}
 
@@ -54,7 +54,7 @@ the `osmcommerce.com` blog.
     * generate layered navigation URLs using `My\Posts\Posts::url()` method and
     the fluent methods of the `My\Posts\Url` class
 
-* customize new Blade components and templates
+* customize new Blade components and their templates:
 
         # page header
         My\Posts\Components\Front\Header
@@ -76,7 +76,7 @@ the `osmcommerce.com` blog.
         My\Posts\Components\Front\AppliedFilters
         themes/_front__tailwind/views/posts/components/applied-filters.blade.php
 
-* customize new page routes and Blade templates
+* customize new page routes and Blade their templates:
 
         # home page
         My\Posts\Routes\Front\RenderAllPosts

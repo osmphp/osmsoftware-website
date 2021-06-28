@@ -2,4 +2,4 @@
 
 ## meta.description
 
-Learn from our mistakes, not yours! Based on `osmcommerce.com` project.
+`osmcommerce.com` website is built from scratch using Osm Framework. Read its source on [GitHub](https://github.com/osmphp/osmcommerce-website), and learn how it works from the articles below.

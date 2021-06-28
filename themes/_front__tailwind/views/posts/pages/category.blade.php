@@ -10,7 +10,9 @@ global $osm_app; /* @var \Osm\Core\App $osm_app */
         <h1 class="text-2xl sm:text-4xl font-bold my-8">
             {!! $posts->page_type->category->title_html !!}
         </h1>
-        {!! $posts->page_type->category->description_html !!}
+        <div class="prose max-w-none my-5">
+            {!! $posts->page_type->category->description_html !!}
+        </div>
 
         @forelse($posts->items as $post)
             <x-posts::list-item :post="$post" />

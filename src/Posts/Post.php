@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace My\Posts;
 
 use Carbon\Carbon;
+use My\Categories\Category;
 use My\Categories\Module as CategoryModule;
 use My\Markdown\File;
 use My\Markdown\Exceptions\InvalidPath;
@@ -22,6 +23,7 @@ use function Osm\__;
  * @property Http $http
  * @property ?string $category
  * @property string[] $categories
+ * @property Category[] $category_files
  * @property CategoryModule $category_module
  */
 class Post extends File
@@ -99,5 +101,12 @@ class Post extends File
         global $osm_app; /* @var App $osm_app */
 
         return $osm_app->modules[CategoryModule::class];
+    }
+
+    protected function get_category_files(): array {
+        return array_filter(array_map(
+            fn(string $urlKey) => $this->category_module->categories[$urlKey],
+            $this->categories
+        ));
     }
 }
