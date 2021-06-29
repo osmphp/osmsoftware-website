@@ -37,9 +37,7 @@ global $osm_app; /* @var \Osm\Core\App $osm_app */
         </section>
     </article>
     <section class="hidden md:block md:col-start-1 md:col-span-3 row-start-1">
-        <p>Navigation goes here ...</p>
     </section>
     <section class="hidden xl:block xl:col-start-10 xl:col-span-3 row-start-1">
-        <p>Navigation goes here ...</p>
     </section>
 </x-base::layout>
