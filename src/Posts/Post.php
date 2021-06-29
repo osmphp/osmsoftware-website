@@ -31,8 +31,8 @@ class Post extends File
 {
     const PATH_PATTERN = '|^(?<year>[0-9]{2})/(?<month>[0-9]{2})/(?<day>[0-9]{2})-(?<url_key>.*)\.md$|u';
 
-    // [title](url)
-    const LINK_PATTERN_1 = '/\[(?<title>[^]]*)\]\((?<url>[^)]*)\)/u';
+    // [title](url), but not ![title](url)
+    const LINK_PATTERN_1 = '/(?<!\!)\[(?<title>[^]]*)\]\((?<url>[^)]*)\)/u';
 
     // <url>
     const LINK_PATTERN_2 = '/\<(?<url>[^>]*)\>/u';

@@ -10,4 +10,8 @@
     .prose img {
         @apply mx-auto my-0;
     }
+
+    .prose h2, .prose h3, .prose h4, .prose h5, .prose h6 {
+        scroll-margin-top: 2.5rem;
+    }
 }
