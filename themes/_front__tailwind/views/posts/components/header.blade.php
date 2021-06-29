@@ -10,7 +10,7 @@ global $osm_app; /* @var \Osm\Core\App $osm_app */
         </button>
     </li>
     <li class="w-20 h-10 text-2xl flex items-center justify-center">
-        OSM
+        <a href="{{ "{$osm_app->http->base_url}/" }}">OSM</a>
     </li>
     <li class="w-32 h-10 flex-grow flex items-center">
         <form action="{{ "{$osm_app->http->base_url}/blog/search" }}" class="flex-grow">

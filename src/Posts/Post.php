@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace My\Posts;
 
 use Carbon\Carbon;
+use Michelf\MarkdownExtra;
 use My\Categories\Category;
 use My\Categories\Module as CategoryModule;
 use My\Markdown\File;
@@ -13,6 +14,7 @@ use Osm\Core\App;
 use Osm\Core\BaseModule;
 use Osm\Core\Exceptions\NotImplemented;
 use Osm\Framework\Http\Http;
+use Symfony\Component\DomCrawler\Crawler;
 use function Osm\__;
 
 /**
@@ -26,6 +28,7 @@ use function Osm\__;
  * @property string[] $categories
  * @property Category[] $category_files
  * @property CategoryModule $category_module
+ * @property string[] $broken_links
  */
 class Post extends File
 {
@@ -170,5 +173,48 @@ class Post extends File
                 . "* [" . $tocEntry->title . "](#{$urlKey})\n";
         }
         return "{$markdown}\n";
+    }
+
+    protected function get_broken_links(): array {
+        $brokenLinks = [];
+
+        $html = MarkdownExtra::defaultTransform($this->original_text);
+        $crawler = new Crawler($html);
+        foreach ($crawler->filter('a') as $link) {
+            if ($this->isBrokenLink(
+                $url = $link->getAttribute('href')))
+            {
+                $brokenLinks[] = $url;
+            }
+        }
+
+        foreach ($crawler->filter('img') as $link) {
+            if ($this->isBrokenLink(
+                $url = $link->getAttribute('src')))
+            {
+                $brokenLinks[] = $url;
+            }
+        }
+
+        return $brokenLinks;
+    }
+
+    protected function isBrokenLink(string $path): bool {
+        if (!$path) {
+            // ignore empty URLs
+            return false;
+        }
+
+        if (str_starts_with($path, 'http://') ||
+            str_starts_with($path, 'https://') ||
+            str_starts_with($path, '/'))
+        {
+            // ignore absolute URLs
+            return false;
+        }
+
+        $absolutePath = realpath(dirname($this->absolute_path) . '/' . $path);
+
+        return $absolutePath === false;
     }
 }
