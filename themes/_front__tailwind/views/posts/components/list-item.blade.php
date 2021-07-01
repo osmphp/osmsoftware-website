@@ -24,7 +24,7 @@ global $osm_app; /* @var \Osm\Core\App $osm_app */
 
             <a href="{{ "{$osm_app->http->base_url}/blog/{$category->url_key}/" }}"
                 title="{{ $category->title }}" class="link">
-                {{ $category->title_html }}</a>
+                {!! $category->title_html !!}</a>
         @endforeach
     </p>
     <p>{{ $post->created_at->diffForHumans() }}</p>

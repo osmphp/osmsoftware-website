@@ -101,7 +101,7 @@ class Category extends Filter
     protected function sort(array $appliedFilters): array {
         usort($appliedFilters,
             fn(AppliedFilter\Category $a, AppliedFilter\Category $b) =>
-                $a->category->url_key <=> $b->category->url_key);
+                $a->category->sort_order <=> $b->category->sort_order);
 
         return $appliedFilters;
     }
@@ -128,13 +128,19 @@ class Category extends Filter
         $items = [];
 
         foreach ($this->facet->counts as $facetItem) {
-            $items[] = FilterItem\Category::new([
+            $item = FilterItem\Category::new([
                 'filter' => $this,
                 'value' => $facetItem->value,
                 'count' => $facetItem->count,
             ]);
+
+            if ($item->category) {
+                $items[] = $item;
+            }
         }
 
+        usort($items, fn(FilterItem\Category $a, FilterItem\Category $b)
+            => $a->category->sort_order <=> $b->category->sort_order);
         return $items;
     }
 

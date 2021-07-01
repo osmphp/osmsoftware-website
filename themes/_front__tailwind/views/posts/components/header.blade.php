@@ -2,7 +2,7 @@
 global $osm_app; /* @var \Osm\Core\App $osm_app */
 ?>
 <ul class="flex px-4 mb-4 bg-white">
-    <li>
+    <li class="md:hidden">
         <button class="w-10 h-10 text-2xl flex items-center
             justify-center focus:outline-none"
         >
