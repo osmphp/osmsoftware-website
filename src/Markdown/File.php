@@ -22,6 +22,7 @@ use Osm\Core\Attributes\Serialized;
  * @property bool $exists #[Serialized]
  * @property Carbon $modified_at #[Serialized]
  * @property string $original_text #[Serialized]
+ * @property string $original_html #[Serialized]
  * @property ?string $title #[Serialized]
  * @property ?string $title_html #[Serialized]
  * @property \stdClass $toc #[Serialized]
@@ -173,6 +174,10 @@ class File extends Object_
 
     protected function get_html(): ?string {
         return $this->html($this->text);
+    }
+
+    protected function get_original_html(): ?string {
+        return MarkdownExtra::defaultTransform($this->original_text);
     }
 
     protected function get_title_html(): string {

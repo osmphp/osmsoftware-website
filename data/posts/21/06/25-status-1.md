@@ -6,7 +6,7 @@ The main delivered feature is multi-select layered navigation for the `osmcommer
 
 ### meta.list_text
 
-The main feature delivered this week is multi-select layered navigation for
+The main delivered feature is multi-select layered navigation for
 the `osmcommerce.com` blog.
 
 ## `osmcommerce.com` Website v0.1.1

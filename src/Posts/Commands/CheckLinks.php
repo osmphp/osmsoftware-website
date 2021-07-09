@@ -10,8 +10,10 @@ use Osm\Core\App;
 use Osm\Framework\Console\Command;
 use Osm\Framework\Console\Exceptions\ConsoleError;
 use function Osm\__;
+use Osm\Framework\Console\Attributes\Option;
 
 /**
+ * @property bool $external #[Option(shortcut: 'x')] Check external links, too
  * @property string $root_path
  * @property bool $found
  */
@@ -68,7 +70,11 @@ class CheckLinks extends Command
     protected function scanFile(string $path): void {
         $post = Post::new(['path' => $path]);
 
-        if (empty($post->broken_links)) {
+        $ok = $this->external
+            ? empty($post->broken_links) && empty($post->external_broken_links)
+            : empty($post->broken_links);
+
+        if ($ok) {
             return;
         }
 
@@ -77,10 +83,19 @@ class CheckLinks extends Command
         ]));
 
         foreach ($post->broken_links as $brokenLink) {
-            $this->output->writeln(__("  ':path' not found", [
-                'path' => $brokenLink,
+            $this->output->writeln(__("  ':url' not found", [
+                'url' => $brokenLink,
             ]));
             $this->found = true;
+        }
+
+        if ($this->external) {
+            foreach ($post->external_broken_links as $brokenLink) {
+                $this->output->writeln(__("  ':url' not found", [
+                    'url' => $brokenLink,
+                ]));
+                $this->found = true;
+            }
         }
     }
 

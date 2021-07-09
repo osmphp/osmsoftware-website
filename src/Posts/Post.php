@@ -29,6 +29,7 @@ use function Osm\__;
  * @property Category[] $category_files
  * @property CategoryModule $category_module
  * @property string[] $broken_links
+ * @property string[] $external_broken_links
  */
 class Post extends File
 {
@@ -178,10 +179,9 @@ class Post extends File
     protected function get_broken_links(): array {
         $brokenLinks = [];
 
-        $html = MarkdownExtra::defaultTransform($this->original_text);
-        $crawler = new Crawler($html);
+        $crawler = new Crawler($this->original_html);
         foreach ($crawler->filter('a') as $link) {
-            if ($this->isBrokenLink(
+            if ($this->isLinkBroken(
                 $url = $link->getAttribute('href')))
             {
                 $brokenLinks[] = $url;
@@ -189,7 +189,7 @@ class Post extends File
         }
 
         foreach ($crawler->filter('img') as $link) {
-            if ($this->isBrokenLink(
+            if ($this->isLinkBroken(
                 $url = $link->getAttribute('src')))
             {
                 $brokenLinks[] = $url;
@@ -199,7 +199,7 @@ class Post extends File
         return $brokenLinks;
     }
 
-    protected function isBrokenLink(string $path): bool {
+    protected function isLinkBroken(string $path): bool {
         if (!$path) {
             // ignore empty URLs
             return false;
@@ -216,5 +216,71 @@ class Post extends File
         $absolutePath = realpath(dirname($this->absolute_path) . '/' . $path);
 
         return $absolutePath === false;
+    }
+
+    protected function get_external_broken_links(): array {
+        $brokenLinks = [];
+
+        $crawler = new Crawler($this->original_html);
+        foreach ($crawler->filter('a') as $link) {
+            if ($this->isExternalLinkBroken(
+                $url = $link->getAttribute('href')))
+            {
+                $brokenLinks[] = $url;
+            }
+        }
+
+        foreach ($crawler->filter('img') as $link) {
+            if ($this->isExternalLinkBroken(
+                $url = $link->getAttribute('src')))
+            {
+                $brokenLinks[] = $url;
+            }
+        }
+
+        return $brokenLinks;
+    }
+
+    protected function isExternalLinkBroken(string $url): bool {
+        if (!$url) {
+            // ignore empty URLs
+            return false;
+        }
+
+        if (!(str_starts_with($url, 'http://') ||
+            str_starts_with($url, 'https://')))
+        {
+            // ignore relative URLs
+            return false;
+        }
+
+        if (!$this->externalUrlExists($url)) {
+            return true;
+        }
+
+        // GitHub doesn't return 404 for missing files, so check raw file
+        // version
+        if (preg_match(
+            '|https://github.com/(?<user>[^/]+)/(?<repo>[^/]+)/blob/(?<path>.+)|',
+            $url, $match))
+        {
+            return !$this->externalUrlExists(
+                "https://raw.githubusercontent.com/" .
+                "{$match['user']}/{$match['repo']}/{$match['path']}");
+
+        }
+
+        return false;
+    }
+
+    protected function externalUrlExists(string $url): bool {
+        $ch = curl_init($url);
+        curl_setopt($ch, CURLOPT_NOBODY, true);
+        curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
+        curl_exec($ch);
+        $returnCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+        curl_close($ch);
+
+        return $returnCode == 200;
     }
 }
