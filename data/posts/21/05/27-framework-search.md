@@ -1,18 +1,17 @@
 # Search
 
+Full-text search and layered navigation is a common feature for e-commerce
+applications. It's also used in this blog. Actually, browsing any non-trivial
+data set benefits from it. Under the hood, search and layered navigation
+interact with ElasticSearch, or other search engine, and this article describes
+how.
+
 {{ toc }}
 
 ## meta.list_text
 
-Full-text search and faceted navigation is a common feature for e-commerce
-applications. It's useful not only in a product catalog, browsing any non-trivial data set benefits from it. Under the hood, these features interact with ElasticSearch, or other search engine, and this article describes how.
-
-## Introduction
-
-Full-text search and faceted navigation is a common feature for e-commerce
-applications. It's useful not only in a product catalog, browsing any
-non-trivial data set benefits from it. Under the hood, these features interact
-with ElasticSearch, or other search engine, and this article describes how.
+Full-text search and layered navigation is a common feature for e-commerce
+applications. It's also used in this blog. Actually, browsing any non-trivial data set benefits from it. Under the hood, search and layered navigation interact with ElasticSearch, or other search engine, and this article describes how.
 
 ## Configuration
 
@@ -37,7 +36,7 @@ The example above refers to the ElasticSearch installed on a local machine. For 
 
 The configuration above uses some environment variables, define them in `.env.{{ app_name }}`:
 
-    NAME=osmcommerce
+    NAME=osmsoftware
     ...
     SEARCH_INDEX_PREFIX="${NAME}_"
 
@@ -60,7 +59,7 @@ Alternatively, you may use Algolia.
     
 2. Assign referenced environment variables in `.env.{{ app_name }}`:
 
-        NAME=osmcommerce
+        NAME=osmsoftware
         ...
         SEARCH_INDEX_PREFIX="${NAME}_"
         ALGOLIA_APP_ID=...
@@ -84,7 +83,7 @@ An index in a search engine is somewhat similar to a database table. First you c
     // drop an index
     $osm_app->search->drop('products');
 
-**Note**. If you are familiar with Laravel, they should remind you the Laravel schema builder. 
+**Note**. If you are familiar with Laravel, the syntax should remind you the Laravel schema builder. 
 
 ### Field types
 

@@ -1,30 +1,31 @@
 # Requirements
 
-As [mentioned before](18-welcome.md), this very website is based on the `osmphp/framework` package. This blog post is the first in the series describing how exactly it was built. Before diving into implementation details, let's write the requirements of how it is expected to work. 
+This very website, `osm.software`, is built using Osm Framework.
+It's [open-source](https://github.com/osmphp/osmsoftware-website), but before
+diving into implementation details, let's review its initial requirements.
 
 {{ toc }}
 
 ### meta.list_text
 
-Before diving into implementation details, let's write the requirements of how
-`osmcommerce.com` website will work.
+This very website, `osm.software`, is built using Osm Framework. It's open-source, but before diving into implementation details, let's review its initial requirements.
 
-## Editing workflow
+## Introduction
 
 There are actually two projects:
 
-* `osmcommerce.local` works on my local machine
-* `osmcommerce.com` is publicly available
+* `osmsoftware.local` works on my local machine
+* `osm.software` is publicly available
 
-Like [Jekyll](https://jekyllrb.com/), the project contains both code (PHP, JS and other files) and data (blog posts written in Markdown). Unlike Jekyll, it also uses the MySql database for storing comments, and the ElasticSearch for filtering and search.
+Like [Jekyll](https://jekyllrb.com/), the project contains both code (PHP, JS and other files) and data (blog posts written in Markdown). Unlike Jekyll, it also uses the MySql database for storing comments, and the ElasticSearch for maintaining its filtering and search index.
 
-The editing workflow:
+## Editing Workflow
 
-1. I edit Markdown files locally, then run `osm index:blog` command to update the ElasticSearch index, then check the resulting `osmcommerce.local` website in the browser.
-2. I push the project repository to GitHub, it sends push notification to `osmcommerce.com`.
-3. `osmcommerce.com` updates itself from the GitHub repository, and runs `osm index:blog` command to update its ElasticSearch index, too.
+1. I edit Markdown files locally, then run `osm index` command to update the MySql database table, and the ElasticSearch index, then check the resulting `osmsoftware.local` website in the browser.
+2. I push the project repository to GitHub, it sends push notification to `osm.software`.
+3. `osm.software` updates itself from the GitHub repository, and runs `osm index` command to update its MySql database table and ElasticSearch index, too.
 
-## Blog post directory
+## Blog Post Directory
 
 The blog posts are (almost) regular Markdown files located in the `data/posts` directory of the project:
 
@@ -32,8 +33,8 @@ The blog posts are (almost) regular Markdown files located in the `data/posts` d
         posts/
             21/
                 05/
-                    18-introducing-osm-commerce.md
-                    20-requirements-for-osmcommerce.com.md
+                    18-framework-introduction.md
+                    19-osmsoftware-website-requirements.md
                     ...
 
 As you can see, the post creation date as well as post URL key are encoded in the directory structure, and the file name:
@@ -42,67 +43,54 @@ As you can see, the post creation date as well as post URL key are encoded in th
 
 The full blog post URL reflects the directory structure, with the day omitted, and `.md` extension replaced with `.html`:
 
-    https://www.osmcommerce.com/blog/21/05/introducing-osm-commerce.html
-    https://www.osmcommerce.com/blog/21/05/initial-requirements-for-osmcommerce.com.html
+    https://osm.software/blog/21/05/framework-introduction.html
+    https://osm.software/blog/21/05/osmsoftware-website-requirements.html
     ...
 
 ## Placeholders
 
-A blog post may use placeholders that expand dynamically when the page is rendered. Currently, there is only one placeholder:
+A blog post may use placeholders, starting with `{{` and ending with `}}`, that expand dynamically when the page is rendered. Currently, there is only one placeholder:
 
-* `{{ toc }}` - collects headings into the table of contents.
+* `toc` - collects headings into the table of contents.
 
-## Variables
+## Categories
 
-A blog post may contain variables - placeholders that a reader may replace with their own values. For instance, a blog post may provide update instructions like:
+A blog post may be a part of one or more categories. The reader may click on a category, and see all the other posts of that category.
 
-    cd {{ project_dir }}
-    composer update
+Categories are defined in `data/posts__categories` directory, with file names following `{sort_order}-{url_key}.md` naming convention:
 
-The reader may assign `{{ project_dir }}` variable some specific value and get the instruction just for her project environment:
-
-    cd /home/vagrant/osmcommerce
-    composer update
-
-Every blog post defines variables in its metadata.
-
-## Tags
-
-A blog post may be tagged in its metadata. The reader may click on a tag and see all the other posts containing this tag.
+    2-status.md
+    3-framework.md
+    ...
+    
+The main category is assigned to a post by adding it to the post file name. For example, `21/05/18-framework-introduction.md` indicates `framework` category, `21/06/25-status-1.md` indicates `status` category, and so on. 
 
 ## Metadata
 
-Finally, a blog post may contain metadata - JSON with additional information about the post. The metadata section is marked with the `.meta` CSS class:
+Finally, a blog post may contain metadata - JSON with additional information about the post. The metadata section is marked with `meta` title:
 
-    ## Metadata {.meta}
-    
+    ### meta
+
         {
-            "tags": {
-                "creating-osmcommerce.com": "Creating osmcommerce.com"
-            },
-            "variables": {
-                "project_dir": "Project directory, e.g. '/home/vagrant/osmcommerce'",
-                "module_namespace": "Module namespace, e.g. 'My\\Module'"
-            }
+            "canonical_url": "...",
+            ...
         }
 
-The metadata section is not rendered. Instead, the metadata is used for blog navigation, variable substitution, SEO, and other purposes.
+Alternatively, you can provide additional meta information in Markdown format in `meta.*` sections. For example, `list_text` field specifies text to be rendered on blog post list pages. 
 
-## Breadcrumbs
+    ### meta.list_text
+    
+    This very website, `osm.software`, is built using Osm Framework. It's open-source, but before diving into implementation details, let's review its initial requirements.
 
-Breadcrumbs for a blog post reflect the directory structure:
-
-    Blog -> 2021 -> 05
-
-The reader may click on a breadcrumb and see all the other posts matching specified date. 
+The metadata section is not rendered as is, but it's used for navigation, SEO, and other purposes.
 
 ## Search
 
 The reader may use the search input. The matching blog posts are shown on the `/search` page.
 
-## Infinite scrolling
+## Layered Navigation
 
-Instead of traditional pagination, tag, blog/year/month and search pages employ infinite scrolling.
+The reader may pick one or more categories, one or more calendar periods, and the matching blog posts should be shown.
 
 ## Links
 
@@ -129,43 +117,12 @@ Blog posts may contain relative links to images. By convention, images are store
     # show an image from the current directory
     ![Welcome Screen](welcome-screen.png)
 
-## Broken links
+## Reporting Broken links
 
-`osm show:broken-links` command will scan all the Markdown files, check all the relative links inside them, and report the broken ones. 
+`osm check:links` command will scan all the Markdown files, check all the relative and absolute links inside them, and report the broken ones. 
 
 ## Static pages
 
-Unlike blog posts, home page data is hard-wired in code. The same is true for other static pages (e.g. privacy policy).
+Unlike blog posts, home page and other static page data is hard-wired in code. 
 
-## Redirects
-
-Eventually, some posts will be renamed, some other posts will be moved to the documentation section. Redirects can be created for such cases, either by adding `redirect_to` setting to the metadata, or by creating `data/posts/{yy}/{mm}/{dd}-{url_key}.json` file:
-
-    {
-        "redirect_to": "new-url-key.html"
-    }
-
-## Comments
-
-The comments (and users) are stored in the MySql database:
-
-    posts
-        id              int auto_increment
-        url_key         varchar
-        redirect_to_id  int nullable -> posts.id on delete set null
-    posts__comments
-        id              int auto_increment
-        user_id         int nullable -> users.id on delete set null
-        post_id         int -> posts.id on delete cascade
-        created_at      datetime default(NOW())
-        text            longtext
-    users
-        id              int auto_increment
-        created_at      datetime
-        active          bool
-        username        varchar
-        email           varchar
-        password_hash   varchar
-        
-For comments to work, typical `/login`, `/register`, `/logout`, `/confirm-email`, `/forgot-password`, `/reset-password` and `/account` routes and pages have to be implemented. 
-
+ 

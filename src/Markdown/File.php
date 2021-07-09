@@ -202,6 +202,6 @@ class File extends Object_
 
         $html = $this->html($markdown);
 
-        return str_replace(['<p>', '</p>'], '', $html);
+        return trim(str_replace(['<p>', '</p>'], '', $html));
     }
 }

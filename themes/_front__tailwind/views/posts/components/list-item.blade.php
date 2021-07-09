@@ -4,6 +4,13 @@ global $osm_app; /* @var \Osm\Core\App $osm_app */
 ?>
 <article>
     <h2 class="text-lg  font-bold mt-8 underline my-5">
+        @if ($post->main_category_file)
+            <a href="{{ "{$osm_app->http->base_url}/blog/{$post->main_category_file->url_key}/" }}"
+                title="{{ $post->main_category_file->title }}" class="link"
+            >{!!
+                $post->main_category_file->title_html !!}</a><span class="font-normal">:</span>
+        @endif
+
         <a href="{{ $post->url }}" title="{{ $post->title }}">
             {{ $post->title }}
         </a>
@@ -19,7 +26,7 @@ global $osm_app; /* @var \Osm\Core\App $osm_app */
             title="{{ $post->created_at->format('F') }}" class="link">
             {{ $post->created_at->format('F') }}</a>
 
-        @foreach($post->category_files as $category)
+        @foreach($post->additional_category_files as $category)
             ∙
 
             <a href="{{ "{$osm_app->http->base_url}/blog/{$category->url_key}/" }}"
@@ -29,12 +36,10 @@ global $osm_app; /* @var \Osm\Core\App $osm_app */
     </p>
     <p>{{ $post->created_at->diffForHumans() }}</p>
     @if ($post->list_html)
-        <section class="prose max-w-none my-5">
-            {!! $post->list_html !!}
-        </section>
-        <p>
-            <a href="{{ $post->url }}" title="{{ $post->title }}" class="link">
-                {{ \Osm\__("Read more") }}</a>
-        </p>
+        <a href="{{ $post->url }}" title="{{ $post->title }}">
+            <section class="prose max-w-none my-5">
+                {!! $post->list_html !!}
+            </section>
+        </a>
     @endif
 </article>

@@ -22,11 +22,11 @@ class test_04_url_generation extends TestCase
 
         /* @var \My\Categories\Module $categoryModule */
         $categoryModule = $this->app->modules[\My\Categories\Module::class];
-        $category = $categoryModule->categories['osmcommerce-com'];
+        $category = $categoryModule->categories['osmsoftware-website'];
 
         // WHEN you apply category filter
         // THEN category page is rendered
-        $this->assertEquals('/osmcommerce-com/',
+        $this->assertEquals('/blog/osmsoftware-website/',
             (string)$posts->url()->addCategoryFilter($category));
     }
 
@@ -40,12 +40,12 @@ class test_04_url_generation extends TestCase
 
         /* @var \My\Categories\Module $categoryModule */
         $categoryModule = $this->app->modules[\My\Categories\Module::class];
-        $category1 = $categoryModule->categories['osmcommerce-com'];
+        $category1 = $categoryModule->categories['osmsoftware-website'];
         $category2 = $categoryModule->categories['framework'];
 
         // WHEN you apply category filter
         // THEN category page is rendered
-        $this->assertEquals('/?category=framework+osmcommerce-com',
+        $this->assertEquals('/blog/?category=framework+osmsoftware-website',
             (string)$posts->url()
                 ->addCategoryFilter($category1)
                 ->addCategoryFilter($category2));
@@ -55,7 +55,7 @@ class test_04_url_generation extends TestCase
         // GIVEN the home page
         $posts = Posts::new([
             'page_type' => PageType\Category::new([
-                'category_url_key' => 'osmcommerce-com',
+                'category_url_key' => 'osmsoftware-website',
             ]),
             'http_query' => [],
             'base_url' => null,
@@ -67,7 +67,7 @@ class test_04_url_generation extends TestCase
 
         // WHEN you apply category filter
         // THEN category page is rendered
-        $this->assertEquals('/?category=framework+osmcommerce-com',
+        $this->assertEquals('/blog/?category=framework+osmsoftware-website',
             (string)$posts->url()->addCategoryFilter($category));
     }
 

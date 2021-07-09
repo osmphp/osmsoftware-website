@@ -1,4 +1,4 @@
-# `osm.software` Website
+# osm.software Website
 
 ## meta.description
 

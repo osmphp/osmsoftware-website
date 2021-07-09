@@ -57,7 +57,7 @@ class test_05_collection extends TestCase
         // WHEN you retrieve the posts for a given month
         $posts = Posts::new([
             'page_type' => PageType\Category::new([
-                'category_url_key' => 'osmcommerce-com',
+                'category_url_key' => 'osmsoftware-website',
             ]),
             'http_query' => [],
             'limit' => 5,

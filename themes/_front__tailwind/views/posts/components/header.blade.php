@@ -2,7 +2,11 @@
 global $osm_app; /* @var \Osm\Core\App $osm_app */
 ?>
 <ul class="flex px-4 mb-4 bg-white">
-    <li class="md:hidden">
+    <li class="md:hidden" data-js-hamburger='{
+        "$sidebar": ".left-drawer",
+        "opened_class": "left-drawer--opened",
+        "closed_class": "left-drawer--closed"
+    }'>
         <button class="w-10 h-10 text-2xl flex items-center
             justify-center focus:outline-none"
         >

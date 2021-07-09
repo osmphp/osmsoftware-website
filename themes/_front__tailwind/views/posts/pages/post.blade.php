@@ -10,6 +10,13 @@ global $osm_app; /* @var \Osm\Core\App $osm_app */
         xl:col-start-4 xl:col-span-6"
     >
         <h1 class="text-2xl sm:text-4xl font-bold my-8">
+            @if ($post->main_category_file)
+                <a href="{{ "{$osm_app->http->base_url}/blog/{$post->main_category_file->url_key}/" }}"
+                    title="{{ $post->main_category_file->title }}" class="link"
+                >{!!
+                    $post->main_category_file->title_html !!}</a><span class="font-normal">:</span>
+            @endif
+
             {{ $post->title }}
         </h1>
         <p>
@@ -23,7 +30,7 @@ global $osm_app; /* @var \Osm\Core\App $osm_app */
                 title="{{ $post->created_at->format('F') }}" class="link">
                 {{ $post->created_at->format('F') }}</a>
 
-            @foreach($post->category_files as $category)
+            @foreach($post->additional_category_files as $category)
                 ∙
 
                 <a href="{{ "{$osm_app->http->base_url}/blog/{$category->url_key}/" }}"
@@ -36,8 +43,8 @@ global $osm_app; /* @var \Osm\Core\App $osm_app */
             {!! $post->html !!}
         </section>
     </article>
-    <section class="hidden md:block md:col-start-1 md:col-span-3 row-start-1">
-    </section>
-    <section class="hidden xl:block xl:col-start-10 xl:col-span-3 row-start-1">
-    </section>
+    <aside class="left-drawer left-drawer--closed">
+    </aside>
+    <aside class="hidden xl:block xl:col-start-10 xl:col-span-3 row-start-1">
+    </aside>
 </x-base::layout>

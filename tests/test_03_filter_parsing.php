@@ -70,7 +70,7 @@ class test_03_filter_parsing extends TestCase
         // GIVEN a collection with sample http query
         $posts = Posts::new([
             'page_type' => PageType\Category::new([
-                'category_url_key' => 'osmcommerce-com',
+                'category_url_key' => 'osmsoftware-website',
             ]),
             'http_query' => [
                 'category' => 'status-reports framework',
@@ -87,7 +87,7 @@ class test_03_filter_parsing extends TestCase
         // GIVEN a collection with sample http query
         $posts = Posts::new([
             'page_type' => PageType\Category::new([
-                'category_url_key' => 'osmcommerce-com',
+                'category_url_key' => 'osmsoftware-website',
             ]),
         ]);
 
@@ -96,7 +96,7 @@ class test_03_filter_parsing extends TestCase
         $this->assertCount(1,
             $posts->filters['category']->applied_filters);
 
-        $this->assertEquals('osmcommerce-com',
+        $this->assertEquals('osmsoftware-website',
             $posts->filters['category']->applied_filters[0]->category->url_key);
     }
 

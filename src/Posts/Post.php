@@ -24,9 +24,12 @@ use function Osm\__;
  * @property string $url_key
  * @property string $url
  * @property Http $http
- * @property ?string $category
+ * @property ?string $main_category
+ * @property string[] $additional_categories
  * @property string[] $categories
+ * @property ?Category $main_category_file
  * @property Category[] $category_files
+ * @property Category[] $additional_category_files
  * @property CategoryModule $category_module
  * @property string[] $broken_links
  * @property string[] $external_broken_links
@@ -88,7 +91,7 @@ class Post extends File
         return $this->html($this->list_text);
     }
 
-    protected function get_category(): ?string {
+    protected function get_main_category(): ?string {
         foreach ($this->category_module->categories as $category) {
             if (str_starts_with($this->url_key, $category->url_key . '-')) {
                 return $category->url_key;
@@ -98,11 +101,19 @@ class Post extends File
         return null;
     }
 
-    protected function get_categories(): array {
-        $categories = $this->meta->categories ?? [];
+    protected function get_additional_categories(): array {
+        return array_filter(array_map(fn(string $urlKey) =>
+            isset($this->category_module->categories[$urlKey])
+                ? $urlKey
+                : null
+        , $this->meta->categories ?? []));
+    }
 
-        if ($this->category) {
-            array_unshift($categories, $this->category);
+    protected function get_categories(): array {
+        $categories = $this->additional_categories;
+
+        if ($this->main_category) {
+            array_unshift($categories, $this->main_category);
         }
 
         return array_unique($categories);
@@ -114,10 +125,23 @@ class Post extends File
         return $osm_app->modules[CategoryModule::class];
     }
 
+    protected function get_main_category_file(): ?Category {
+        return $this->main_category
+            ? $this->category_module->categories[$this->main_category]
+            :null;
+    }
+
     protected function get_category_files(): array {
         return array_filter(array_map(
             fn(string $urlKey) => $this->category_module->categories[$urlKey],
             $this->categories
+        ));
+    }
+
+    protected function get_additional_category_files(): array {
+        return array_filter(array_map(
+            fn(string $urlKey) => $this->category_module->categories[$urlKey],
+            $this->additional_categories
         ));
     }
 
