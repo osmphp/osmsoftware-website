@@ -19,7 +19,7 @@ global $osm_app; /* @var \Osm\Core\App $osm_app */
             </p>
         @endforelse
     </section>
-    <section class="hidden md:block md:col-start-1 md:col-span-3 row-start-1">
+    <aside class="left-drawer left-drawer--closed">
         <x-posts::applied_filters :posts="$posts"/>
 
         @foreach ($posts->filters as $filter)
@@ -28,5 +28,5 @@ global $osm_app; /* @var \Osm\Core\App $osm_app */
                     :filter="$filter" />
             @endif
         @endforeach
-    </section>
+    </aside>
 </x-base::layout>

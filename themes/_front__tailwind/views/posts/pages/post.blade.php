@@ -36,8 +36,8 @@ global $osm_app; /* @var \Osm\Core\App $osm_app */
             {!! $post->html !!}
         </section>
     </article>
-    <section class="hidden md:block md:col-start-1 md:col-span-3 row-start-1">
-    </section>
-    <section class="hidden xl:block xl:col-start-10 xl:col-span-3 row-start-1">
-    </section>
+    <aside class="left-drawer left-drawer--closed">
+    </aside>
+    <aside class="hidden xl:block xl:col-start-10 xl:col-span-3 row-start-1">
+    </aside>
 </x-base::layout>

@@ -163,7 +163,8 @@ function js() {
                 input: `temp/${dir}/scripts.js`,
                 output: {
                     file: 'scripts.js',
-                    format: 'es',
+                    format: 'iife',
+                    sourcemap: true,
                 },
                 plugins: [commonjs(), nodeResolve()]
             }))
