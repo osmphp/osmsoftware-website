@@ -31,7 +31,7 @@ If you want to check external, absolute links, add the `-x` option.
 
 * rendering images
 * transforming relative `.md` blog file links into valid URLs
-* rendering `{{ toc }}` tag
+* expanding `toc` tag
 * rendering category and date links in the blog post header
 
 ### Fixes
@@ -88,4 +88,4 @@ See also [full unit test](https://github.com/osmphp/framework/blob/HEAD/themes/_
 
 ### JS Unit Tests
 
-In the framework project, there is a JS unit test runner page, <{base_url}/test/js?file=sample-js.js>. It runs tests defined in the [sample-js/js.js](https://github.com/osmphp/framework/blob/HEAD/themes/_front__tailwind_samples/files/sample-js/js.js) file.
+In the framework project, there is a JS unit test runner page, `{base_url}/test/js?file=sample-js.js`. It runs tests defined in the [sample-js/js.js](https://github.com/osmphp/framework/blob/HEAD/themes/_front__tailwind_samples/files/sample-js/js.js) file.
