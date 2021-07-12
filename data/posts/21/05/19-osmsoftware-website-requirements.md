@@ -1,5 +1,7 @@
 # Requirements
 
+Test
+
 As [mentioned before](18-welcome.md), this very website is based on the `osmphp/framework` package. This blog post is the first in the series describing how exactly it was built. Before diving into implementation details, let's write the requirements of how it is expected to work. 
 
 {{ toc }}
