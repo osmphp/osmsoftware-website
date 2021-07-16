@@ -29,14 +29,15 @@ global $osm_app; /* @var \Osm\Core\App $osm_app */
             >Source</a>
         </p>
     </section>
+
     <section class="col-span-12 my-6">
         <h2 class="text-2xl sm:text-4xl font-bold text-center">
-            Reference Projects
+            Resources
         </h2>
     </section>
-    <section class="col-span-12 lg:col-start-4 lg:col-span-6 mb-6">
+    <section class="col-span-12 lg:col-span-6 mb-6">
         <h3 class="text-xl sm:text-2xl font-bold text-center">
-            osm.software
+            Reference Project: osm.software
         </h3>
         <p class="text-lg mt-8">
             This very website is an open-source project built using Osm Framework.
@@ -50,14 +51,9 @@ global $osm_app; /* @var \Osm\Core\App $osm_app */
             >Source</a>
         </p>
     </section>
-    <section class="col-span-12 my-6">
-        <h2 class="text-2xl sm:text-4xl font-bold text-center">
-            Other
-        </h2>
-    </section>
-    <section class="col-span-12 lg:col-start-4 lg:col-span-6 mb-6">
+    <section class="col-span-12 lg:col-start-7 lg:col-span-6 mb-6">
         <h3 class="text-xl sm:text-2xl font-bold text-center">
-            Working In Public
+            Status Reports
         </h3>
         <p class="text-lg mt-8">
             We believe that working in public, through transparency and
@@ -69,9 +65,6 @@ global $osm_app; /* @var \Osm\Core\App $osm_app */
             <a class="bg-blue-500 hover:bg-blue-700 text-white py-2 px-4 rounded"
                 href="{{ "{$osm_app->http->base_url}/blog/status/" }}" title="Status Reports"
             >Status Reports</a>
-            <a class="bg-blue-500 hover:bg-blue-700 text-white py-2 px-4 rounded"
-                href="https://github.com/osmphp" title="Git Repositories"
-            >Git Repositories</a>
         </p>
     </section>
 </x-base::layout>

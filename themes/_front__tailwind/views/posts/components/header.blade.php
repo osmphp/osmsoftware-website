@@ -26,7 +26,7 @@ global $osm_app; /* @var \Osm\Core\App $osm_app */
                     <i class="fas fa-search"></i>
                 </button>
                 <input type="text" name="q"
-                    placeholder="{{ \Osm\__("Search blog (press '/')") }}"
+                    placeholder="{{ \Osm\__("Search blog") }}"
                     class="w-20 flex-grow focus:outline-none"
                     value="{{ $osm_app->http->query['q'] ?? '' }}">
             </div>

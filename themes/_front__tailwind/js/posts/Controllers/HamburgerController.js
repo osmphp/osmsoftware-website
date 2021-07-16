@@ -64,5 +64,14 @@ export default register('hamburger',
 
             this.closeSidebar();
         }
+
+        onAttaching() {
+            super.onAttaching();
+
+            if (!this.sidebar_element) {
+                this.element.classList.add('hidden');
+            }
+        }
+
     }
 );

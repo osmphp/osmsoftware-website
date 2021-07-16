@@ -21,7 +21,7 @@
             border-r border-gray-300 border-solid shadow-xl
             transition-all duration-200 ease-in-out
             md:static md:z-0 md:border-0 md:shadow-none md:transition-none
-            md:col-start-1 md:col-span-3 row-start-1;
+            md:col-start-1 md:col-span-3 row-start-1 md:w-auto;
     }
 
     .left-drawer--opened {
