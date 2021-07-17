@@ -16,6 +16,7 @@ use Osm\Core\Attributes\Serialized;
  * @property string $url_key #[Serialized]
  * @property ?string $description #[Serialized]
  * @property ?string $description_html #[Serialized]
+ * @property string $post_title_html #[Serialized]
  * @property Http $http
  */
 class Category extends File
@@ -55,6 +56,10 @@ class Category extends File
 
     protected function get_description_html(): string {
         return $this->html($this->description);
+    }
+
+    protected function get_post_title_html(): ?string {
+        return $this->meta?->post_title ?? $this->title_html;
     }
 
     public function url(): string {

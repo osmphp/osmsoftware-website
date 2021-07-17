@@ -4,3 +4,9 @@
 
 Recently, we build our projects on top of Osm Framework. Learn how the framework
 works, how to use and extend it.
+
+## meta
+
+    {
+        "post_title": "Framework"
+    }

@@ -56,10 +56,7 @@ global $osm_app; /* @var \Osm\Core\App $osm_app */
             Status Reports
         </h3>
         <p class="text-lg mt-8">
-            We believe that working in public, through transparency and
-            accountability, leads to more trust and better results. Hence,
-            in addition to creating open-source software, we also share periodic
-            status reports.
+            Find out what's done in the bi-weekly status reports.
         </p>
         <p class="mt-8 text-center">
             <a class="bg-blue-500 hover:bg-blue-700 text-white py-2 px-4 rounded"

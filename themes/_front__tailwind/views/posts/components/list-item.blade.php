@@ -5,10 +5,7 @@ global $osm_app; /* @var \Osm\Core\App $osm_app */
 <article>
     <h2 class="text-lg  font-bold mt-8 underline my-5">
         @if ($post->main_category_file)
-            <a href="{{ "{$osm_app->http->base_url}/blog/{$post->main_category_file->url_key}/" }}"
-                title="{{ $post->main_category_file->title }}" class="link"
-            >{!!
-                $post->main_category_file->title_html !!}</a><span class="font-normal">:</span>
+            {!! $post->main_category_file->post_title_html !!}:
         @endif
 
         <a href="{{ $post->url }}" title="{{ $post->title }}">
@@ -26,7 +23,7 @@ global $osm_app; /* @var \Osm\Core\App $osm_app */
             title="{{ $post->created_at->format('F') }}" class="link">
             {{ $post->created_at->format('F') }}</a>
 
-        @foreach($post->additional_category_files as $category)
+        @foreach($post->category_files as $category)
             ∙
 
             <a href="{{ "{$osm_app->http->base_url}/blog/{$category->url_key}/" }}"
