@@ -1,10 +1,18 @@
-# Requirements
+# User Guide
+
+***It's a draft**. This post had been written before actually implementing `osm.software` website, as if it's already implemented. Hence, it may substantially differ from actual implementation.*
 
 This very website, `osm.software`, is built using Osm Framework.
 It's [open-source](https://github.com/osmphp/osmsoftware-website), but before
 diving into implementation details, let's review its initial requirements.
 
 {{ toc }}
+
+## meta
+
+    {
+        "categories": ["drafts"]
+    }
 
 ### meta.list_text
 

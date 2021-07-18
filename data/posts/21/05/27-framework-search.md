@@ -1,5 +1,9 @@
 # Search
 
+***It's a draft**. This post had been written before actually implementing
+provider-agnostic search, as if it's already implemented. Hence, it may
+substantially differ from actual implementation.*
+
 Full-text search and layered navigation is a common feature for e-commerce
 applications. It's also used in this blog. Actually, browsing any non-trivial
 data set benefits from it. Under the hood, search and layered navigation
@@ -8,6 +12,12 @@ how.
 
 {{ toc }}
 
+## meta
+
+    {
+        "categories": ["drafts"]
+    }
+    
 ## meta.list_text
 
 Full-text search and layered navigation is a common feature for e-commerce
