@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace My\Markdown;
 
 use Carbon\Carbon;
+use Carbon\CarbonInterval;
 use Michelf\MarkdownExtra;
 use My\Markdown\Exceptions\InvalidJson;
 use My\Markdown\Exceptions\TooManyDuplicateHeadings;
@@ -29,6 +30,7 @@ use Osm\Core\Attributes\Serialized;
  * @property \stdClass $meta #[Serialized]
  * @property string $text #[Serialized]
  * @property string $html #[Serialized]
+ * @property string $reading_time #[Serialized]
  */
 class File extends Object_
 {
@@ -178,6 +180,14 @@ class File extends Object_
 
     protected function get_original_html(): ?string {
         return MarkdownExtra::defaultTransform($this->original_text);
+    }
+
+    protected function get_reading_time(): string {
+        $minutes = round(str_word_count($this->text) / 300.0);
+
+        return $minutes > 1
+            ? __(":minutes minutes read", ['minutes' => $minutes])
+            : __("1 minute read");
     }
 
     protected function get_title_html(): string {

@@ -35,13 +35,13 @@ global $osm_app; /* @var \Osm\Core\App $osm_app */
                     {!! $category->title_html !!}</a>
             @endforeach
         </p>
-        <p>{{ $post->created_at->diffForHumans() }}</p>
+        <p>{{ $post->created_at->diffForHumans() }} ∙ {{ $post->reading_time }}</p>
         <section class="prose max-w-none my-5">
             {!! $post->html !!}
         </section>
     </article>
-    <aside class="left-drawer left-drawer--closed">
-    </aside>
+    {{--<aside class="left-drawer left-drawer--closed">
+    </aside>--}}
     <aside class="hidden xl:block xl:col-start-10 xl:col-span-3 row-start-1">
     </aside>
 </x-base::layout>

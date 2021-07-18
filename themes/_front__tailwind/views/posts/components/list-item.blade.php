@@ -31,7 +31,7 @@ global $osm_app; /* @var \Osm\Core\App $osm_app */
                 {!! $category->title_html !!}</a>
         @endforeach
     </p>
-    <p>{{ $post->created_at->diffForHumans() }}</p>
+    <p>{{ $post->created_at->diffForHumans() }} ∙ {{ $post->reading_time }}</p>
     @if ($post->list_html)
         <a href="{{ $post->url }}" title="{{ $post->title }}">
             <section class="prose max-w-none my-5">
