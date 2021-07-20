@@ -4,11 +4,10 @@ global $osm_app; /* @var \Osm\Core\App $osm_app */
 ?>
 <article>
     <h2 class="text-lg  font-bold mt-8 underline my-5">
-        @if ($post->main_category_file)
-            {!! $post->main_category_file->post_title_html !!}:
-        @endif
-
         <a href="{{ $post->url }}" title="{{ $post->title }}">
+            @if ($post->main_category_file)
+                {!! $post->main_category_file->post_title_html !!}:
+            @endif
             {{ $post->title }}
         </a>
     </h2>

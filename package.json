@@ -9,6 +9,8 @@
   "devDependencies": {
     "@rollup/plugin-commonjs": "^17.1.0",
     "@rollup/plugin-node-resolve": "^11.2.0",
+    "rollup-plugin-postcss": "^1.6.3",
+    "rollup-plugin-uglify": "^6.0.4",
     "autoprefixer": "^10.2.5",
     "del": "^6.0.0",
     "gulp": "^4.0.2",
@@ -19,10 +21,11 @@
     "gulp-rollup-2": "^1.3.1",
     "gulp-sourcemaps": "^2.6.5",
     "gulp-watch": "^4.2.4",
+    "gulp-if": "^3.0.0",
     "postcss": "^8.2.8",
     "postcss-import": "^14.0.0",
-    "precss": "^3.1.2",
-    "rollup-plugin-postcss": "^1.6.3"
+    "postcss-csso": "^5.0.1",
+    "precss": "^3.1.2"
   },
   "dependencies": {
     "lodash": "^4.17.21",

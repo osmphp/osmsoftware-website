@@ -1,6 +1,6 @@
 # Search And Multi-Select Layered Navigation: How It Works
 
-***It's a draft**. This post is still being written.*
+***It's a draft**. This post is currently being written.*
 
 Readers of `osmcommerce.com` blog can search the blog for a specific phrase, and narrow down listed articles using multi-select layered navigation. Let's see how it works under the hood.
 
