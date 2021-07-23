@@ -1,33 +1,32 @@
 # 2021 Jun 14 - Jun 25
 
-The main delivered feature is multi-select layered navigation for the `osmcommerce.com` blog.  
+[osmcommerce.com](https://osm.software/) (now [osm.software](https://osm.software/)) blog got multi-select layered navigation, category management, FontAwesome icons,
+Tailwind CSS Typography. Osm Core allows debugging accidental assignments of the computed properties.  
  
 {{ toc }}
 
 ### meta.list_text
 
-The main delivered feature is multi-select layered navigation for
-the `osmcommerce.com` blog.
+*osmcommerce.com* (now *osm.software*) blog got multi-select layered navigation,
+category management, FontAwesome icons, Tailwind CSS Typography. Osm Core allows
+debugging accidental assignments of the computed properties.
 
-## `osmcommerce.com` Website v0.1.1
+## *osmcommerce.com* Website v0.1.1
 
 [Diff](https://github.com/osmphp/osmcommerce-website/compare/v0.1.0...v0.1.1)
 
-### User
+### Reader-Oriented Changes
 
 * show/hide sidebar, search, and access your account using page header
-
 * navigate the blog using multi-select layered navigation, category and date filters
-
 * search the blog, and narrow results using multi-select layered navigation
 
-### Author
+### Author-Oriented Changes
 
 * configure categories in `data/posts__categories` directory
-
 * assign categories to posts in the file name, or use `categories` meta field 
 
-### Developer
+### Internal Changes
 
 * parse Markdown file metadata using `My\Markdown\File` (or derived) class
 
@@ -103,13 +102,13 @@ the `osmcommerce.com` blog.
 
 * don't assign tags and series to posts anymore - they are no longer supported
 
-## Framework v0.8.4
+## Osm Framework v0.8.4
 
 [Diff](https://github.com/osmphp/framework/compare/v0.8.0...v0.8.4)
 
 * encode/decode parts of the URL using new `url_encode` and `url_decode` functions
 
-## Core v0.8.11
+## Osm Core v0.8.11
 
 [Diff](https://github.com/osmphp/core/compare/v0.8.10...v0.8.11)
 

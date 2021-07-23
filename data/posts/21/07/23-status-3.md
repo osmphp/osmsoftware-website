@@ -1,7 +1,6 @@
 # 2021 Jul 12 - Jul 23
 
-The framework introduced production mode and maintenance mode. `osm.software`
-went live.
+Osm Framework introduced production mode and maintenance mode. [osm.software](https://osm.software/) went live.
 
 More details:
 
@@ -9,9 +8,9 @@ More details:
 
 ### meta.list_text
 
-The framework introduced production mode and maintenance mode. `osm.software` went live.
+Osm Framework introduced production mode and maintenance mode. *osm.software* website went live.
 
-## `osm.software` Website v0.2.0
+## *osm.software* Website v0.2.0
 
 [Diff](https://github.com/osmphp/osmsoftware-website/compare/v0.1.2...v0.2.0)
 
@@ -36,7 +35,7 @@ From now on, <https://osm.software/> is live.
 * incomplete/incorrect posts marked as drafts
 * post-introduction to Osm Framework
 
-## Framework v0.9.3
+## Osm Framework v0.9.3
 
 [Diff](https://github.com/osmphp/framework/compare/v0.9.0...v0.9.3)
 

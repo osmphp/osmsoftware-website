@@ -2,7 +2,7 @@
 
 ## meta.description
 
-Be the first to know what we've been working on lately.
+Here is what we've been working on lately.
 
 ## meta
 

@@ -2,7 +2,7 @@
 
 ## meta.description
 
-`osmcommerce.com` website is built from scratch using Osm Framework. Read its source on [GitHub](https://github.com/osmphp/osmcommerce-website), and learn how it works from the articles below.
+This very website, [osm.software](https://osm.software/), is built from scratch using Osm Framework. The articles below explain how it works. For more details, check its source on [GitHub](https://github.com/osmphp/osmsoftware-website).
 
 ## meta
 

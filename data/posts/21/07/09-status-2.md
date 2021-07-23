@@ -1,18 +1,18 @@
 # 2021 Jun 28 - Jul 09
 
-The framework introduced JS controllers, and JS unit tests. `osmcommerce.com` project has been renamed to `osm.software`, it finalized the post rendering, and introduced a tool for checking broken links.  
+Osm Framework introduced JS controllers, and JS unit tests. [osmcommerce.com](https://osm.software/) website project was renamed to [osm.software](https://osm.software/), it finalized the post rendering, and introduced a tool for checking broken links.  
  
 {{ toc }}
 
 ### meta.list_text
 
-The framework introduced JS controllers, and JS unit tests. `osmcommerce.com`
-project has been renamed to `osm.software`, it finalized the post rendering, and
-introduced a tool for checking broken links.
+Osm Framework introduced JS controllers, and JS unit tests. *osmcommerce.com*
+website project was renamed to *osm.software*, it
+finalized the post rendering, and introduced a tool for checking broken links.
 
-## `osm.software` Website v0.1.2
+## *osm.software* Website v0.1.2
 
-Previous, now abandoned domain name is `osmcommerce.com`.
+Previous, now abandoned domain name is `osmcommerce.com`. 
 
 [Diff](https://github.com/osmphp/osmsoftware-website/compare/v0.1.1...v0.1.2)
 
@@ -40,7 +40,7 @@ If you want to check external, absolute links, add the `-x` option.
 * scrolling to a sub-heading adjusted to a sticky header
 * simplified display of applied filters    
 
-## Framework v0.9.0
+## Osm Framework v0.9.0
 
 [Diff](https://github.com/osmphp/framework/compare/v0.8.4...v0.9.0)
 
