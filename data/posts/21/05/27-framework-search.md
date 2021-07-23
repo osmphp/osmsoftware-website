@@ -1,9 +1,5 @@
 # Search
 
-***It's a draft**. This post had been written before actually implementing
-provider-agnostic search, as if it's already implemented. Hence, it may
-substantially differ from actual implementation.*
-
 Full-text search and layered navigation is a common feature for e-commerce
 applications. It's also used in this blog. Actually, it makes browsing any non-trivial
 data better. Under the hood, search and layered navigation
@@ -12,12 +8,6 @@ how.
 
 {{ toc }}
 
-## meta
-
-    {
-        "categories": ["drafts"]
-    }
-    
 ## meta.list_text
 
 Full-text search and layered navigation is a common feature for e-commerce
@@ -28,7 +18,7 @@ non-trivial data better. Under the hood, search and layered navigation interact 
 
 ### ElasticSearch
 
-Before using search capabilities, configure what search engine you'll use, and specify its connection settings in `settings.{{ app_name }}.php`:
+Before using search capabilities, configure what search engine you'll use, and specify its connection settings in `settings.{{ app_name }}.php` (usually, `settings.Osm_App.php`):
 
     ...
     return (object)[
@@ -45,7 +35,7 @@ Before using search capabilities, configure what search engine you'll use, and s
     
 The example above refers to the ElasticSearch installed on a local machine. For all the settings, consult [ElasticSearch documentation](https://www.elastic.co/guide/en/elasticsearch/client/php-api/current/configuration.html).
 
-The configuration above uses some environment variables, define them in `.env.{{ app_name }}`:
+The configuration above uses some environment variables, define them in `.env.{{ app_name }}` (sually, `.env.Osm_App`):
 
     NAME=osmsoftware
     ...
@@ -55,7 +45,7 @@ The configuration above uses some environment variables, define them in `.env.{{
 
 Alternatively, you may use Algolia. 
 
-1. After creating an account on <https://www.algolia.com/>, use the following configuration to `settings.{{ app_name }}.php`:
+1. After creating an account on <https://www.algolia.com/>, use the following configuration in `settings.{{ app_name }}.php`:
 
         ...
         return (object)[
@@ -76,27 +66,53 @@ Alternatively, you may use Algolia.
         ALGOLIA_APP_ID=...
         ALGOLIA_ADMIN_API_KEY=... 
         
-## Creating indexes
+## Creating Indexes
 
-An index in a search engine is somewhat similar to a database table. First you create, then you fill it in with data, then you make queries from it. Finally, if it's no longer needed, you drop it. Use the following methods for creating/dropping indexes:
+An index in a search engine is somewhat similar to a database table. First you create it, then you fill it in with data, then you make queries from it. Finally, if it's no longer needed, you drop it. Use the following methods for creating/dropping indexes:
 
     // create an index
-    $osm_app->search->create('products', function(Blueprint $index) {
-        $index->string('sku');
-        $index->int('qty');
+    $this->search->create('posts', function (Blueprint $index) {
+        $index->string('title')
+            ->searchable();
+        $index->string('text')
+            ->searchable();
+        $index->string('tags')
+            ->array()
+            ->searchable()
+            ->filterable();
+        $index->string('series')
+            ->searchable()
+            ->filterable();
+        $index->string('created_at')
+            ->sortable();
+        $index->int('year')
+            ->filterable()
+            ->faceted();
+        $index->string('month')
+            ->filterable()
+            ->faceted();
+        $index->string('category')
+            ->array()
+            ->filterable()
+            ->faceted();
     });
     
     // check if an index exists
-    if ($osm_app->search->exists('products')) {
+    if ($osm_app->search->exists('posts')) {
         ...
     }
     
     // drop an index
-    $osm_app->search->drop('products');
+    $this->search->drop('posts');
 
-**Note**. If you are familiar with Laravel, the syntax should remind you the Laravel schema builder. 
+**Note**. If you are familiar with Laravel, you'll find this syntax familiar. It's on purpose. Osm Framework uses Laravel database API, and the search index API is consistent with that.  
 
-### Field types
+### `id` Field
+
+`id` field is implicitly defined in every index, and internally, it is used as a unique
+document identifier. Always provide `id` value in the `insert()`, and use the same value in `update()` and `delete()`.
+
+### Field Types
 
 Use the following field types:
 
@@ -105,27 +121,26 @@ Use the following field types:
     $index->float('price');
     $index->bool('in_stock');
 
-You may allow a field to have multiple values by using plural type names:
+### Field Attributes
 
-    $index->strings('tags');
-    $index->ints('color_ids');
-    $index->floats('widths');
+You may use the following attributes in the field definitions:
 
-### Field attributes
+    $index->string('category')
+        ->array()       // allow assignning multiple values to the field
+        ->filterable()  // allow filtering by the field
+        ->faceted()     // allow counting field facets
+        ->searchable()  // add the field values into the full-text search index
+        ->sortable()    // allow sorting by the field
 
-Enable fields to be used in search, filtering, facet counting, and sorting, and specify related settings:
+### Complex Orders
 
-    // use a field in full-text search, and specify its weight and order
-    $index->string('text')->searchable(
-        weight: 2.0, // by default, 1.0
-        order: 1, // by default, not specified     
-    );
+You may define multiple-field orders as follows:
+
+    $index->order('complex', desc: false)
+        ->by('price', desc: true)
+        ->by('id', true);
     
-    $index->string('sku')->filterable();
-    $index->string('sku')->faceted(max_items: 500);
-    $index->float('price')->sortable();
-    
-### Engine-specific index settings
+### Engine-Specific Index Settings
 
 The underlying engines have more features to configure, and with time the described API will cover most of them. If you need those features right now, configure them by adding engine-specific logic:
 
@@ -153,6 +168,8 @@ The underlying engines have more features to configure, and with time the descri
         $index->index()->...
     });  
 
+Check [`Osm\Framework\ElasticSearch\Blueprint::create()`](https://github.com/osmphp/framework/blob/HEAD/src/ElasticSearch/Blueprint.php) and [`Osm\Framework\AlgoliaSearch\Blueprint::create()`](https://github.com/osmphp/framework/blob/HEAD/src/AlgoliaSearch/Blueprint.php) method implementations in order to better understand how exactly your search engine-specific settings are actually added to the underlying requests. 
+
 See also: 
 
 * <https://www.elastic.co/guide/en/elasticsearch/reference/current/indices-create-index.html>
@@ -160,27 +177,22 @@ See also:
 * <https://www.algolia.com/doc/api-reference/api-methods/set-settings/>
 * <https://www.algolia.com/doc/api-reference/api-methods/>
 
-## Adding data to a search index
+## Adding Data To A Search Index
 
 Use SQL-like `insert()`, `update()` and `delete()` methods of the index query object to manage data in an index:
 
-    $osm_app->search->index('products')->insert([
+    $osm_app->search->index('posts')->insert([
         'id' => 5,
-        'sku' => 'P123',
+        'title' => 'Hello, world',
     ]);
     
-    $osm_app->search->index('products')->update(5, [
-        'price' => 9.99,
+    $osm_app->search->index('posts')->update(5, [
+        'title' => 'Hello, world',
     ]);
     
     $osm_app->search->index('products')->delete(5);
     
-### `id` field
-
-`id` field is implicitly defined in every index, and internally, it is used as a unique
-document identifier. Always provide `id` value in the `insert()`, and use the same value in `update()` and `delete()`.
-
-### Changes are not instant
+### Changes Are Not Instant
 
 Search engines don't wait for an operation to actually happen, and instead, they queue it and return control to your code immediately. It means that if query the index just after making changed to it, the changes won't be returned right away.
 
@@ -200,43 +212,45 @@ In most cases, it's a good thing, but not in unit tests. For this reason, consid
 
 However, it will make your code slower, so don't use these flags in production.
 
-## Querying a search index
+## Querying A Search Index
 
-### Search queries return IDs
+### Search Queries Return IDs
 
 Search index queries return IDs of matching records, so after querying the search index, populate the actual data from the database using the `whereIn()` method:
 
     // 1. get IDs from the search index
-    $ids = $osm_app->search->index('products')
-        ->search('yellow jacket')
+    $ids = $osm_app->search->index('posts')
+        ->search('framework search')
         ->ids();
     
     // 2. populate data from the database
-    $items = $osm_app->db->table('products')
+    $items = $osm_app->db->table('posts')
         ->whereIn('id', $ids)
-        ->get(['sku', 'title', 'price']);
+        ->get(['id', 'path']);
         
-### Applying filters
+### Searching And Filtering
 
-    $ids = $osm_app->search->index('products')
+Use `search()`, `where()`, `or()`, `and()` methods:
+
+    $ids = $osm_app->search->index('posts')
         // request full-text search
-        ->search('yellow jacket')
+        ->search('framework search')
 
         // term filters
-        ->where('tags', '=', 'technical-article')
-        ->where('category_ids', 'in', [5, 10, 15])
+        ->where('year', '=', 2021)
+        ->where('category', 'in', ['framework', 'status'])
 
         // range filters
-        ->where('price', '>=', 5.0)                
-        ->where('price', '<=', 15.0)
+        ->where('year', '>=', 2000)                
+        ->where('year', '<=', 2009)
         
         // multiple range filters
-        ->whereOr(fn(WhereClause $clause) => $clause
-            ->whereAnd(fn(WhereClause $clause) => $clause
+        ->or(fn(Where $clause) => $clause
+            ->and(fn(Where $clause) => $clause
                 ->where('weight', '>=', 1.0)                
                 ->where('weight', '<', 2.0)
             )
-            ->whereAnd(fn(WhereClause $clause) => $clause
+            ->and(fn(Where $clause) => $clause
                 ->where('weight', '>=', 5.0)                
             )
         )                
@@ -244,7 +258,9 @@ Search index queries return IDs of matching records, so after querying the searc
         // run the query
         ->ids();
 
-### Getting faceted counts and stats
+### Getting Faceted Counts And Stats
+
+Use `facetBy()` method to request faceted data, and read it from the `facets` property of the resulting collection:
 
     $result = $osm_app->search->index('products')
         // apply filters
@@ -264,10 +280,12 @@ Search index queries return IDs of matching records, so after querying the searc
         ->get();
 
     $ids = $result->ids;
-    $minPrice = $result->price->min;
-    $tagCounts = $result->tags->items;
+    $minPrice = $result->facets['price']->min;
+    $tagCounts = $result->facets['tags']->counts;
     
-### Sorting and paging
+### Sorting And Paging
+
+Use `orderBy()`, `offset()` and `limit()` methods:
 
     $result = $osm_app->search->index('products')
         // apply filters
