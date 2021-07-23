@@ -1,4 +1,4 @@
 #!/bin/bash
 
 git pull
-osm index
+php vendor/osmphp/framework/bin/console.php index
