@@ -4,6 +4,20 @@ Osm Framework introduced JS controllers, and JS unit tests. [osmcommerce.com](ht
  
 {{ toc }}
 
+## meta
+
+    {
+        "candidate_posts": [
+            "osmsoftware-handling-images",
+            "osmsoftware-handling-relative-links",
+            "osmsoftware-checking-broken-links",
+            "framework-writing-js-controllers",
+            "framework-writing-js-classes",
+            "framework-writing-js-unit-tests",
+            "productivity-going-through-motivation-slump"
+        ]
+    }
+
 ### meta.list_text
 
 Osm Framework introduced JS controllers, and JS unit tests. *osmcommerce.com*

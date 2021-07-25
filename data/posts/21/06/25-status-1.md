@@ -5,6 +5,21 @@ Tailwind CSS Typography. Osm Core allows debugging accidental assignments of the
  
 {{ toc }}
 
+## meta
+
+    {
+        "candidate_posts": [
+            "osmsoftware-generating-blog-urls",
+            "osmsoftware-dispatching-blog-routes",
+            "osmsoftware-parsing-markdown",
+            "framework-running-native-php-server",
+            "framework-logging",
+            "framework-debugging-computed-properties",
+            "productivity-keeping-things-easy-to-test",
+            "productivity-maximizing-your-output"
+        ]
+    }
+
 ### meta.list_text
 
 *osmcommerce.com* (now *osm.software*) blog got multi-select layered navigation,

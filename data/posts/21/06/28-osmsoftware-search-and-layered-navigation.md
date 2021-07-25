@@ -1,8 +1,8 @@
-# Search And Multi-Select Layered Navigation: How It Works
+# Search And Layered Navigation
 
 ***It's a draft**. This post is currently being written.*
 
-Readers of `osmcommerce.com` blog can search the blog for a specific phrase, and narrow down listed articles using multi-select layered navigation. Let's see how it works under the hood.
+Readers of [osm.software](https://osm.software/blog/) blog can search the blog for a specific phrase, and narrow down listed articles using multi-select layered navigation. Let's see how it works under the hood.
 
 {{ toc }}
 
@@ -14,7 +14,7 @@ Readers of `osmcommerce.com` blog can search the blog for a specific phrase, and
 
 ### meta.list_text
 
-Readers of `osmcommerce.com` blog can search the blog for a specific phrase, and
+Readers of *osm.software* blog can search the blog for a specific phrase, and
 narrow down listed articles using multi-select layered navigation. Let's see how
 it works under the hood.
 
@@ -36,7 +36,7 @@ The list of available filters is defined in the [`Posts::$filters`](https://gith
         return [
             'q' => Filter\Search::new([
                 'name' => 'q',
-                'collection' => $this,
+                'collection' => $this, 
             ]),
             'category' => Filter\Category::new([
                 'name' => 'category',
@@ -48,3 +48,6 @@ The list of available filters is defined in the [`Posts::$filters`](https://gith
             ]),
         ];
     }
+
+## Page Types
+

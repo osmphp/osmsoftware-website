@@ -6,6 +6,19 @@ More details:
 
 {{ toc }}
 
+## meta
+
+    {
+        "candidate_posts": [
+            "osmsoftware-deploying-updates",
+            "osmsoftware-redirecting-websites",
+            "osmsoftware-installation",
+            "framework-adding-shell-aliases",
+            "framework-production-mode",
+            "framework-maintenance-mode"
+        ]
+    }
+
 ### meta.list_text
 
 Osm Framework introduced production mode and maintenance mode. *osm.software* website went live.

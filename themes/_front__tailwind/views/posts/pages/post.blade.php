@@ -2,7 +2,7 @@
 global $osm_app; /* @var \Osm\Core\App $osm_app */
 /* @var \My\Posts\Post $post */
 ?>
-<x-base::layout :title='$post->title . " | Blog | Osm Commerce"'>
+<x-base::layout :title='$post->title . ($post->main_category_file ? " | " . $post->main_category_file->post_title : "") . " | Blog | Osm Software"'>
     <x-slot name="header">
         <x-posts::header />
     </x-slot>

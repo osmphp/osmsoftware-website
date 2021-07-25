@@ -50,3 +50,5 @@ Add category URL to the `categories` metadata field of the blog post:
 ## Reindex
 
 After any changes to blog categories, run `osm index`. 
+
+After changing category URL keys and reassigning them to blog posts, run `osm index -f`.  
