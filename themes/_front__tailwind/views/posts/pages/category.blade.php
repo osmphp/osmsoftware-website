@@ -11,7 +11,7 @@ global $osm_app; /* @var \Osm\Core\App $osm_app */
             {!! $posts->page_type->category->title_html !!}
         </h1>
         <div class="prose max-w-none my-5">
-            {!! $posts->page_type->category->description_html !!}
+            {!! $posts->page_type->category->html !!}
         </div>
 
         @forelse($posts->items as $post)

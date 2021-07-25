@@ -14,8 +14,6 @@ use Osm\Core\Attributes\Serialized;
 /**
  * @property int $sort_order #[Serialized]
  * @property string $url_key #[Serialized]
- * @property ?string $description #[Serialized]
- * @property ?string $description_html #[Serialized]
  * @property string $post_title_html #[Serialized]
  * @property Http $http
  */
@@ -48,14 +46,6 @@ class Category extends File
 
         $this->sort_order = (int)$match['sort_order'];
         $this->url_key = $match['url_key'];
-    }
-
-    protected function get_description(): ?string {
-        return $this->meta?->description ?? null;
-    }
-
-    protected function get_description_html(): string {
-        return $this->html($this->description);
     }
 
     protected function get_post_title_html(): ?string {

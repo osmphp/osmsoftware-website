@@ -1,16 +1,8 @@
 # Managing Blog Categories
 
-***It's a draft**. This post is being written. It may contain incomplete information.*
-
 This article explains how to manage and assign blog categories.
 
 {{ toc }}
-
-## meta
-
-    {
-        "categories": ["drafts"]
-    }
 
 ### meta.list_text
 
@@ -24,10 +16,37 @@ Define categories in `data/posts__categories` directory. For each category, crea
     3-framework.md
     ...
 
-Just like blog posts, category markdown files may have [`meta`](../05/19-osmsoftware-writing-blog-posts.md#meta-section) and [`meta.*`](../05/19-osmsoftware-writing-blog-posts.md#meta-sections) sections
+Each file defines category title and description:
 
-
-A blog post may be a part of one or more categories. 
+    # Status Reports
     
-The main category is assigned to a post by adding it to the post file name. For example, `21/05/18-framework-introduction.md` indicates `framework` category, `21/06/25-status-1.md` indicates `status` category, and so on. 
+    Here is what we've been working on lately.
 
+## Adding Metadata
+
+Just like blog posts, category markdown files may have [`meta`](../05/19-osmsoftware-writing-blog-posts.md#meta-section) and [`meta.*`](../05/19-osmsoftware-writing-blog-posts.md#meta-sections) sections. However, categories have different fields than blog posts.
+
+Supported category fields in `meta` section:
+
+* `post_title` - Text to be added to every blog post where this category is assigned as main category. If omitted, category title is used. 
+
+## Assigning Categories To Blog Posts
+
+### Main Category
+
+Add category URL key to the blog post file name. For example, in order to assign `framework` as main category to a blog post, use `18-framework-introduction.md` instead of `18-introduction.md` file name.
+
+### Additional Categories
+
+Add category URL to the `categories` metadata field of the blog post:
+
+    ### meta
+
+        {
+            "categories": ["drafts"]
+            ...
+        } 
+    
+## Reindex
+
+After any changes to blog categories, run `osm index`. 
