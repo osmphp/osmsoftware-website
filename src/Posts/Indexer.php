@@ -22,11 +22,14 @@ use function Osm\__;
  */
 class Indexer extends Object_
 {
-    public function run(): void {
-        $this->db->transaction(function() {
-            $this->indexPath($this->path);
-            $this->markDeletedFiles();
-        });
+    public function run(bool $rebuild = false): void {
+        if ($rebuild) {
+            $this->clearSearchIndex();
+            $this->clearDbIndex();
+        }
+
+        $this->indexPath($this->path);
+        $this->markDeletedFiles();
 
         $this->cache->deleteItem('blog_categories');
     }
@@ -60,6 +63,10 @@ class Indexer extends Object_
         throw new InvalidPath(__(
             "':path' is and a not valid blog post file path",
             ['path' => $this->path]));
+    }
+
+    public function clearDbIndex(): void {
+        $this->db->table('posts')->delete();
     }
 
     public function clearSearchIndex(): void {

@@ -2,7 +2,7 @@
 
 ***It's a draft**. This post had been written before actually implementing `osm.software` website. Hence, it may substantially differ from actual implementation.*
 
-This article explains how to write and publish blog posts and categories.
+This article explains how to write and publish blog posts.
 
 We assume that you already have the project up and running. We'll provide the exact installation steps later, in a separate article.
 
@@ -11,12 +11,16 @@ We assume that you already have the project up and running. We'll provide the ex
 ## meta
 
     {
-        "categories": ["drafts"]
+        "categories": ["drafts"],
+        "candidate_posts": [
+            "osmsoftware-website-installation",
+            "osmsoftware-website-managing-blog-categories"
+        ]
     }
 
 ### meta.list_text
 
-This article explains how to write and publish blog posts and categories.
+This article explains how to write and publish blog posts.
 
 ## Introduction
 
@@ -75,9 +79,6 @@ Alternatively, install the website on the server only, and edit files directly o
  
 2. Run `osm index` command in the project directory.
   
-
----
-
 ## Blog Post Directory Structure
 
 The blog posts are regular Markdown files located in the `data/posts` directory of the project:
@@ -94,17 +95,21 @@ As you can see, the post creation date as well as post URL key are encoded in th
 
     data/posts/{yy}/{mm}/{dd}-{url_key}.md
 
-The file name is also reflected in the blog post URL. Note that the day part is omitted, git and `.md` extension replaced with `.html`:
+The file name is also reflected in the blog post URL. Note that the day part is omitted, and `.md` extension replaced with `.html`:
 
     https://osm.software/blog/21/05/framework-introduction.html
     https://osm.software/blog/21/05/osmsoftware-website-requirements.html
     ...
 
+If you start the `{url_key}` part with a valid category URL key, then it will be assigned to the blog post as "main category". We'll describe managing blog categories in a separate blog post.
+
 ## Placeholders
 
-A blog post may use placeholders, starting with `{{` and ending with `}}`, that expand dynamically when the page is rendered. Currently, there is only one placeholder:
+A blog post may contain placeholders, starting with `{{` and ending with `}}`, that expand dynamically when the page is rendered. Currently, there is only one placeholder:
 
 * `toc` - collects headings into the table of contents.
+
+---
 
 ## Categories
 

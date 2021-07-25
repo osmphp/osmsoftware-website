@@ -11,6 +11,6 @@ class ListItem extends Component
 {
     public string $__template = 'posts::components.list-item';
 
-    public function __construct(public Post $post) {
+    public function __construct(public ?Post $post) {
     }
 }
