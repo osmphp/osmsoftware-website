@@ -297,4 +297,33 @@ Use `orderBy()`, `offset()` and `limit()` methods:
         
         // run the query
         ->ids();
+
+## Troubleshooting
+
+### Checking ElasticSearch Data
+
+Use the following commands to check what exactly is stored in the ElasticSearch:
+
+    # list all indexes
+    curl 'localhost:9200/_cat/indices?v'
     
+    # dump the index definition into a file
+    curl 'localhost:9200/{index}/_mapping?pretty' > ~/es_schema.json
+    
+    # dump the index into a file
+    curl -XPOST 'localhost:9200/{index}/_search?pretty' -H "Content-Type: application/json" -d '{"query": { "match_all": {} }}' > ~/es_data.json
+
+### ElasticSearch Logging
+
+Enable logging all internal ElasticSearch queries and responses in `settings.{{ app_name }}.php` (usually, `settings.Osm_App.php`) file:
+
+    ...
+    /* @see \Osm\Framework\Settings\Hints\Settings */
+    return (object)[
+        ...
+    
+        /* @see \Osm\Framework\Logs\Hints\LogSettings */
+        'logs' => (object)[
+            'elastic' => true,
+        ],
+    ];

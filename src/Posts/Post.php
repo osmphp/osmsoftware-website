@@ -205,8 +205,8 @@ class Post extends File
 
         $crawler = new Crawler($this->original_html);
         foreach ($crawler->filter('a') as $link) {
-            if ($this->isLinkBroken(
-                $url = $link->getAttribute('href')))
+            if ($this->isLinkBroken($url = $this->removeHashTags(
+                $link->getAttribute('href'))))
             {
                 $brokenLinks[] = $url;
             }
@@ -247,8 +247,8 @@ class Post extends File
 
         $crawler = new Crawler($this->original_html);
         foreach ($crawler->filter('a') as $link) {
-            if ($this->isExternalLinkBroken(
-                $url = $link->getAttribute('href')))
+            if ($this->isExternalLinkBroken($url = $this->removeHashTags(
+                $link->getAttribute('href'))))
             {
                 $brokenLinks[] = $url;
             }
@@ -306,5 +306,17 @@ class Post extends File
         curl_close($ch);
 
         return $returnCode == 200;
+    }
+
+    protected function removeHashTags(?string $url): ?string {
+        if (!$url) {
+            return $url;
+        }
+
+        if (($pos = mb_strpos($url, '#')) !== false) {
+            $url = mb_substr($url, 0, $pos);
+        }
+
+        return $url;
     }
 }

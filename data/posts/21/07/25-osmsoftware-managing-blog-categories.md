@@ -16,15 +16,18 @@ This article explains how to manage and assign blog categories.
 
 This article explains how to manage and assign blog categories.
 
-## Categories
+## Defining Categories
 
-A blog post may be a part of one or more categories. The reader may click on a category, and see all the other posts of that category.
-
-Categories are defined in `data/posts__categories` directory, with file names following `{sort_order}-{url_key}.md` naming convention:
+Define categories in `data/posts__categories` directory. For each category, create a Markdown file, with file names following `{sort_order}-{url_key}.md` naming convention:
 
     2-status.md
     3-framework.md
     ...
+
+Just like blog posts, category markdown files may have [`meta`](../05/19-osmsoftware-writing-blog-posts.md#-meta-section) and [`meta.*`](../05/19-osmsoftware-writing-blog-posts.md#-meta-sections) sections
+
+
+A blog post may be a part of one or more categories. 
     
 The main category is assigned to a post by adding it to the post file name. For example, `21/05/18-framework-introduction.md` indicates `framework` category, `21/06/25-status-1.md` indicates `status` category, and so on. 
 

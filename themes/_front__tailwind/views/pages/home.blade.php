@@ -44,7 +44,7 @@ global $osm_app; /* @var \Osm\Core\App $osm_app */
         </p>
         <p class="mt-8 text-center">
             <a class="bg-blue-500 hover:bg-blue-700 text-white py-2 px-4 rounded"
-                href="{{ "{$osm_app->http->base_url}/blog/osmsoftware-website/" }}" title="Blog"
+                href="{{ "{$osm_app->http->base_url}/blog/osmsoftware/" }}" title="Blog"
             >Blog</a>
             <a class="bg-blue-500 hover:bg-blue-700 text-white py-2 px-4 rounded"
                 href="https://github.com/osmphp/osmsoftware-website" title="Source"

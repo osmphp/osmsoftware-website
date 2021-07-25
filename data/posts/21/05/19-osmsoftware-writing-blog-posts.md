@@ -97,7 +97,7 @@ The file name is also reflected in the blog post URL. Note that the day part is 
     .../blog/21/05/osmsoftware-website-requirements.html
     ...
 
-If you start the `{url_key}` part with a valid category URL key, then it will be assigned to the blog post as "main category". See [Managing Blog Categories](../07/25-osmsoftware-website-managing-blog-categories.md) for more details.
+If you start the `{url_key}` part with a valid category URL key, then it will be assigned to the blog post as "main category". See [Managing Blog Categories](../07/25-osmsoftware-managing-blog-categories.md) for more details.
 
 ## File Format
 
@@ -129,7 +129,7 @@ The `meta` section is not rendered on the blog post page.
 Currently, only one metadata property is supported:
 
 * `categories` (array of strings) - additionally assigned categories.
-  See [Managing Blog Categories](../07/25-osmsoftware-website-managing-blog-categories.md)
+  See [Managing Blog Categories](../07/25-osmsoftware-managing-blog-categories.md)
   for more details.
 
 ### `meta.*` Sections

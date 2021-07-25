@@ -31,4 +31,10 @@ return (object)[
         ],
         'retries' => 2,
     ],
+
+    /* @see \Osm\Framework\Logs\Hints\LogSettings */
+    'logs' => (object)[
+        'elastic' => true,
+        //'db' => true,
+    ],
 ];
