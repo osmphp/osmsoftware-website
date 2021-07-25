@@ -24,7 +24,7 @@ Define categories in `data/posts__categories` directory. For each category, crea
     3-framework.md
     ...
 
-Just like blog posts, category markdown files may have [`meta`](../05/19-osmsoftware-writing-blog-posts.md#-meta-section) and [`meta.*`](../05/19-osmsoftware-writing-blog-posts.md#-meta-sections) sections
+Just like blog posts, category markdown files may have [`meta`](../05/19-osmsoftware-writing-blog-posts.md#meta-section) and [`meta.*`](../05/19-osmsoftware-writing-blog-posts.md#meta-sections) sections
 
 
 A blog post may be a part of one or more categories. 

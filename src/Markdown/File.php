@@ -164,6 +164,7 @@ class File extends Object_
 
         $id = preg_replace('/[^\w\d\- ]+/u', ' ', $id);
         $id = preg_replace('/\s+/u', '-', $id);
+        $id = preg_replace('/^\-+/u', '', $id);
         $id = preg_replace('/\-+$/u', '', $id);
 
         return $id;

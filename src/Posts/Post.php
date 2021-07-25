@@ -157,12 +157,14 @@ class Post extends File
     }
 
     protected function resolveRelativeUrl(string $path): ?string {
+        $path = $this->removeHashTag($path, $hashTag);
+
         $absolutePath = realpath(dirname($this->absolute_path) . '/' . $path);
 
         return $absolutePath
             ? Post::new([
                 'path' => mb_substr($absolutePath, mb_strlen("{$this->root_path}/")),
-            ])->url
+            ])->url . $hashTag
             : null;
     }
 
@@ -205,7 +207,7 @@ class Post extends File
 
         $crawler = new Crawler($this->original_html);
         foreach ($crawler->filter('a') as $link) {
-            if ($this->isLinkBroken($url = $this->removeHashTags(
+            if ($this->isLinkBroken($url = $this->removeHashTag(
                 $link->getAttribute('href'))))
             {
                 $brokenLinks[] = $url;
@@ -247,7 +249,7 @@ class Post extends File
 
         $crawler = new Crawler($this->original_html);
         foreach ($crawler->filter('a') as $link) {
-            if ($this->isExternalLinkBroken($url = $this->removeHashTags(
+            if ($this->isExternalLinkBroken($url = $this->removeHashTag(
                 $link->getAttribute('href'))))
             {
                 $brokenLinks[] = $url;
@@ -308,12 +310,15 @@ class Post extends File
         return $returnCode == 200;
     }
 
-    protected function removeHashTags(?string $url): ?string {
+    protected function removeHashTag(?string $url, ?string &$hashTag = null)
+        : ?string
+    {
         if (!$url) {
             return $url;
         }
 
         if (($pos = mb_strpos($url, '#')) !== false) {
+            $hashTag = mb_substr($url, $pos);
             $url = mb_substr($url, 0, $pos);
         }
 
