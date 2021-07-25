@@ -161,7 +161,7 @@ class Post extends File
 
         $absolutePath = realpath(dirname($this->absolute_path) . '/' . $path);
 
-        return $absolutePath
+        return $path && $absolutePath
             ? Post::new([
                 'path' => mb_substr($absolutePath, mb_strlen("{$this->root_path}/")),
             ])->url . $hashTag
