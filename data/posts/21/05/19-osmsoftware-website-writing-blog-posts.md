@@ -1,20 +1,16 @@
 # Writing Blog Posts
 
-***It's a draft**. This post had been written before actually implementing `osm.software` website. Hence, it may substantially differ from actual implementation.*
-
 This article explains how to write and publish blog posts.
 
-We assume that you already have the project up and running. We'll provide the exact installation steps later, in a separate article.
+Contents:
 
 {{ toc }}
 
 ## meta
 
     {
-        "categories": ["drafts"],
         "candidate_posts": [
-            "osmsoftware-website-installation",
-            "osmsoftware-website-managing-blog-categories"
+            "osmsoftware-website-installation"
         ]
     }
 
@@ -79,7 +75,7 @@ Alternatively, install the website on the server only, and edit files directly o
  
 2. Run `osm index` command in the project directory.
   
-## Blog Post Directory Structure
+## Directory Structure
 
 The blog posts are regular Markdown files located in the `data/posts` directory of the project:
 
@@ -97,60 +93,70 @@ As you can see, the post creation date as well as post URL key are encoded in th
 
 The file name is also reflected in the blog post URL. Note that the day part is omitted, and `.md` extension replaced with `.html`:
 
-    https://osm.software/blog/21/05/framework-introduction.html
-    https://osm.software/blog/21/05/osmsoftware-website-requirements.html
+    .../blog/21/05/framework-introduction.html
+    .../blog/21/05/osmsoftware-website-requirements.html
     ...
 
-If you start the `{url_key}` part with a valid category URL key, then it will be assigned to the blog post as "main category". We'll describe managing blog categories in a separate blog post.
+If you start the `{url_key}` part with a valid category URL key, then it will be assigned to the blog post as "main category". See [Managing Blog Categories](../07/25-osmsoftware-website-managing-blog-categories.md) for more details.
 
-## Placeholders
+## File Format
 
-A blog post may contain placeholders, starting with `{{` and ending with `}}`, that expand dynamically when the page is rendered. Currently, there is only one placeholder:
+Write blog posts using [Markdown](https://daringfireball.net/projects/markdown/syntax) and [Markdown Extra](https://michelf.ca/projects/php-markdown/extra/) syntax.
 
-* `toc` - collects headings into the table of contents.
+In addition, use placeholders and provide metadata as shown below.
 
----
+### Placeholders
 
-## Categories
+A blog post may contain placeholders, starting with `{{` and ending with `}}`, that expand dynamically when the page is rendered. 
 
-A blog post may be a part of one or more categories. The reader may click on a category, and see all the other posts of that category.
+Currently, there is only one placeholder:
 
-Categories are defined in `data/posts__categories` directory, with file names following `{sort_order}-{url_key}.md` naming convention:
+* `toc` - collects headings into a table of contents.
 
-    2-status.md
-    3-framework.md
-    ...
-    
-The main category is assigned to a post by adding it to the post file name. For example, `21/05/18-framework-introduction.md` indicates `framework` category, `21/06/25-status-1.md` indicates `status` category, and so on. 
+### `meta` Section
 
-## Metadata
-
-Finally, a blog post may contain metadata - JSON with additional information about the post. The metadata section is marked with `meta` title:
+A blog post may have metadata - some additional invisible information associated with a blog post. The metadata is written using JSON format in the optional `meta` section:
 
     ### meta
 
         {
-            "canonical_url": "...",
+            "categories": ["drafts"]
             ...
         }
 
-Alternatively, you can provide additional meta information in Markdown format in `meta.*` sections. For example, `list_text` field specifies text to be rendered on blog post list pages. 
+The `meta` section is not rendered on the blog post page.
+
+Currently, only one metadata property is supported:
+
+* `categories` (array of strings) - additionally assigned categories.
+  See [Managing Blog Categories](../07/25-osmsoftware-website-managing-blog-categories.md)
+  for more details.
+
+### `meta.*` Sections
+ 
+Alternatively, you can provide additional meta information in Markdown format in `meta.*` sections: For example, `list_text` field specifies text to be rendered on blog post list pages. 
 
     ### meta.list_text
     
-    This very website, `osm.software`, is built using Osm Framework. It's open-source, but before diving into implementation details, let's review its initial requirements.
+    This very website, `osm.software`, is built using Osm Framework. 
+    It's open-source, but before diving into implementation details, 
+    let's review its initial requirements.
 
-The metadata section is not rendered as is, but it's used for navigation, SEO, and other purposes.
+The `meta.*` sections are not rendered on the blog post page.
 
-## Search
+Currently, only one `meta.*` section is supported:
 
-The reader may use the search input. The matching blog posts are shown on the `/search` page.
+* `list_text` section specifies text to be rendered on blog post list pages.
 
-## Layered Navigation
+### Custom Metadata
 
-The reader may pick one or more categories, one or more calendar periods, and the matching blog posts should be shown.
+You may provide custom properties in the `meta` section, and custom `meta.*` section. The system will read and store this metadata, and you can easily process it by customizing PHP code and templates. 
 
-## Links
+You can also use custom properties for your own internal information. For example, while writing a blog post, we put down a list of future blog post candidates in a `candidate_posts` property. Later, when deciding what to do next, we search through the blog post sources for this property.  
+
+## Links And Images
+
+### Links
 
 Blog posts may contain relative links to other blog posts. The general rule is that links should work even if you click on them in the GitHub repository. It means that they should contain the exact filename to a referenced Markdown file:
 
@@ -160,27 +166,21 @@ Blog posts may contain relative links to other blog posts. The general rule is t
     # link without a title
     <../04/08-getting-started.md>
 
-Non blog post links will be absolute:
+For non-blog post links, use absolute URLs:
 
     # link to an external website
     <https://www.php.net/>
 
-    # internal links use base_url placeholder
-    <{{ base_url }}/privacy-policy.html>
-
-## Images
+### Images
 
 Blog posts may contain relative links to images. By convention, images are stored in the same directory:
 
     # show an image from the current directory
     ![Welcome Screen](welcome-screen.png)
 
-## Reporting Broken links
+### Checking Broken links
 
-`osm check:links` command will scan all the Markdown files, check all the relative and absolute links inside them, and report the broken ones. 
+Use `osm check:links` command to scan all the Markdown files, and check if all the relative links point to an existing blog post or image.
 
-## Static pages
+Use `osm check:links -x` command to check if both internal and external links point to existing pages.
 
-Unlike blog posts, home page and other static page data is hard-wired in code. 
-
- 
