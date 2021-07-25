@@ -35,7 +35,20 @@ global $osm_app; /* @var \Osm\Core\App $osm_app */
             Resources
         </h2>
     </section>
-    <section class="col-span-12 lg:col-span-6 mb-6">
+    <section class="col-span-12 lg:col-start-1 lg:col-span-6 mb-6">
+        <h3 class="text-xl sm:text-2xl font-bold text-center">
+            What's New
+        </h3>
+        <p class="text-lg mt-8">
+            Find out what's new in our bi-weekly status reports.
+        </p>
+        <p class="mt-8 text-center">
+            <a class="bg-blue-500 hover:bg-blue-700 text-white py-2 px-4 rounded"
+                href="{{ "{$osm_app->http->base_url}/blog/status/" }}" title="Status Reports"
+            >Status Reports</a>
+        </p>
+    </section>
+    <section class="col-span-12 lg:col-start-7 lg:col-span-6 mb-6">
         <h3 class="text-xl sm:text-2xl font-bold text-center">
             Reference Project: osm.software
         </h3>
@@ -49,19 +62,6 @@ global $osm_app; /* @var \Osm\Core\App $osm_app */
             <a class="bg-blue-500 hover:bg-blue-700 text-white py-2 px-4 rounded"
                 href="https://github.com/osmphp/osmsoftware-website" title="Source"
             >Source</a>
-        </p>
-    </section>
-    <section class="col-span-12 lg:col-start-7 lg:col-span-6 mb-6">
-        <h3 class="text-xl sm:text-2xl font-bold text-center">
-            Status Reports
-        </h3>
-        <p class="text-lg mt-8">
-            Find out what's done in the bi-weekly status reports.
-        </p>
-        <p class="mt-8 text-center">
-            <a class="bg-blue-500 hover:bg-blue-700 text-white py-2 px-4 rounded"
-                href="{{ "{$osm_app->http->base_url}/blog/status/" }}" title="Status Reports"
-            >Status Reports</a>
         </p>
     </section>
 </x-base::layout>

@@ -14,7 +14,7 @@ Tailwind CSS Typography. Osm Core allows debugging accidental assignments of the
             "osmsoftware-parsing-markdown",
             "framework-running-native-php-server",
             "framework-logging",
-            "framework-debugging-computed-properties",
+            "core-debugging-computed-properties",
             "productivity-keeping-things-easy-to-test",
             "productivity-maximizing-your-output"
         ]
