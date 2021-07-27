@@ -1,7 +1,11 @@
 <?php
 global $osm_app; /* @var \Osm\Core\App $osm_app */
 ?>
-<x-base::layout title='Osm Software'>
+<x-base::layout title='Osm Software' description="A website about Osm Framework -
+    an open-source PHP 8 framework for creating modern Web applications that's
+    insanely fast, unprecedentedly extensible, and fun to work with -
+    and its ecosystem."
+>
     <x-slot name="header">
         <x-posts::header/>
     </x-slot>
@@ -21,10 +25,10 @@ global $osm_app; /* @var \Osm\Core\App $osm_app */
             Laravel components.
         </p>
         <p class="mt-8 text-center">
-            <a class="bg-blue-500 hover:bg-blue-700 text-white py-2 px-4 rounded"
+            <a class="bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded"
                 href="{{ "{$osm_app->http->base_url}/blog/framework/" }}" title="Blog"
             >Blog</a>
-            <a class="bg-blue-500 hover:bg-blue-700 text-white py-2 px-4 rounded"
+            <a class="bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded"
                 href="https://github.com/osmphp/framework" title="Source"
             >Source</a>
         </p>
@@ -43,7 +47,7 @@ global $osm_app; /* @var \Osm\Core\App $osm_app */
             Find out what's new in our bi-weekly status reports.
         </p>
         <p class="mt-8 text-center">
-            <a class="bg-blue-500 hover:bg-blue-700 text-white py-2 px-4 rounded"
+            <a class="bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded"
                 href="{{ "{$osm_app->http->base_url}/blog/status/" }}" title="Status Reports"
             >Status Reports</a>
         </p>
@@ -56,10 +60,10 @@ global $osm_app; /* @var \Osm\Core\App $osm_app */
             This very website is an open-source project built using Osm Framework.
         </p>
         <p class="mt-8 text-center">
-            <a class="bg-blue-500 hover:bg-blue-700 text-white py-2 px-4 rounded"
+            <a class="bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded"
                 href="{{ "{$osm_app->http->base_url}/blog/osmsoftware/" }}" title="Blog"
             >Blog</a>
-            <a class="bg-blue-500 hover:bg-blue-700 text-white py-2 px-4 rounded"
+            <a class="bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded"
                 href="https://github.com/osmphp/osmsoftware-website" title="Source"
             >Source</a>
         </p>

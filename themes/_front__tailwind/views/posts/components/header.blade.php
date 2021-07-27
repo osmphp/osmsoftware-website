@@ -7,8 +7,9 @@ global $osm_app; /* @var \Osm\Core\App $osm_app */
         "opened_class": "left-drawer--opened",
         "closed_class": "left-drawer--closed"
     }'>
-        <button class="w-10 h-10 text-2xl flex items-center
-            justify-center focus:outline-none"
+        <button aria-label="{{ \Osm\__("Show/hide sidebar") }}"
+            class="w-10 h-10 text-2xl flex items-center
+                justify-center focus:outline-none"
         >
             <i class="fas fa-bars"></i>
         </button>
@@ -19,7 +20,7 @@ global $osm_app; /* @var \Osm\Core\App $osm_app */
     <li class="w-32 h-10 flex-grow flex items-center">
         <form action="{{ "{$osm_app->http->base_url}/blog/search" }}" class="flex-grow">
             <div class="flex border-b py-1 border-solid border-gray-500">
-                <button type="submit"
+                <button aria-label="{{ \Osm\__("Search") }}" type="submit"
                     class="w-6 h-6 mr-2 flex items-center justify-center
                         focus:outline-none"
                 >

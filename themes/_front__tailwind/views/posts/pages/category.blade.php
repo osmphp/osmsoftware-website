@@ -1,17 +1,21 @@
 <?php
 global $osm_app; /* @var \Osm\Core\App $osm_app */
 /* @var \My\Posts\Posts $posts */
+
+$category = $posts->page_type->category;
 ?>
-<x-base::layout :title="$posts->page_type->category->title . ' | Blog | Osm Software'">
+<x-base::layout :title="$posts->page_type->category->title . ' | Blog | Osm Software'"
+    :description="$category->meta_description"
+>
     <x-slot name="header">
         <x-posts::header />
     </x-slot>
     <section class="col-start-1 col-span-12 md:col-start-4 md:col-span-9">
         <h1 class="text-2xl sm:text-4xl font-bold my-8">
-            {!! $posts->page_type->category->title_html !!}
+            {!! $category->title_html !!}
         </h1>
         <div class="prose max-w-none my-5">
-            {!! $posts->page_type->category->html !!}
+            {!! $category->html !!}
         </div>
 
         @forelse($posts->items as $post)

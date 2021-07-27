@@ -9,3 +9,9 @@ on [GitHub](https://github.com/osmphp/framework).
     {
         "post_title": "Framework"
     }
+    
+### meta.description
+
+Learn how Osm Framework works, how to use and extend it. We publish the
+information here first, and some of it is eventually added to the official Osm
+Framework documentation. 

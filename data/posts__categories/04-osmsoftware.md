@@ -7,3 +7,7 @@ This very website, [osm.software](https://osm.software/), is built from scratch 
     {
         "post_title": "osm.software"
     }
+
+### meta.description
+
+This very website is built from scratch using Osm Framework. The articles below explain how it works. 

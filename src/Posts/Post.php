@@ -33,6 +33,7 @@ use function Osm\__;
  * @property CategoryModule $category_module
  * @property string[] $broken_links
  * @property string[] $external_broken_links
+ * @property ?string $meta_description
  */
 class Post extends File
 {
@@ -323,5 +324,9 @@ class Post extends File
         }
 
         return $url;
+    }
+
+    protected function get_meta_description(): string {
+        return $this->meta?->description ?? $this->list_text;
     }
 }

@@ -2,7 +2,8 @@
 global $osm_app; /* @var \Osm\Core\App $osm_app */
 /* @var \My\Posts\Posts $posts */
 ?>
-<x-base::layout title='Blog | Osm Software'>
+<x-base::layout title='Blog | Osm Software' description="The latest posts about
+    Osm Framework and its ecosystem.">
     <x-slot name="header">
         <x-posts::header />
     </x-slot>

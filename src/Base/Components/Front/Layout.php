@@ -11,7 +11,9 @@ class Layout extends Component
 {
     public string $__template = 'base::layout';
 
-    public function __construct(public string $title) {
+    public function __construct(public string $title,
+        public ?string $description = null)
+    {
     }
 
     public function asset($filename): string {
