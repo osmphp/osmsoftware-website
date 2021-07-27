@@ -2,7 +2,7 @@
 
 ![Lighthouse Score](lighthouse-score.png)
 
-Today, [osm.software](https://osm.software/) reached important milestone - 100% [Lighthouse](https://developers.google.com/web/tools/lighthouse/) score. 
+Today, [osm.software](https://osm.software/) reached an important milestone - 100% [Lighthouse](https://developers.google.com/web/tools/lighthouse/) score. 
 
 Lighthouse evaluates the factors with the strongest impact on the
 user experience, and according to Lighthouse, this website performs really well.  
@@ -13,7 +13,7 @@ More information:
 
 ### meta.list_text
 
-Today, *osm.software* reached important milestone - 100% *Lighthouse* score.
+Today, *osm.software* reached an important milestone - 100% *Lighthouse* score.
 
 ## About Lighthouse
 
