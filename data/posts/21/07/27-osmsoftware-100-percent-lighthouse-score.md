@@ -25,4 +25,4 @@ According to its webpage:
 
 1. Open [osm.software](https://osm.software/) in Chrome. 
 2. Press `F12` to open Developer Tools.
-3. Press `Generate Report button` in the `Lighthouse` tab. 
+3. Press `Generate Report` button in the `Lighthouse` tab. 
