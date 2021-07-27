@@ -44,7 +44,7 @@ global $osm_app; /* @var \Osm\Core\App $osm_app */
             What's New
         </h3>
         <p class="text-lg mt-8">
-            Find out what's new in our bi-weekly status reports.
+            Find out what we've been working on lately in our bi-weekly status reports.
         </p>
         <p class="mt-8 text-center">
             <a class="bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded"
