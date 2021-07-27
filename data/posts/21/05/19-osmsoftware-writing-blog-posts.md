@@ -144,9 +144,10 @@ Alternatively, you can provide additional meta information in Markdown format in
 
 The `meta.*` sections are not rendered on the blog post page.
 
-Currently, only one `meta.*` section is supported:
+Currently, only two `meta.*` section are supported:
 
-* `list_text` section specifies text to be rendered on blog post list pages.
+* `list_text` section specifies text to be rendered on blog post list pages. Don't use links in this section.
+* `description` section specifies text to be rendered in blog post page's meta description that is shown on search engine result pages. Don't use Markdown formatting in this section. If omitted, `list_text` is used.
 
 ### Custom Metadata
 

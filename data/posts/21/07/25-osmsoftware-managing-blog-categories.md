@@ -30,6 +30,10 @@ Supported category fields in `meta` section:
 
 * `post_title` - Text to be added to every blog post where this category is assigned as main category. If omitted, category title is used. 
 
+Supported `meta.*` sections:
+
+* `description` section specifies text to be rendered in category page's meta description that is shown on search engine result pages. Don't use Markdown formatting in this section. If omitted, the description text is used. If the description text contains Markdown formatting, do define `meta.description` section without any Markdown formatting in it. 
+
 ## Assigning Categories To Blog Posts
 
 ### Main Category
