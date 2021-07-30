@@ -1,16 +1,8 @@
 # Search And Layered Navigation
 
-***It's a draft**. This post is currently being written.*
-
 Readers of [osm.software](https://osm.software/blog/) blog can search the blog for a specific phrase, and narrow down listed articles using multi-select layered navigation. Let's see how it works under the hood.
 
 {{ toc }}
-
-## meta
-
-    {
-        "categories": ["drafts"]
-    }
 
 ### meta.list_text
 
@@ -287,9 +279,9 @@ Under the hood, it uses [`nikic/fast-route`](https://github.com/nikic/FastRoute)
         $r->get('/{image_path:.*\.(?:jpg|gif|png)}', RenderImage::class);
     }
 
-If the incoming route matches the regular expression, then specified route class is called to handle the request. For example, `/framework` URL matches `/{category:\w[^/]*}/` regular expression, and `RenderCategoryPosts` is called to render the category page. In addition, fetched `category` regular expression group is passed to the `RenderCategoryPosts` route constructor.
+If the incoming route matches the regular expression, then specified route class is called to handle the request. For example, `/framework` URL matches `/{category:\w[^/]*}/` regular expression, and [`RenderCategoryPosts`](https://github.com/osmphp/osmsoftware-website/blob/HEAD/src/Posts/Routes/Front/RenderCategoryPosts.php) is called to render the category page. In addition, fetched `category` regular expression group is passed to the [`RenderCategoryPosts`](https://github.com/osmphp/osmsoftware-website/blob/HEAD/src/Posts/Routes/Front/RenderCategoryPosts.php) route constructor.
 
-The route does two things. It creates a `PageType` object, so that the filtering engine can apply a filter from the URL path, and renders a dedicated template:
+The route does two things. It creates a [`PageType`](https://github.com/osmphp/osmsoftware-website/blob/HEAD/src/Posts/PageType.php) object, so that the filtering engine can apply a filter from the URL path, and renders a dedicated template:
 
     public function run(): Response {
         $pageType = PageType\Category::new([
@@ -307,25 +299,173 @@ The route does two things. It creates a `PageType` object, so that the filtering
 
 ### Page Types
 
-    //TODO
+Every route with filters passed its own [`PageType`](https://github.com/osmphp/osmsoftware-website/blob/HEAD/src/Posts/PageType.php) to the [`Posts`](https://github.com/osmphp/osmsoftware-website/blob/HEAD/src/Posts/Posts.php) collection object:
 
-### Dedicated Page Templates
+![Page Types](page-types.png) 
+
+The page type object tells the collection object to ignore certain URL query parameter, and use specified value from the URL path. For example, given the category page type, the collection ignores `category` URL query parameter, and uses page type's `category` property.
+
+It happens in the `get_applied_filters()` of every [`Filter`](https://github.com/osmphp/osmsoftware-website/blob/HEAD/src/Posts/Filter.php) object. For example, category filter has a special `if` clause just for page type:
+
+    protected function get_applied_filters(): array {
+        if ($this->collection->page_type->category) {
+            return [AppliedFilter\Category::new([
+                'category' => $this->collection->page_type->category,
+                'filter' => $this,
+            ])];
+        }
+
+        ...
+    } 
 
 ## Generating Filtered URLs
 
-### Using `URL` Class
+### Using `Url` Class
+
+Most filtered URLs are generated using [`Url`](https://github.com/osmphp/osmsoftware-website/blob/HEAD/src/Posts/Url.php) class. This class knows how to render applied value for every filter, how to combine multiple items of them same filter, when to put the applied filter into the URL path instead of the URL query, and other little, but important details. 
+
+To use the [`Url`](https://github.com/osmphp/osmsoftware-website/blob/HEAD/src/Posts/Url.php) class, instantiate it with some initial set of applied filters, use its method to add/remove applied filters, and, finally, convert it to string. 
+
+For example, consider category filter template, [`posts::components.filter.category`](https://github.com/osmphp/osmsoftware-website/blob/HEAD/themes/_front__tailwind/views/posts/components/filter/category.blade.php). It renders every filter item URL as follows:
+
+    <a href="{{ $item->applied ? $item->remove_url : $item->add_url }}" ...>
+
+`add_url` and `remote_url` properties of the [`FilterItem\Category`](https://github.com/osmphp/osmsoftware-website/blob/HEAD/src/Posts/FilterItem/Category.php) class take the current URL, and add/remove the items from it:
+
+    protected function get_add_url(): string|Url {
+        return $this->filter->collection->url()
+            ->addCategoryFilter($this->category);
+    }
+
+    protected function get_remove_url(): string|Url {
+        return $this->filter->collection->url()
+            ->removeCategoryFilter($this->applied_filter);
+    }
+
+[`Posts::url()`](https://github.com/osmphp/osmsoftware-website/blob/HEAD/src/Posts/Posts.php) method, used in both cases, create a URL with currently applied filters:  
+
+    public function url(): Url {
+        return Url::new([
+            'collection' => $this,
+            'url_state' => $this->url_state,
+        ]);
+    }
 
 ### Concatenating URL String
 
+In simple cases, `Url` class is an overkill, and concatenating URL string is simpler solution. Year, month and category links in the post header use URL string concatenation. For example, a post header in the lit item template, [`posts::components.list-item`](https://github.com/osmphp/osmsoftware-website/blob/HEAD/themes/_front__tailwind/views/posts/components/list-item.blade.php), renders year URL as follows:
+
+    <a href="{{ "{$osm_app->http->base_url}/blog/{$post->created_at->year}/" }}" ...>
+
 ### Submitting Search Form
+
+URL's with a search phrase are created by submitting the [search form](#rendering-search-form). The search form implicitly uses `GET` method, and it means that all of its fields are added to its action URL as parameters. The form contains a single `q` field, so only the `q` URL query parameter is added:
+
+    <form action="{{ "{$osm_app->http->base_url}/blog/search" }}" ...>
+        ...
+        <input type="text" name="q" ...>
 
 ## Retrieving Blog Post Data
 
+Internally, all the Blade templates related to filtering and search, and
+accompanying PHP classes
+use [`Posts`](https://github.com/osmphp/osmsoftware-website/blob/HEAD/src/Posts/Posts.php)
+collection class for extracting and preparing data. 
+
+This class uses the Markdown files in the `data/posts/` directory, as well as the `posts` database table, and `posts` the search index, both generated with the `osm index` command.
+
+Route handlers create the [`Posts`](https://github.com/osmphp/osmsoftware-website/blob/HEAD/src/Posts/Posts.php)
+   collection objects, and pass the `page_type` and `http_query`. If omitted, the collection object takes `http_query` from the incoming HTTP request. The `page_type` and `http_query` are further parsed into `applied_filters` by each [`Filter`]((https://github.com/osmphp/osmsoftware-website/blob/HEAD/src/Posts/Filter.php)) object defined in the collection.
+
 ### Searching And Applying Filters
 
+The `Posts` collection prepares the main search query, `query`:
+
+    protected function get_query(): Query {
+        $query = $this->search->index('posts');
+
+        foreach ($this->filters as $filter) {
+            if (!empty($filter->applied_filters)) {
+                $filter->apply($query);
+            }
+
+            if (!$filter->require_facet_query && !$this->limit) {
+                $filter->requestFacets($query);
+            }
+        }
+
+        ...
+        
+        return $query;
+    }
+
+Every `Filter` object applies itself to the query, and requests facets from the query in its own manner. For example:
+
+[`Filter\Category`](https://github.com/osmphp/osmsoftware-website/blob/HEAD/src/Posts/Filter/Category.php):
+
+    public function apply(Query $query): void {
+        $urlKeys = [];
+        foreach ($this->applied_filters as $appliedFilter) {
+            $urlKeys[] = $appliedFilter->category->url_key;
+        }
+
+        $query->where('category', 'in', $urlKeys);
+    }
+
+    public function requestFacets(Query $query): void {
+        $query->facetBy('category');
+    }
+   
+[`Filter\Search`](https://github.com/osmphp/osmsoftware-website/blob/HEAD/src/Posts/Filter/Search.php):
+
+    public function apply(Query $query): void {
+        if (!empty($this->applied_filters)) {
+            $query->search($this->applied_filters[0]->phrase);
+        }
+    }
+
+    public function requestFacets(Query $query): void {
+        // search filter has no facets to count
+    }
+ 
 ### Retrieving Blog Posts
 
-### Retrieving Not Applied Filter Counts
+The `Posts` collection object retrieved post IDs along with requested facets from the search index, related records from the database table, and parsed Markdown files from the filesystem:
+
+    protected function get_result() {
+        return $this->query->get();
+    }
+
+    protected function get_db_records(): Collection {
+        return $this->db->table('posts')
+            ->whereIn('id', $this->result->ids)
+            ->get(['id', 'path']);
+    }
+
+    protected function get_files(): Collection {
+        return $this->db_records
+            ->keyBy('id')
+            ->map(fn($post) => Post::new(['path' => $post->path]))
+            ->filter(fn(Post $file) => $file->exists);
+    }
 
 ### Retrieving Applied Filter Counts        
+
+Faceted data for every applied filter is retrieved using an additional search query that applies the same search and filters except the one being rendered:
+
+    protected function get_facet_queries(): array {
+        $queries = [];
+
+        foreach ($this->filters as $filter) {
+            if ($filter->require_facet_query && !$this->limit) {
+                $query = $this->createFacetQuery($filter);
+
+                $filter->requestFacets($query);
+
+                $queries[$filter->name] = $query;
+            }
+        }
+
+        return $queries;
+    }
 
