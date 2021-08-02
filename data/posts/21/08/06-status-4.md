@@ -1,6 +1,6 @@
 # 2021 Jul 26 - Aug 6
 
-The first [osm.software](https://osm.software/) blog articles have been written, edited and revised. Content changes are deployed in semi-automated way. The website got some SEO improvements, and now scores 100% in Google Lighthouse. 
+The first [osm.software](https://osm.software/) blog articles have been written, edited and revised. Content changes are deployed in semi-automated way. The website got some SEO improvements, and now it scores 100% in Google Lighthouse. 
 
 More details:
 
@@ -16,7 +16,8 @@ More details:
 
 ### meta.list_text
 
-The first *osm.software* blog articles have been written, edited and revised. Content changes are deployed in semi-automated way. The website got some SEO improvements, and now scores 100% in Google Lighthouse.
+The first *osm.software* blog articles have been written, edited and revised. Content changes are deployed in semi-automated way. The website got some SEO improvements, and now
+it scores 100% in Google Lighthouse.
 
 ## *osm.software* Website v0.2.1
 
