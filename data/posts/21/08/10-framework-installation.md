@@ -32,17 +32,20 @@ Run the following commands:
     # make it the current directory
     cd project1
 
+    # compile the tools application
+    osmc Osm_Tools
+
     # collect JS dependencies from all installed modules
     osmt config:npm
         
     # install JS dependencies
     npm install
     
-    # compile the main application
-    osmc Osm_App
     
     # build JS, CSS and other assets
     gulp
+
+**Note**. Some commands may show no output. Don't worry - it means they worked as expected :)
 
 After creating a project, check that it works in the command line:
 
@@ -61,13 +64,15 @@ While the Web server is running, open the application home page in a browser: <h
 
 ## Using `gulp watch`
 
-Before editing project files, start the following command in the project directory:
+That's all - you can begin tinkering project files!
+
+However, before you do, run the following command in the project directory:
 
     gulp watch
     
-Keep this command running as long as you make changes. It detects file changes and automatically: 
+Keep this command running as long as you change the project files. It detects file changes, and automatically: 
 
 * recompiles the application,
 * rebuilds JS, CSS and other assets.     
 
-In some cases, however, you may need to restart this command.
+In some cases, you may need to restart this command.
