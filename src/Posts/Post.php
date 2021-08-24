@@ -326,7 +326,7 @@ class Post extends File
         return $url;
     }
 
-    protected function get_meta_description(): string {
+    protected function get_meta_description(): ?string {
         return $this->meta?->description ?? $this->list_text;
     }
 }
