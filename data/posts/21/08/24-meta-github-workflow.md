@@ -1,11 +1,11 @@
 # GitHub Workflow
 
-This article described how we use GitHub issues and projects, both for new
+This article describes how we use GitHub issues and projects, both for new
 development and for support.
 
 ## meta.list_text
 
-This article described how we use GitHub issues and projects, both for new development and for support.
+This article describes how we use GitHub issues and projects, both for new development and for support.
 
 ## Workflow
 
