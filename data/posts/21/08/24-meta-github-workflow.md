@@ -11,7 +11,7 @@ This article describes how we use GitHub issues and projects, both for new devel
 
 1. Open an issue in the most relevant repository. See all the issues you created in [Account -> Issues -> Created](https://github.com/issues). See all the issues by [applying a filter in Account -> Issues](https://github.com/issues?q=is%3Aopen+is%3Aissue+archived%3Afalse+org%3Aosmphp).
 
-2. Fully understand the issue, reproduce it, resolve it by non-programming means. Decide whether you will eventually resolve it: if so, assign a project, if not, close the issue. In any case, assign a label. See all the issues without a project assigned by [applying a filter in Account -> Issues](https://github.com/issues?q=is%3Aopen+is%3Aissue+archived%3Afalse+org%3Aosmphp+no%3Aproject).
+2. Communicate in order to fully understand the issue and reproduce it. Try resolving it right now. If you decide to resolve it later, assign a project, otherwise, close the issue. In any case, assign a label. See all the issues without a project assigned by [applying a filter in Account -> Issues](https://github.com/issues?q=is%3Aopen+is%3Aissue+archived%3Afalse+org%3Aosmphp+no%3Aproject).
 
 3. Review "To do" issues in projects. Prioritize them, move them to additional columns, or even stash them in additional projects.
 
