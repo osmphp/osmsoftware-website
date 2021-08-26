@@ -2,7 +2,7 @@
 global $osm_app; /* @var \Osm\Core\App $osm_app */
 /* @var \My\Posts\Posts $posts */
 ?>
-<x-base::layout title='Blog | Osm Software' description="The latest posts about
+<x-std-pages::layout title='Blog | Osm Software' description="The latest posts about
     Osm Framework and its ecosystem.">
     <x-slot name="header">
         <x-posts::header />
@@ -30,4 +30,4 @@ global $osm_app; /* @var \Osm\Core\App $osm_app */
             @endif
         @endforeach
     </aside>
-</x-base::layout>
+</x-std-pages::layout>

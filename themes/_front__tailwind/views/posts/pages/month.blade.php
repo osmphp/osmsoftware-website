@@ -7,7 +7,7 @@ $title = \Osm\__(":year :month Posts", [
         $posts->page_type->month, 1)->format('F'),
 ]);
 ?>
-<x-base::layout :title="$title . ' | Blog | Osm Software'">
+<x-std-pages::layout :title="$title . ' | Blog | Osm Software'">
     <x-slot name="header">
         <x-posts::header />
     </x-slot>
@@ -34,4 +34,4 @@ $title = \Osm\__(":year :month Posts", [
             @endif
         @endforeach
     </aside>
-</x-base::layout>
+</x-std-pages::layout>

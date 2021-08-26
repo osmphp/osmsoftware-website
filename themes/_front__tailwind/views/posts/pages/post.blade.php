@@ -2,7 +2,7 @@
 global $osm_app; /* @var \Osm\Core\App $osm_app */
 /* @var \My\Posts\Post $post */
 ?>
-<x-base::layout :title='$post->title . ($post->main_category_file ? " | " . $post->main_category_file->post_title : "") . " | Blog | Osm Software"'
+<x-std-pages::layout :title='$post->title . ($post->main_category_file ? " | " . $post->main_category_file->post_title : "") . " | Blog | Osm Software"'
     :description="$post->meta_description"
 >
     <x-slot name="header">
@@ -46,4 +46,4 @@ global $osm_app; /* @var \Osm\Core\App $osm_app */
     </aside>--}}
     <aside class="hidden xl:block xl:col-start-10 xl:col-span-3 row-start-1">
     </aside>
-</x-base::layout>
+</x-std-pages::layout>

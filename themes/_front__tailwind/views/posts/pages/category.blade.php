@@ -4,7 +4,7 @@ global $osm_app; /* @var \Osm\Core\App $osm_app */
 
 $category = $posts->page_type->category;
 ?>
-<x-base::layout :title="$posts->page_type->category->title . ' | Blog | Osm Software'"
+<x-std-pages::layout :title="$posts->page_type->category->title . ' | Blog | Osm Software'"
     :description="$category->meta_description"
 >
     <x-slot name="header">
@@ -36,4 +36,4 @@ $category = $posts->page_type->category;
             @endif
         @endforeach
     </aside>
-</x-base::layout>
+</x-std-pages::layout>

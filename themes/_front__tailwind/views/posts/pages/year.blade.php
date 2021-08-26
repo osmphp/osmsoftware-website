@@ -3,7 +3,7 @@ global $osm_app; /* @var \Osm\Core\App $osm_app */
 /* @var \My\Posts\Posts $posts */
 $title = \Osm\__(":year Posts", ['year' => $posts->page_type->year]);
 ?>
-<x-base::layout :title="$title . ' | Blog | Osm Software'">
+<x-std-pages::layout :title="$title . ' | Blog | Osm Software'">
     <x-slot name="header">
         <x-posts::header />
     </x-slot>
@@ -30,4 +30,4 @@ $title = \Osm\__(":year Posts", ['year' => $posts->page_type->year]);
             @endif
         @endforeach
     </aside>
-</x-base::layout>
+</x-std-pages::layout>

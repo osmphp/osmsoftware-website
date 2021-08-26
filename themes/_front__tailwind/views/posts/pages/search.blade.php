@@ -5,7 +5,7 @@ $title = \Osm\__("Search results for ':phrase'", [
     'phrase' => $posts->filters['q']->unparsed_value,
 ]);
 ?>
-<x-base::layout :title="$title . ' | Blog | Osm Software'">
+<x-std-pages::layout :title="$title . ' | Blog | Osm Software'">
     <x-slot name="header">
         <x-posts::header />
     </x-slot>
@@ -32,4 +32,4 @@ $title = \Osm\__("Search results for ':phrase'", [
             @endif
         @endforeach
     </aside>
-</x-base::layout>
+</x-std-pages::layout>

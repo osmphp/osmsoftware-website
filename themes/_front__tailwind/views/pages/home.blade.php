@@ -1,7 +1,7 @@
 <?php
 global $osm_app; /* @var \Osm\Core\App $osm_app */
 ?>
-<x-base::layout title='Osm Software' description="A website about Osm Framework -
+<x-std-pages::layout title='Osm Software' description="A website about Osm Framework -
     an open-source PHP 8 framework for creating modern Web applications that's
     insanely fast, unprecedentedly extensible, and fun to work with -
     and its ecosystem."
@@ -71,4 +71,4 @@ global $osm_app; /* @var \Osm\Core\App $osm_app */
             >Source</a>
         </p>
     </section>
-</x-base::layout>
+</x-std-pages::layout>
