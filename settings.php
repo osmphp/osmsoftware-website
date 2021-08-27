@@ -34,7 +34,7 @@ return (object)[
 
     /* @see \Osm\Framework\Logs\Hints\LogSettings */
     'logs' => (object)[
-        'elastic' => true,
+        'elastic' => (bool)($_ENV['LOG_ELASTIC'] ?? false),
         //'db' => true,
     ],
 ];
