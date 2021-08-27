@@ -142,7 +142,6 @@ The project template has got a major rewrite. By default, a new project:
 * uses the Gulp script that comes with Osm Framework
 * stores `composer.lock` in Git which allows to install the exact same
   dependencies in production with the `composer install` command
-* is licensed under AGPL
 
 ## Osm Core v0.8.12
 
