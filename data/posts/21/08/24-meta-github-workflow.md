@@ -21,6 +21,8 @@ This article describes how we use GitHub issues and projects, both for new devel
 
 ## GitHub Projects
 
-* [Osm Framework](https://github.com/orgs/osmphp/projects/1) - currently, all accepted issues go here.
+* [Osm Framework](https://github.com/orgs/osmphp/projects/1) - Osm Framework development and support. Also, teh default destination for all accepted issues.
+* [osm.software Blog](https://github.com/orgs/osmphp/projects/2) - blog post ideas.
+* [Admin /API Sample App](https://github.com/orgs/osmphp/projects/3) - an experimental project that allows quick creating of the Admin UI and the HTTP API.
  
  

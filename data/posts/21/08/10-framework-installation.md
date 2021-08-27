@@ -41,7 +41,6 @@ Run the following commands:
     # install JS dependencies
     npm install
     
-    
     # build JS, CSS and other assets
     gulp
 
