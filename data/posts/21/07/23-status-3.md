@@ -60,3 +60,4 @@ New commands:
     
 When the site is on maintenance, the site returns 503 page.
     
+Test
