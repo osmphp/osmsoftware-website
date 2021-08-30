@@ -1,9 +1,9 @@
 name: deploy
 on:
     push:
-        branches: [ HEAD ]
+        branches: [ "v0.2" ]
     pull_request:
-        branches: [ HEAD ]
+        branches: [ "v0.2" ]
 
 jobs:
     ubuntu:
