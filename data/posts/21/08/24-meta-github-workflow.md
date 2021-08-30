@@ -13,7 +13,7 @@ This article describes how we use GitHub issues and projects, both for new devel
 
 2. Communicate in order to fully understand the issue and reproduce it. Try resolving it right now. If you decide to resolve it later, assign a project, otherwise, close the issue. In any case, assign a label. See all the issues without a project assigned by [applying a filter in Account -> Issues](https://github.com/issues?q=is%3Aopen+is%3Aissue+archived%3Afalse+org%3Aosmphp+no%3Aproject).
 
-3. Review "To do" issues in projects. Prioritize them, move them to additional columns, or even stash them in additional projects.
+3. Review "To do" issues in projects. Prioritize them, move them to additional columns, or even stash them in additional projects. Fix bugs before implementing new features.
 
 4. Work on issues. Move them to "In progress" column, assign them to yourself, and assign a milestone. Use a label to communicate that the issue resolution is "waiting" for an external action. See all assigned issues in [Account -> Issues -> Assigned](https://github.com/issues/assigned).
 

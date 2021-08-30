@@ -11,14 +11,6 @@ More information:
 
 {{ toc }}
 
-## meta
-
-    {
-        "candidate_posts": [
-            "osmsoftware-automating-lighthouse-audits"
-        ]
-    }
-
 ### meta.list_text
 
 Today, *osm.software* reached an important milestone - 100% *Lighthouse* score.

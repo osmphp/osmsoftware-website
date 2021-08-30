@@ -6,14 +6,6 @@ Contents:
 
 {{ toc }}
 
-## meta
-
-    {
-        "candidate_posts": [
-            "osmsoftware-website-installation"
-        ]
-    }
-
 ### meta.list_text
 
 This article explains how to write and publish blog posts.

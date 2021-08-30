@@ -6,14 +6,6 @@ More details:
 
 {{ toc }}
 
-## meta
-
-    {
-        "candidate_posts": [
-            "osmsoftware-deploying-changes"
-        ]
-    }
-
 ### meta.list_text
 
 The first *osm.software* blog articles have been written, edited and revised. Content changes are deployed in semi-automated way. The website got some SEO improvements, and now
