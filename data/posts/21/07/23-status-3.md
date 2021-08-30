@@ -59,3 +59,5 @@ New commands:
     osm http:up
     
 When the site is on maintenance, the site returns 503 page.
+
+Test
