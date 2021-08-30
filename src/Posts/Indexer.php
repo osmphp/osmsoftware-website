@@ -23,6 +23,8 @@ use function Osm\__;
 class Indexer extends Object_
 {
     public function run(bool $rebuild = false): void {
+        $this->cache->deleteItem('blog_categories');
+
         if ($rebuild) {
             $this->clearSearchIndex();
             $this->clearDbIndex();
@@ -30,8 +32,6 @@ class Indexer extends Object_
 
         $this->indexPath($this->path);
         $this->markDeletedFiles();
-
-        $this->cache->deleteItem('blog_categories');
     }
 
     protected function indexPath(?string $path): void {
