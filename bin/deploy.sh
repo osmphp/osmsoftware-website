@@ -9,7 +9,7 @@ OSMT="php vendor/osmphp/framework/bin/tools.php"
 # Current Git branch
 BRANCH=$(git rev-parse --abbrev-ref HEAD)
 
-#git fetch
+git fetch
 
 # Added, modified and deleted files overall and outside the `/data` directory
 ALL_CHANGES=$(git diff --name-only $BRANCH..origin/$BRANCH)
