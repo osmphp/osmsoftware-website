@@ -30,6 +30,9 @@ global $osm_app; /* @var \Osm\Core\App $osm_app */
                 href="{{ "{$osm_app->http->base_url}/blog/21/08/framework-installation.html" }}" title="Download"
             >Download</a>
             <a class="bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded"
+                href="https://github.com/osmphp/framework#documentation" title="Docs"
+            >Docs</a>
+            <a class="bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded"
                 href="{{ "{$osm_app->http->base_url}/blog/framework/" }}" title="Blog"
             >Blog</a>
             <a class="bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded"
@@ -70,6 +73,9 @@ global $osm_app; /* @var \Osm\Core\App $osm_app */
             <a class="bg-blue-800 hover:bg-blue-900 text-white py-2 px-4 rounded"
                 href="{{ "{$osm_app->http->base_url}/blog/21/08/osmsoftware-installation.html" }}" title="Download"
             >Download</a>
+            <a class="bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded"
+                href="https://github.com/osmphp/osmsoftware-website#documentation" title="Docs"
+            >Docs</a>
             <a class="bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded"
                 href="{{ "{$osm_app->http->base_url}/blog/osmsoftware/" }}" title="Blog"
             >Blog</a>
