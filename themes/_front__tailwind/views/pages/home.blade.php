@@ -45,9 +45,9 @@ global $osm_app; /* @var \Osm\Core\App $osm_app */
             @endif
             {{ $news->title }}
         </h2>
-        <p class="text-lg mt-8 prose max-w-none">
+        <div class="mt-8 prose-lg max-w-none">
             {!! $news->list_html !!}
-        </p>
+        </div>
         <p class="mt-8 text-center">
             <a class="bg-blue-800 hover:bg-blue-900 text-white py-2 px-4 rounded"
                 href="{{ $news->url }}" title="Details"
