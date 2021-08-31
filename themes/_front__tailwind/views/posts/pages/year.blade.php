@@ -9,7 +9,7 @@ $title = \Osm\__(":year Posts", ['year' => $posts->page_type->year]);
     </x-slot>
     <section class="col-start-1 col-span-12 md:col-start-4 md:col-span-9">
         <h1 class="text-2xl sm:text-4xl font-bold my-8">
-            Year {{ $title }}
+            {{ $title }}
         </h1>
 
         @forelse($posts->items as $post)
