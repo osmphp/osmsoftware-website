@@ -29,6 +29,7 @@ use Osm\Framework\Search\Search;
  * @property int $count
  * @property Post[] $files
  * @property Post[] $items
+ * @property ?Post $first
  * @property Filter[] $filters
  * @property AppliedFilter[] $applied_filters
  * @property string $url_state
@@ -70,6 +71,14 @@ class Posts extends Object_
         }
 
         return $items;
+    }
+
+    protected function get_first(): ?Post {
+        foreach ($this->result->ids as $id) {
+            return $this->files[$id] ?? null;
+        }
+
+        return null;
     }
 
     protected function get_filters(): array {

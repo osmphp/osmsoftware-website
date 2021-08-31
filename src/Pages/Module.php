@@ -15,5 +15,6 @@ class Module extends BaseModule
 
     public static array $requires = [
         \My\Base\Module::class,
+        \My\Posts\Module::class,
     ];
 }
