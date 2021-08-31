@@ -25,7 +25,7 @@ global $osm_app; /* @var \Osm\Core\App $osm_app */
             Web applications. It's built on top of tried and tested Symfony and
             Laravel components.
         </p>
-        <p class="mt-8 text-center">
+        <p class="mt-8 text-center flex flex-wrap justify-center gap-2">
             <a class="bg-blue-800 hover:bg-blue-900 text-white py-2 px-4 rounded"
                 href="{{ "{$osm_app->http->base_url}/blog/21/08/framework-installation.html" }}" title="Download"
             >Download</a>
@@ -51,7 +51,7 @@ global $osm_app; /* @var \Osm\Core\App $osm_app */
         <div class="mt-8 prose-lg max-w-none">
             {!! $news->list_html !!}
         </div>
-        <p class="mt-8 text-center">
+        <p class="mt-8 text-center flex flex-wrap justify-center gap-2">
             <a class="bg-blue-800 hover:bg-blue-900 text-white py-2 px-4 rounded"
                 href="{{ $news->url }}" title="Details"
             >Details</a>
@@ -69,7 +69,7 @@ global $osm_app; /* @var \Osm\Core\App $osm_app */
             a practical example of how various Osm Framework features can be
             used.
         </p>
-        <p class="mt-8 text-center">
+        <p class="mt-8 text-center flex flex-wrap justify-center gap-2">
             <a class="bg-blue-800 hover:bg-blue-900 text-white py-2 px-4 rounded"
                 href="{{ "{$osm_app->http->base_url}/blog/21/08/osmsoftware-installation.html" }}" title="Download"
             >Download</a>
