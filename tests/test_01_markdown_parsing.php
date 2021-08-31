@@ -38,7 +38,7 @@ class test_01_markdown_parsing extends TestCase
         // GIVEN the `welcome.md` file
 
         // WHEN you parse it
-        $parser = Post::new(['path' => '21/05/19-requirements.md']);
+        $parser = Post::new(['path' => '21/05/19-osmsoftware-requirements.md']);
 
         // THEN its meta data is in parser's property
         $this->assertTrue($parser->exists);

@@ -87,7 +87,7 @@ class test_03_filter_parsing extends TestCase
         // GIVEN a collection with sample http query
         $posts = Posts::new([
             'page_type' => PageType\Category::new([
-                'category_url_key' => 'osmsoftware-website',
+                'category_url_key' => 'osmsoftware',
             ]),
         ]);
 
@@ -96,7 +96,7 @@ class test_03_filter_parsing extends TestCase
         $this->assertCount(1,
             $posts->filters['category']->applied_filters);
 
-        $this->assertEquals('osmsoftware-website',
+        $this->assertEquals('osmsoftware',
             $posts->filters['category']->applied_filters[0]->category->url_key);
     }
 

@@ -57,7 +57,7 @@ class test_05_collection extends TestCase
         // WHEN you retrieve the posts for a given month
         $posts = Posts::new([
             'page_type' => PageType\Category::new([
-                'category_url_key' => 'osmsoftware-website',
+                'category_url_key' => 'osmsoftware',
             ]),
             'http_query' => [],
             'limit' => 5,
@@ -65,11 +65,10 @@ class test_05_collection extends TestCase
 
         // THEN their data is loaded into memory from the search engine,
         // the database, and files
-        $this->assertEquals(1, $posts->count);
-        $this->assertCount(1, $posts->items);
-        $this->assertEquals([
-            'Requirements',
-        ], (new Collection($posts->items))->pluck('title')->toArray());
+        $this->assertEquals(5, $posts->count);
+        $this->assertCount(5, $posts->items);
+        $this->assertEquals('Database indexing and migrations',
+            (new Collection($posts->items))->pluck('title')->toArray()[0]);
     }
 
     public function test_search() {
