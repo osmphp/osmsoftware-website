@@ -1,36 +1,11 @@
-This README is a template. Fill `{placeholders}` with your project details.
+Source code for [osm.software](https://osm.software/) website. The project uses Osm Framework, and it's a practical example of how various Osm Framework features can be used.
 
-* [About This Project](#about-this-project) 
-* [Prerequisites](#prerequisites) 
-* [Installation](#installation) 
-* [Using The Project](#using-the-project)
-* [License](#license)
+# Documentation
 
-## About This Project
-
-`{describe_your_project}`
-
-This project is created from a project template defined in `osmphp/template` 
-Composer package. It's based on [`osmphp/core`](https://osmphp.com/docs/core/v0.5.html) library.
-
-## Prerequisites
-
-This project requires:
-
-* PHP 8 with `mbstring` extension
-* Composer
-
-Install them if necessary.
-
-## Installation
-
-`{describe_how_to_install_step_by_step}`
-
-## Using The Project
-
-`{describe_main_use_case_and_link_to_documentation_for_more_details}`
-
-## License
-
-This project is open-sourced software licensed under the [GPL v3](LICENSE) license.
-
+* [Installation](https://osm.software/blog/21/08/osmsoftware-installation.html)
+* Usage
+    * [Writing Blog Posts](https://osm.software/blog/21/05/osmsoftware-writing-blog-posts.html)
+    * [Managing Blog Categories](https://osm.software/blog/21/07/osmsoftware-managing-blog-categories.html)
+* Under The Hood
+    * [Search And Layered Navigation](https://osm.software/blog/21/06/osmsoftware-search-and-layered-navigation.html)
+* [License](https://github.com/osmphp/osmsoftware-website/blob/HEAD/LICENSE)
