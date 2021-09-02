@@ -1,6 +1,6 @@
 # Contributing Changes
 
-This article provides practical example of contributing changes to Osm Framework and other `osmphp/*` GitHub repositories.
+This article provides a practical example of contributing changes to Osm Framework and other `osmphp/*` GitHub repositories.
 
 Contents:
 
@@ -8,7 +8,7 @@ Contents:
 
 ## meta.list_text
 
-This article provides practical example of contributing changes to Osm Framework
+This article provides a practical example of contributing changes to Osm Framework
 and other `osmphp/*` GitHub repositories.
 
 ## Sample Contribution
