@@ -33,7 +33,7 @@ In case the upcoming release branch doesn't exist yet, ask maintainer to create 
 
         git clone git@github.com:osmianski/core.git
  
-3. Implement changes. Write unit tests in order to make sure that future changes made by other contributors won't break yours.  
+3. Implement changes on a new branch with a meaningful name. Write unit tests in order to make sure that future changes made by other contributors won't break yours.  
 
 4. Commit and push the changes to your fork:
 
@@ -44,6 +44,8 @@ In case the upcoming release branch doesn't exist yet, ask maintainer to create 
 5. Create new pull request in the original repository, click `compare across
    forks`. In `base repository`, pick [current or upcoming branch](#rules) of the original repository. In `head repository`, pick the branch you made changes on. Click `Create pull request`, enter description, and click `Create pull request` again. See also [Creating a pull request from a fork](https://docs.github.com/en/github/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request-from-a-fork).
    
+**Note**. The workflow is the same if you have write access to the original repository, just don't create a fork, and work in the original repository instead.
+
 ## Using The Fork In Your Project
 
 While the maintainer reviews and merges your pull request, you can use your fork instead of original repository in your project. Instruct Composer to use the fork, and your branch in the project's `composer.json`, and run `composer update`:
