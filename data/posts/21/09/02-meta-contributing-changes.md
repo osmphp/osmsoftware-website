@@ -46,7 +46,7 @@ In case the upcoming release branch doesn't exist yet, ask maintainer to create 
    
 ## Using Fork In Your Project
 
-While maintainer reviews and merges your pull request, you can use your fork instead of original repository in your project. Instruct Composer to use the fork, and your branch in the project's `composer.json`, and run `composer update`:
+While the maintainer reviews and merges your pull request, you can use your fork instead of original repository in your project. Instruct Composer to use the fork, and your branch in the project's `composer.json`, and run `composer update`:
 
     {
         ...
