@@ -10,9 +10,6 @@ Details:
 
 Osm Framework uses *Monolog* library for logging. Use standard loggers defined in the `$osm_app->logs` object, or add your own. Control logging in the `settings.{app_name}.php` and `.env.{app_name}` files.  
 
-## meta.what_i_really_want_to_say
-
-
 ## Usage
  
 Logs are defined as properties of the `$osm_app->logs` object. For example, `$osm_app->logs->db` records all queries issued to the database, while `$osm_app->logs->default` is for generic purposes, in case there is no more specific log.   
