@@ -1,6 +1,6 @@
 # Logging
 
-Osm Framework uses [Monolog](https://github.com/Seldaek/monolog/blob/main/doc/01-usage.md) library for logging. Use standard logs defined in the `$osm_app->logs` object, or add your own. Control logging in `settings.{app_name}.php` and `.env.{app_name}` files.  
+Osm Framework uses [Monolog](https://github.com/Seldaek/monolog/blob/main/doc/01-usage.md) library for logging. Use standard logs defined in the `$osm_app->logs` object, or add your own. Control logging in the `settings.{app_name}.php` and `.env.{app_name}` files.  
 
 Details:
 
@@ -8,7 +8,7 @@ Details:
 
 ## meta.list_text
 
-Osm Framework uses *Monolog* library for logging. Use standard loggers defined in the `$osm_app->logs` object, or add your own. Control logging in `settings.{app_name}.php` and `.env.{app_name}` files.  
+Osm Framework uses *Monolog* library for logging. Use standard loggers defined in the `$osm_app->logs` object, or add your own. Control logging in the `settings.{app_name}.php` and `.env.{app_name}` files.  
 
 ## meta.what_i_really_want_to_say
 
