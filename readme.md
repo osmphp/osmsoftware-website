@@ -8,4 +8,5 @@ Source code for [osm.software](https://osm.software/) website. The project uses 
     * [Managing Blog Categories](https://osm.software/blog/21/07/osmsoftware-managing-blog-categories.html)
 * Under The Hood
     * [Search And Layered Navigation](https://osm.software/blog/21/06/osmsoftware-search-and-layered-navigation.html)
+    * [Deploying Updates](https://osm.software/blog/21/09/osmsoftware-deploying-updates.html)
 * [License](https://github.com/osmphp/osmsoftware-website/blob/HEAD/LICENSE)
