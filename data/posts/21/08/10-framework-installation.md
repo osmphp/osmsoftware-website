@@ -32,10 +32,6 @@ Run the following commands:
     # make it the current directory
     cd project1
 
-    # make `temp` directory writable
-    find temp -type d -exec chmod 777 {} \;
-    find temp -type f -exec chmod 666 {} \;
-
     # compile the tools application
     osmc Osm_Tools
 
@@ -47,6 +43,10 @@ Run the following commands:
     
     # build JS, CSS and other assets
     gulp
+
+    # make `temp` directory writable
+    find temp -type d -exec chmod 777 {} \;
+    find temp -type f -exec chmod 666 {} \;
 
 **Note**. Some commands may show no output. Don't worry - it means they worked as expected :)
 

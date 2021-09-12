@@ -50,10 +50,6 @@ Run the following commands in the project directory:
     # install dependencies
     composer install
 
-    # make `temp` directory writable
-    find temp -type d -exec chmod 777 {} \;
-    find temp -type f -exec chmod 666 {} \;
-
     # compile the tools application
     osmc Osm_Tools
 
@@ -65,6 +61,10 @@ Run the following commands in the project directory:
     
     # build JS, CSS and other assets
     gulp
+
+    # make `temp` directory writable
+    find temp -type d -exec chmod 777 {} \;
+    find temp -type f -exec chmod 666 {} \;
 
     # create tables in the MySql database
     osm migrate:up
