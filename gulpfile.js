@@ -3,7 +3,7 @@
 global.config = {
     'Osm_Tools': [],
     'Osm_Project': [],
-    'Osm_App': ['_front__tailwind']
+    'Osm_App': ['_front__tailwind', '_front__my']
 };
 
 // Run the framework Gulp scripts that define all the Gulp tasks, and

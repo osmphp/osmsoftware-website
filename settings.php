@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 /* @see \Osm\Framework\Settings\Hints\Settings */
 return (object)[
+    'theme' => 'my',
+
     'db' => [
         'driver' => 'mysql',
         'url' => $_ENV['MYSQL_DATABASE_URL'] ?? null,
@@ -35,6 +37,6 @@ return (object)[
     /* @see \Osm\Framework\Logs\Hints\LogSettings */
     'logs' => (object)[
         'elastic' => (bool)($_ENV['LOG_ELASTIC'] ?? false),
-        //'db' => true,
+        'db' => (bool)($_ENV['LOG_DB'] ?? false),
     ],
 ];
