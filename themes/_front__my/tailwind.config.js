@@ -12,6 +12,11 @@ module.exports = {
           'sans': ['"Titillium Web"', ...defaultTheme.fontFamily.sans],
           'serif': [...defaultTheme.fontFamily.serif],
           'mono': ['"Syne Mono"', ...defaultTheme.fontFamily.mono]
+        },
+        extend: {
+            screens: {
+                'xs': '480px'
+            }
         }
     },
     variants: {},

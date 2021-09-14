@@ -1,36 +1,45 @@
 <?php
 global $osm_app; /* @var \Osm\Core\App $osm_app */
+$theme_url = "{$osm_app->http->base_url}/{$osm_app->theme->name}";
 ?>
-<header class="container mx-auto fixed top-0 left-0 right-0 z-10">
-    <ul class="flex px-4 mb-4 bg-white">
-        <li class="md:hidden" data-js-hamburger='{
+<header class="container mx-auto border-b border-gray-300">
+    <ul class="flex bg-white px-4">
+        <li class="h-14 md:hidden" data-js-hamburger='{
             "$sidebar": ".left-drawer",
             "opened_class": "left-drawer--opened",
             "closed_class": "left-drawer--closed"
         }'>
             <button aria-label="{{ \Osm\__("Show/hide sidebar") }}"
-                class="w-10 h-10 text-2xl flex items-center
-                    justify-center focus:outline-none"
+                class="w-6 h-14 flex items-center justify-center
+                    focus:outline-none text-gray-300 text-2xl"
             >
                 <i class="icon-bars"></i>
             </button>
         </li>
-        <li class="w-20 h-10 text-2xl flex items-center justify-center">
-            <a href="{{ "{$osm_app->http->base_url}/" }}">OSM</a>
+        <li class="w-24 h-14">
+            <a class="w-28 h-28 relative block -top-2"
+               href="{{ "{$osm_app->http->base_url}/" }}"
+            >
+                <img src="{{ "{$theme_url}/images/theme/logo.png" }}"
+                     class="" alt="Osm Software">
+            </a>
         </li>
-        <li class="w-32 h-10 flex-grow flex items-center">
-            <form action="{{ "{$osm_app->http->base_url}/blog/search" }}" class="flex-grow">
-                <div class="flex border-b py-1 border-solid border-gray-500">
+        <li class="w-32 h-14 flex-grow flex items-center">
+            <form action="{{ "{$osm_app->http->base_url}/blog/search" }}"
+                  class="flex-grow"
+            >
+                <div class="flex border-b border-gray-300 h-14">
+                    <input type="text" name="q"
+                        placeholder="{{ \Osm\__("Search blog") }}"
+                        class="w-20 pl-4 pt-2 flex-grow focus:outline-none text-lg"
+                        value="{{ $osm_app->http->query['q'] ?? '' }}">
+
                     <button aria-label="{{ \Osm\__("Search") }}" type="submit"
-                        class="w-6 h-6 mr-2 flex items-center justify-center
-                            focus:outline-none"
+                        class="w-6 h-14 flex items-center justify-center
+                            focus:outline-none text-gray-300 text-2xl"
                     >
                         <i class="icon-search"></i>
                     </button>
-                    <input type="text" name="q"
-                        placeholder="{{ \Osm\__("Search blog") }}"
-                        class="w-20 flex-grow focus:outline-none"
-                        value="{{ $osm_app->http->query['q'] ?? '' }}">
                 </div>
             </form>
         </li>
@@ -41,5 +50,9 @@ global $osm_app; /* @var \Osm\Core\App $osm_app */
             </a>
         </li>
     </ul>
+    <img class="block mx-auto mt-12 pb-4 h-8
+            xs:pb-0 xs:ml-40 xs:mr-4 xs:my-4 xs:h-auto
+            md:mx-auto md:my-7 md:h-7"
+         src="{{ "{$theme_url}/images/theme/slogan.svg" }}"
+         alt="{{ \Osm\__("Tools For Better Developers")}}">
 </header>
-<div class="h-10"></div>
