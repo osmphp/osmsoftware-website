@@ -11,7 +11,7 @@ $theme_url = "{$osm_app->http->base_url}/{$osm_app->theme->name}";
             {{ \Osm\__("... but we are working on it.")}}
         </p>
         <img class="block mx-auto"
-             src="{{ "{$theme_url}/images/theme/not-so-osm.png" }}"
+             src="{{ "{$theme_url}/images/theme/not-so-osm-2.png" }}"
              alt="{{ \Osm\__("Not so Osm")}}">
          @if($content)
             <section class="prose max-w-none my-8 sm:text-lg">

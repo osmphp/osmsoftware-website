@@ -8,7 +8,7 @@ $theme_url = "{$osm_app->http->base_url}/{$osm_app->theme->name}";
             {{ \Osm\__("The website is being updated")}}
         </h1>
         <img class="block mx-auto"
-             src="{{ "{$theme_url}/images/theme/not-so-osm.png" }}"
+             src="{{ "{$theme_url}/images/theme/not-so-osm-2.png" }}"
              alt="{{ \Osm\__("Not so Osm")}}">
     </div>
 </x-std-pages::layout>
