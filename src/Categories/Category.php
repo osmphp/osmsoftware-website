@@ -18,6 +18,7 @@ use Osm\Core\Attributes\Serialized;
  * @property string $post_title_html #[Serialized]
  * @property string $meta_description #[Serialized]
  * @property string $color #[Serialized]
+ * @property string $hover_color #[Serialized]
  * @property Http $http
  */
 class Category extends File
@@ -61,6 +62,10 @@ class Category extends File
 
     protected function get_color(): ?string {
         return $this->meta?->color ?? 'gray-700';
+    }
+
+    protected function get_hover_color(): ?string {
+        return $this->meta?->hover_color ?? 'black';
     }
 
     public function url(): string {

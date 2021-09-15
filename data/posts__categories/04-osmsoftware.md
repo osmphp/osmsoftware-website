@@ -6,7 +6,8 @@ This very website, [osm.software](https://osm.software/), is built from scratch 
 
     {
         "post_title": "osm.software",
-        "color": "blue-400"
+        "color": "blue-400",
+        "hover_color": "blue-500"
     }
 
 ### meta.description

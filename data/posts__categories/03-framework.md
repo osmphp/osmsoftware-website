@@ -8,7 +8,8 @@ on [GitHub](https://github.com/osmphp/framework).
 
     {
         "post_title": "Framework",
-        "color": "green-700"
+        "color": "green-700",
+        "hover_color": "green-800"
     }
     
 ### meta.description

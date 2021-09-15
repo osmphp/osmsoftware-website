@@ -1,5 +1,8 @@
 <?php
 global $osm_app; /* @var \Osm\Core\App $osm_app */
+$categories = $osm_app->modules[\My\Categories\Module::class]->categories;
+/* @var \My\Categories\Category $category */
+
 /* @var \My\Posts\Post $news */
 ?>
 <x-std-pages::layout title='Osm Software' description="A website about Osm Framework -
@@ -8,39 +11,42 @@ global $osm_app; /* @var \Osm\Core\App $osm_app */
     and its ecosystem."
 >
     <div class="container mx-auto px-4 grid grid-cols-12 gap-4">
-        <section class="col-span-12 my-6">
-            <h1 class="text-2xl sm:text-4xl font-bold text-center">
-                Tools For Better Developers
-            </h1>
-        </section>
+        <?php $category = $categories['framework']; ?>
         <section class="col-span-12 lg:col-start-4 lg:col-span-6 mb-6">
-            <h2 class="text-xl sm:text-2xl font-bold text-center">
+            <h1 class="text-2xl sm:text-4xl text-center mt-16
+                text-{{ $category->color }}"
+            >
                 Osm Framework
-            </h2>
+            </h1>
             <p class="text-lg mt-8">
                 Osm Framework is an open-source, insanely fast, unprecedentedly
                 extensible, and fun to work with PHP 8 framework for creating modern
                 Web applications. It's built on top of tried and tested Symfony and
                 Laravel components.
             </p>
-            <p class="mt-8 text-center flex flex-wrap justify-center gap-2">
-                <a class="bg-blue-800 hover:bg-blue-900 text-white py-2 px-4 rounded"
+            <p class="mt-8 text-center flex flex-wrap justify-center gap-2 text-white">
+                <a class="py-2 px-4 rounded bg-gray-700 hover:bg-black"
                     href="{{ "{$osm_app->http->base_url}/blog/21/08/framework-installation.html" }}" title="Download"
                 >Download</a>
-                <a class="bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded"
+                <a class="py-2 px-4 rounded bg-{{ $category->color }}
+                    hover:bg-{{ $category->hover_color }}"
                     href="https://github.com/osmphp/framework#documentation" title="Docs"
                 >Docs</a>
-                <a class="bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded"
+                <a class="py-2 px-4 rounded bg-{{ $category->color }}
+                    hover:bg-{{ $category->hover_color }}"
                     href="{{ "{$osm_app->http->base_url}/blog/framework/" }}" title="Blog"
                 >Blog</a>
-                <a class="bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded"
+                <a class="py-2 px-4 rounded bg-{{ $category->color }}
+                    hover:bg-{{ $category->hover_color }}"
                     href="https://github.com/osmphp/framework" title="Source"
                 >Source</a>
             </p>
         </section>
 
+        <?php $category = $categories['news']; ?>
         <section class="col-span-12 lg:col-start-4 lg:col-span-6 mb-6">
-            <h2 class="text-xl sm:text-2xl font-bold text-center">
+            <h2 class="text-2xl sm:text-4xl text-center mt-16
+                text-{{ $category->color }}">
                 @if ($news->main_category_file)
                     {!! $news->main_category_file->post_title_html !!}:
                 @endif
@@ -49,17 +55,21 @@ global $osm_app; /* @var \Osm\Core\App $osm_app */
             <div class="mt-8 prose-lg max-w-none">
                 {!! $news->list_html !!}
             </div>
-            <p class="mt-8 text-center flex flex-wrap justify-center gap-2">
-                <a class="bg-blue-800 hover:bg-blue-900 text-white py-2 px-4 rounded"
+            <p class="mt-8 text-center flex flex-wrap justify-center gap-2 text-white">
+                <a class="py-2 px-4 rounded bg-gray-700 hover:bg-black"
                     href="{{ $news->url }}" title="Details"
                 >Details</a>
-                <a class="bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded"
+                <a class="py-2 px-4 rounded bg-{{ $category->color }}
+                    hover:bg-{{ $category->hover_color }}"
                     href="{{ "{$osm_app->http->base_url}/blog/news/" }}" title="Old News"
                 >Old News</a>
             </p>
         </section>
+
+        <?php $category = $categories['osmsoftware']; ?>
         <section class="col-span-12 lg:col-start-4 lg:col-span-6 mb-6">
-            <h2 class="text-xl sm:text-2xl font-bold text-center">
+            <h2 class="text-2xl sm:text-4xl text-center mt-16
+                text-{{ $category->color }}">
                 Reference Project: osm.software
             </h2>
             <p class="text-lg mt-8">
@@ -67,17 +77,20 @@ global $osm_app; /* @var \Osm\Core\App $osm_app */
                 a practical example of how various Osm Framework features can be
                 used.
             </p>
-            <p class="mt-8 text-center flex flex-wrap justify-center gap-2">
-                <a class="bg-blue-800 hover:bg-blue-900 text-white py-2 px-4 rounded"
+            <p class="mt-8 text-center flex flex-wrap justify-center gap-2 text-white">
+                <a class="py-2 px-4 rounded bg-gray-700 hover:bg-black"
                     href="{{ "{$osm_app->http->base_url}/blog/21/08/osmsoftware-installation.html" }}" title="Download"
                 >Download</a>
-                <a class="bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded"
+                <a class="py-2 px-4 rounded bg-{{ $category->color }}
+                    hover:bg-{{ $category->hover_color }}"
                     href="https://github.com/osmphp/osmsoftware-website#documentation" title="Docs"
                 >Docs</a>
-                <a class="bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded"
+                <a class="py-2 px-4 rounded bg-{{ $category->color }}
+                    hover:bg-{{ $category->hover_color }}"
                     href="{{ "{$osm_app->http->base_url}/blog/osmsoftware/" }}" title="Blog"
                 >Blog</a>
-                <a class="bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded"
+                <a class="py-2 px-4 rounded bg-{{ $category->color }}
+                    hover:bg-{{ $category->hover_color }}"
                     href="https://github.com/osmphp/osmsoftware-website" title="Source"
                 >Source</a>
             </p>
