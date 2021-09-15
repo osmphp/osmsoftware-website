@@ -21,6 +21,10 @@ export default register('hamburger',
         }
 
         get is_sidebar_opened() {
+            if (!this.sidebar_element) {
+                return false;
+            }
+
             let classList = this.sidebar_element.classList;
 
             return classList.contains(this.options.opened_class);
