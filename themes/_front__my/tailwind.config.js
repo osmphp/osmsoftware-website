@@ -9,10 +9,15 @@ module.exports = {
             safelist: {
                 standard: [
                     /gray-700$/,
+                    /black$/,
                     /yellow-600$/,
+                    /yellow-700$/,
                     /green-700$/,
+                    /green-800$/,
                     /blue-400$/,
+                    /blue-500$/,
                     /green-500$/,
+                    /green-600$/,
                 ],
             }
         }
