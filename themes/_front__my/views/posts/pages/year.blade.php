@@ -5,7 +5,7 @@ $title = \Osm\__(":year Posts", ['year' => $posts->page_type->year]);
 ?>
 <x-std-pages::layout :title="$title . ' | Blog | Osm Software'">
     <div class="container mx-auto px-4 grid grid-cols-12">
-        <section class="col-start-1 col-span-12 md:col-start-5 md:col-span-8 lg:col-start-4 ld:col-span-9">
+        <section class="col-start-1 col-span-12 md:col-start-5 md:col-span-8 lg:col-start-4 lg:col-span-9">
             <h1 class="text-2xl sm:text-4xl pt-4 mb-4 border-t border-gray-300 md:pl-4">
                 {{ $title }}
             </h1>
