@@ -13,11 +13,14 @@ module.exports = {
           'serif': [...defaultTheme.fontFamily.serif],
           'mono': ['"Syne Mono"', ...defaultTheme.fontFamily.mono]
         },
-        extend: {
-            screens: {
-                'xs': '480px'
-            }
-        }
+        screens: {
+            xs: '480px', // custom breakpoint
+            sm: '640px',
+            md: '768px',
+            lg: '1024px',
+            xl: '1280px',
+            '2xl': '1536px',
+        },
     },
     variants: {},
     plugins: [

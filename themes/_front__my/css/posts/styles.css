@@ -1,0 +1,26 @@
+@layer components {
+    a.link, .prose a {
+        @apply underline;
+    }
+
+    .prose img {
+        @apply mx-auto my-0;
+    }
+
+    .left-drawer {
+        @apply fixed top-28 bottom-0 z-10 px-4 w-64
+            bg-white
+            border-r border-gray-300 border-solid shadow-xl
+            transition-all duration-200 ease-in-out
+            md:static md:z-0 md:border-t md:shadow-none md:transition-none
+            md:col-start-1 md:col-span-3 row-start-1 md:w-auto;
+    }
+
+    .left-drawer--opened {
+        @apply left-0;
+    }
+
+    .left-drawer--closed {
+        @apply -left-72;
+    }
+}

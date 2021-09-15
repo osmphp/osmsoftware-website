@@ -1,0 +1,53 @@
+@layer components {
+
+
+@font-face {
+  font-family: 'icomoon';
+  src:  url('fonts/theme/icomoon.eot?c9afes');
+  src:  url('fonts/theme/icomoon.eot?c9afes#iefix') format('embedded-opentype'),
+    url('fonts/theme/icomoon.ttf?c9afes') format('truetype'),
+    url('fonts/theme/icomoon.woff?c9afes') format('woff'),
+    url('fonts/theme/icomoon.svg?c9afes#icomoon') format('svg');
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
+
+[class^="icon-"], [class*=" icon-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'icomoon' !important;
+  speak: never;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-search:before {
+  content: "\f002";
+}
+.icon-bars:before {
+  content: "\f0c9";
+}
+.icon-navicon:before {
+  content: "\f0c9";
+}
+.icon-reorder:before {
+  content: "\f0c9";
+}
+.icon-box:before {
+  content: "\e900";
+}
+.icon-v:before {
+  content: "\e901";
+}
+.icon-x:before {
+  content: "\e902";
+}
+
+}

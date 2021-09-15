@@ -7,12 +7,12 @@ $category = $posts->page_type->category;
 <x-std-pages::layout :title="$posts->page_type->category->title . ' | Blog | Osm Software'"
     :description="$category->meta_description"
 >
-    <div class="container mx-auto px-4 grid grid-cols-12 gap-4">
+    <div class="container mx-auto px-4 grid grid-cols-12">
         <section class="col-start-1 col-span-12 md:col-start-4 md:col-span-9">
-            <h1 class="text-2xl sm:text-4xl font-bold my-8">
+            <h1 class="text-2xl sm:text-4xl pt-4 mb-4 border-t border-gray-300 md:pl-4">
                 {!! $category->title_html !!}
             </h1>
-            <div class="prose max-w-none my-5">
+            <div class="prose max-w-none my-4 sm:text-lg md:pl-4">
                 {!! $category->html !!}
             </div>
 

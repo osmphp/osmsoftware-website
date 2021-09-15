@@ -2,7 +2,7 @@
 global $osm_app; /* @var \Osm\Core\App $osm_app */
 /* @var \My\Posts\Filter\Category $filter */
 ?>
-<h2 class="text-xl font-bold mt-8 mb-4">{!! $filter->title_html !!}</h2>
+<h2 class="text-xl mt-8 mb-4">{!! $filter->title_html !!}</h2>
 <ul>
     @foreach($filter->items as $item)
         @if ($item->visible)

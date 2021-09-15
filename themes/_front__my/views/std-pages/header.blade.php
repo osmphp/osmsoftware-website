@@ -2,7 +2,7 @@
 global $osm_app; /* @var \Osm\Core\App $osm_app */
 $theme_url = "{$osm_app->http->base_url}/{$osm_app->theme->name}";
 ?>
-<header class="container mx-auto border-b border-gray-300">
+<header class="container mx-auto">
     <ul class="flex bg-white px-4">
         <li class="h-14 md:hidden" data-js-hamburger='{
             "$sidebar": ".left-drawer",

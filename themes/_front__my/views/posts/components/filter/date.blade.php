@@ -2,7 +2,7 @@
 global $osm_app; /* @var \Osm\Core\App $osm_app */
 /* @var \My\Posts\Filter\Date $filter */
 ?>
-<h2 class="text-xl font-bold mt-8 mb-4">{!! $filter->title_html !!}</h2>
+<h2 class="text-xl mt-8 mb-4">{!! $filter->title_html !!}</h2>
 <ul>
     @foreach($filter->items as $yearItem)
         <li>
@@ -10,18 +10,21 @@ global $osm_app; /* @var \Osm\Core\App $osm_app */
                 ? $yearItem->remove_url
                 : $yearItem->add_url }}"
 
-                title="{{ $yearItem->title }}" class="block pl-6 relative"
+                title="{{ $yearItem->title }}" class="block pl-6 relative mb-2"
             >
                 <span class="absolute left-0">
                     <i class="{{ $yearItem->applied ? 'icon-v' : 'icon-box' }}"></i>
                 </span>
                 <span class="font-bold">
                     {!! $yearItem->title_html !!}
+                </span>
+                <span>
                     ({{ $yearItem->count }})
                 </span></a>
-            <ul class="grid grid-cols-3 md:grid-cols-2 xl:grid-cols-3">
+            <ul class="flex flex-wrap">
                 @foreach($yearItem->months as $monthItem)
-                    <li>
+                    @if ($monthItem->count)
+                    <li class="w-24">
                         @if ($monthItem->count)
                             <a href="{{ $monthItem->applied
                                 ? $monthItem->remove_url
@@ -45,6 +48,7 @@ global $osm_app; /* @var \Osm\Core\App $osm_app */
                             </div>
                         @endif
                     </li>
+                    @endif
                 @endforeach
             </ul>
         </li>
