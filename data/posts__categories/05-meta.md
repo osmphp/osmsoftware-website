@@ -5,7 +5,8 @@ The articles about our internal processes.
 ## meta
 
     {
-        "post_title": "Meta"
+        "post_title": "Meta",
+        "color": "green-500"
     }
 
 ### meta.description

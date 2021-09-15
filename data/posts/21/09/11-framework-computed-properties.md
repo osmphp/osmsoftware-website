@@ -6,6 +6,12 @@ Contents:
 
 {{ toc }}
 
+## meta
+
+    {
+        "categories": ["drafts"]
+    }
+
 ## meta.list_text
 
 ***DRAFT***

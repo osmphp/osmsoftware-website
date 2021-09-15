@@ -7,7 +7,8 @@ on [GitHub](https://github.com/osmphp/framework).
 ## meta
 
     {
-        "post_title": "Framework"
+        "post_title": "Framework",
+        "color": "green-700"
     }
     
 ### meta.description

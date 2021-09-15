@@ -4,7 +4,9 @@ global $osm_app; /* @var \Osm\Core\App $osm_app */
 ?>
 <article>
     @if ($post)
-        <h2 class="text-xl sm:text-3xl pt-4 mb-4 border-t border-gray-300 md:pl-4">
+        <h2 class="text-xl sm:text-3xl pt-4 mb-4 border-t border-gray-300 md:pl-4
+            text-{{ $post->main_category_file->color }}"
+        >
             <a href="{{ $post->url }}" title="{{ $post->title }}">
                 @if ($post->main_category_file)
                     {!! $post->main_category_file->post_title_html !!}:

@@ -6,7 +6,7 @@ global $osm_app; /* @var \Osm\Core\App $osm_app */
 <ul>
     @foreach($filter->items as $item)
         @if ($item->visible)
-            <li>
+            <li class="p-2 my-2 -mx-2 rounded-md text-white font-bold bg-{{ $item->category->color }}">
                 <a href="{{ $item->applied ? $item->remove_url : $item->add_url }}"
                     title="{{ $item->title }}" class="block pl-6 relative"
                 >

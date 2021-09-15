@@ -30,7 +30,7 @@ $theme_url = "{$osm_app->http->base_url}/{$osm_app->theme->name}";
             >
                 <div class="flex border-b border-gray-300 h-14">
                     <input type="text" name="q"
-                        placeholder="{{ \Osm\__("Search blog") }}"
+                        placeholder="{{ \Osm\__("Search") }}"
                         class="w-20 pl-4 pt-2 flex-grow focus:outline-none text-lg"
                         value="{{ $osm_app->http->query['q'] ?? '' }}">
 
@@ -43,16 +43,10 @@ $theme_url = "{$osm_app->http->base_url}/{$osm_app->theme->name}";
                 </div>
             </form>
         </li>
-        <li class="hidden">
-            <a href="{{ "{$osm_app->http->base_url}/my/" }}"
-               class="w-10 h-10 text-2xl flex items-center justify-center">
-                <i class="fas fa-user"></i>
-            </a>
-        </li>
     </ul>
     <img class="block mx-auto mt-12 pb-4 h-8
-            xs:pb-0 xs:ml-40 xs:mr-4 xs:my-4 xs:h-auto
-            md:mx-auto md:my-7 md:h-7"
+            xs:pb-0 xs:ml-32 xs:mr-6 xs:my-6 xs:h-auto
+            md:h-8"
          src="{{ "{$theme_url}/images/theme/slogan.svg" }}"
          alt="{{ \Osm\__("Tools For Better Developers")}}">
 </header>

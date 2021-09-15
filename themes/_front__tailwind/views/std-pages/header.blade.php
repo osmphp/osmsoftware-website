@@ -34,12 +34,6 @@ global $osm_app; /* @var \Osm\Core\App $osm_app */
                 </div>
             </form>
         </li>
-        <li class="hidden">
-            <a href="{{ "{$osm_app->http->base_url}/my/" }}"
-               class="w-10 h-10 text-2xl flex items-center justify-center">
-                <i class="fas fa-user"></i>
-            </a>
-        </li>
     </ul>
 </header>
 <div class="h-10"></div>

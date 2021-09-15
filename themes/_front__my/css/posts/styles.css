@@ -8,12 +8,12 @@
     }
 
     .left-drawer {
-        @apply fixed top-28 bottom-0 z-10 px-4 w-64
+        @apply fixed top-24 bottom-0 z-10 pl-4 pr-8 w-64
             bg-white
             border-r border-gray-300 border-solid shadow-xl
             transition-all duration-200 ease-in-out
             md:static md:z-0 md:border-t md:shadow-none md:transition-none
-            md:col-start-1 md:col-span-3 row-start-1 md:w-auto;
+            md:col-start-1 md:col-span-4 lg:col-span-3 row-start-1 md:w-auto;
     }
 
     .left-drawer--opened {

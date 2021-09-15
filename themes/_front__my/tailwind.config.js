@@ -4,7 +4,18 @@ module.exports = {
     purge: {
         content: [
             'temp/*/*/views/**/*.php',
-        ]
+        ],
+        options: {
+            safelist: {
+                standard: [
+                    /gray-700$/,
+                    /yellow-600$/,
+                    /green-700$/,
+                    /blue-400$/,
+                    /green-500$/,
+                ],
+            }
+        }
     },
     darkMode: false, // or 'media' or 'class'
     theme: {

@@ -17,6 +17,7 @@ use Osm\Core\Attributes\Serialized;
  * @property string $post_title #[Serialized]
  * @property string $post_title_html #[Serialized]
  * @property string $meta_description #[Serialized]
+ * @property string $color #[Serialized]
  * @property Http $http
  */
 class Category extends File
@@ -56,6 +57,10 @@ class Category extends File
 
     protected function get_post_title_html(): ?string {
         return $this->meta?->post_title ?? $this->title_html;
+    }
+
+    protected function get_color(): ?string {
+        return $this->meta?->color ?? 'gray-700';
     }
 
     public function url(): string {

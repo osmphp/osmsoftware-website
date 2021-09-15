@@ -6,10 +6,12 @@ global $osm_app; /* @var \Osm\Core\App $osm_app */
     :description="$post->meta_description"
 >
     <div class="container mx-auto px-4 grid grid-cols-12">
-        <article class="col-start-1 col-span-12 md:col-start-4 md:col-span-9
+        <article class="col-start-1 col-span-12 md:col-start-5 md:col-span-8
             xl:col-start-4 xl:col-span-6"
         >
-            <h1 class="text-2xl sm:text-4xl pt-4 mb-4 border-t border-gray-300 md:pl-4">
+            <h1 class="text-2xl sm:text-4xl pt-4 mb-4
+                md:pl-4 text-{{ $post->main_category_file->color }}"
+            >
                 @if ($post->main_category_file)
                     {!! $post->main_category_file->post_title_html !!}:
                 @endif
