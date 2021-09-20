@@ -249,7 +249,7 @@ The first parameter in the `#[Cached('bar')]` attribute is the unique cache key.
     }
     
     ...
-    // the `$bar` property is cached under the unique cache key `bar_1`
+    // the `bar` property is cached under the unique cache key `bar_1`
     $foo = Foo::new(['id' => 1]);
 
 By default, the property value is stored in the application cache until it is deleted manually, or until the whole cache is cleared. For more fine-grained control, use optional parameters of the `#[Cached]` attribute: 
