@@ -63,7 +63,7 @@ Here is the result:
 
 ![404 Page Rendered From A Template](404-page-rendered-from-template.png)
 
-The `ResponsesTrait::around_notFound()` method is called *instead of* `Responses::notFound()` method. In addition, Osm Framework passes the `$proceed` parameter referencing the original method, and the `ResponsesTrait::around_notFound()` invokes it if it can't render the page from a template as show below:
+The `ResponsesTrait::around_notFound()` method is called *instead of* `Responses::notFound()` method. In addition, Osm Framework passes the `$proceed` parameter referencing the original method, and the `ResponsesTrait::around_notFound()` invokes it if it can't render the page from a template:
 
     return $proceed($message); 
 
