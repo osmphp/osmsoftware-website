@@ -101,5 +101,5 @@ Render "page not found", "error", and "on maintenance" pages from the `std-pages
 
 [Diff](https://github.com/osmphp/core/compare/v0.9.1...v0.9.2)
 
-* minor: osmh utility doesn't require a parameter anymore, and the generated hint file reports fewer warnings
+* minor: `osmh` utility doesn't require a parameter anymore, and the generated hint file reports fewer warnings
 
