@@ -46,7 +46,7 @@ New articles about Osm Framework have been written, and previous articles have b
 
 [Diff](https://github.com/osmphp/framework/compare/v0.11.2...v0.12.8)
 
-**Important**. After switching to this major version, apply [these changes](https://github.com/osmphp/project/compare/v0.11.0...v0.12.1) to the project files. Also, update [page templates], and use website-wide [header, footer](#page-layout-changes), [`<head>`](#customizable-head) and [error page](#customizable-error-pages) templates.
+**Important**. After switching to this major version, apply [these changes](https://github.com/osmphp/project/compare/v0.11.0...v0.12.1) to the project files. Also, update [page templates](#page-layout-changes), and use website-wide [header, footer](#more-convenient-header-and-footer), [`<head>`](#customizable-head) and [error page](#customizable-error-pages) templates.
 
 ### Page Layout Changes
 
