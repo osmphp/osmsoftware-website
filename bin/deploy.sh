@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# exit if any command fails
+set -e
+
 # `osm`, `osmt` and other Bash aliases don't work in Bash files.
 # The following variables are used instead of these Bash aliases
 OSM="php vendor/osmphp/framework/bin/console.php"

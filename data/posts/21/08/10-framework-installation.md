@@ -32,6 +32,11 @@ Run the following commands:
     # make it the current directory
     cd project1
 
+    # run the installation
+    bash bin/install.sh
+    
+On Windows, instead of the last line run the following commands:
+
     # compile the applications
     osmc Osm_App
     osmc Osm_Project
@@ -45,10 +50,6 @@ Run the following commands:
     
     # build JS, CSS and other assets
     gulp
-
-    # make `temp` directory writable
-    find temp -type d -exec chmod 777 {} \;
-    find temp -type f -exec chmod 666 {} \;
 
 **Note**. Some commands may show no output. Don't worry - it means they worked as expected :)
 
