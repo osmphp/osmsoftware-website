@@ -1,6 +1,8 @@
 # Application
 
-***DRAFT***
+In Osm Framework, an application is a set of modules that you run as a whole. There are several applications defined in the project, each having its own PHP class. Mostly, deal with the main one, `Osm\App\App`. Beside the class name, every application also has a name, the main one is named `Osm_App`.
+
+Access the current application object, and the main parts of Osm Framework, via the global `$osm_app` object and its properties. Add your own long-living objects there. Run an application using its HTTP or console entry point, or using `Apps::run()`. 
 
 Details:
 
@@ -8,7 +10,9 @@ Details:
 
 ### meta.list_text
 
-***DRAFT***
+In Osm Framework, an application is a set of modules that you run as a whole. There are several applications defined in the project, each having its own PHP class. Mostly, deal with the main one, `Osm\App\App`. Beside the class name, every application also has a name, the main one is named `Osm_App`.
+
+Access the current application object, and the main parts of Osm Framework, via the global `$osm_app` object and its properties. Add your own long-living objects there. Run an application using its HTTP or console entry point, or using `Apps::run()`.
 
 ## Application Class
 
