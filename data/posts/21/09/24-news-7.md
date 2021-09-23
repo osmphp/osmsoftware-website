@@ -1,6 +1,6 @@
 # 2021 Sep 13 - Sep 24
 
-...
+This website got a completely new look. There are new blog posts diving into core Osm Framework features. Osm Framework itself offers more convenient page layout, website-wide header, footer and `<head>`, customizable error pages. The themes support theme-specific CSS styles and JS scripts not bound to any module. New projects come with a handy `bin/install.sh` script that simplifies installation on Linux. From now on, run `osmh` without any parameters.
 
 More details:
 
@@ -8,7 +8,7 @@ More details:
 
 ### meta.list_text
 
-...
+This website got a completely new look. There are new blog posts diving into core Osm Framework features. Osm Framework itself offers more convenient page layout, website-wide header, footer and `<head>`, customizable error pages. The themes support theme-specific CSS styles and JS scripts not bound to any module. New projects come with a handy `bin/install.sh` script that simplifies installation on Linux. From now on, run `osmh` without any parameters.
 
 ## *osm.software* Website v0.3.0
 
