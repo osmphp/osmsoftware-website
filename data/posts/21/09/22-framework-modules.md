@@ -8,7 +8,7 @@ Details:
 
 {{ toc }}
 
-## meta.list_text
+### meta.list_text
 
 Modular software development is a well-known practice of dividing your application into several modules, each doing one thing, and doing it well. It increases readability and simplifies maintenance, as application concerns are fully separated from one another, easier to reason about, and to debug.
 
@@ -46,6 +46,23 @@ It's also possible to assign name manually. For example, manually assigned name 
 
 This documentation uses module names and class names interchangeably.
 
+In the codebase, use module names in module-specific theme asset directories:
+
+    ...
+    themes/
+        _front__tailwind/
+            css/
+                base/           # assets of the `base` module
+                ...             # assets of other modules
+            js/
+                base/           # assets of the `base` module
+                ...             # assets of other modules
+            views/
+                base/           # assets of the `base` module
+                ...             # assets of other modules
+
+We'll cover theme assets in more details later.
+    
 ## Adding Module To Applications (`app_class_name` Property)
 
 In the module file, specify what application the module is a part of:
