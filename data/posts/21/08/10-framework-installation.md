@@ -32,7 +32,9 @@ Run the following commands:
     # make it the current directory
     cd project1
 
-    # compile the tools application
+    # compile the applications
+    osmc Osm_App
+    osmc Osm_Project
     osmc Osm_Tools
 
     # collect JS dependencies from all installed modules
