@@ -1,6 +1,6 @@
 <?php
 global $osm_app; /* @var \Osm\Core\App $osm_app */
-/* @var \My\Posts\Posts $posts */
+/* @var \Osm\Blog\Posts\Posts $posts */
 $title = \Osm\__(":year Posts", ['year' => $posts->page_type->year]);
 ?>
 <x-std-pages::layout :title="$title . ' | Blog | Osm Software'">

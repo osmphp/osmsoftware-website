@@ -1,6 +1,6 @@
 <?php
 global $osm_app; /* @var \Osm\Core\App $osm_app */
-/* @var \My\Posts\Posts $posts */
+/* @var \Osm\Blog\Posts\Posts $posts */
 ?>
 @if (count($posts->applied_filters))
     <h2 class="text-xl mt-8 mb-4">

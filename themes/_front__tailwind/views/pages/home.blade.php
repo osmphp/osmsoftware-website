@@ -1,6 +1,6 @@
 <?php
 global $osm_app; /* @var \Osm\Core\App $osm_app */
-/* @var \My\Posts\Post $news */
+/* @var \Osm\Blog\Posts\Post $news */
 ?>
 <x-std-pages::layout title='Osm Software' description="A website about Osm Framework -
     an open-source PHP 8 framework for creating modern Web applications that's

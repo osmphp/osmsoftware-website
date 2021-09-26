@@ -20,8 +20,8 @@ class test_04_url_generation extends TestCase
             'base_url' => null,
         ]);
 
-        /* @var \My\Categories\Module $categoryModule */
-        $categoryModule = $this->app->modules[\My\Categories\Module::class];
+        /* @var \Osm\Blog\Categories\Module $categoryModule */
+        $categoryModule = $this->app->modules[\Osm\Blog\Categories\Module::class];
         $category = $categoryModule->categories['osmsoftware'];
 
         // WHEN you apply category filter
@@ -38,8 +38,8 @@ class test_04_url_generation extends TestCase
             'base_url' => null,
         ]);
 
-        /* @var \My\Categories\Module $categoryModule */
-        $categoryModule = $this->app->modules[\My\Categories\Module::class];
+        /* @var \Osm\Blog\Categories\Module $categoryModule */
+        $categoryModule = $this->app->modules[\Osm\Blog\Categories\Module::class];
         $category1 = $categoryModule->categories['osmsoftware'];
         $category2 = $categoryModule->categories['framework'];
 
@@ -61,8 +61,8 @@ class test_04_url_generation extends TestCase
             'base_url' => null,
         ]);
 
-        /* @var \My\Categories\Module $categoryModule */
-        $categoryModule = $this->app->modules[\My\Categories\Module::class];
+        /* @var \Osm\Blog\Categories\Module $categoryModule */
+        $categoryModule = $this->app->modules[\Osm\Blog\Categories\Module::class];
         $category = $categoryModule->categories['framework'];
 
         // WHEN you apply category filter

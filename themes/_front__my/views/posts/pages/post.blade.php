@@ -1,6 +1,6 @@
 <?php
 global $osm_app; /* @var \Osm\Core\App $osm_app */
-/* @var \My\Posts\Post $post */
+/* @var \Osm\Blog\Posts\Post $post */
 ?>
 <x-std-pages::layout :title='$post->title . ($post->main_category_file ? " | " . $post->main_category_file->post_title : "") . " | Blog | Osm Software"'
     :description="$post->meta_description"

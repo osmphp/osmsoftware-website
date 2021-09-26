@@ -23,7 +23,11 @@
     },
     "autoload": {
         "psr-4": {
-            "My\\": "src/"
+            "My\\": "src/",
+            "Osm\\Framework\\": "packages/framework/",
+            "Osm\\Data\\": "packages/data/",
+            "Osm\\Blog\\": "packages/blog/",
+            "Osm\\Docs\\": "packages/docs/"
         }
     },
     "autoload-dev": {
