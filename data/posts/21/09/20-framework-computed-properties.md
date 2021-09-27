@@ -226,8 +226,6 @@ Some properties take time to compute. It may be an issue even though computation
 Put such properties into the application cache, and the next time Osm framework will take the property value from cache instead of computing it again:
 
     use Osm\Framework\Cache\Attributes\Cached;
-      
-    use Osm\Core\Attributes\Serialized;
     ...
     /**
      * @property string $bar #[Cached('bar')]
