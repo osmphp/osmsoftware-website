@@ -18,7 +18,7 @@ use function Osm\__;
  */
 class CheckIndex extends Command
 {
-    public string $name = 'check:index';
+    public string $name = 'check:blog-index';
 
     public function run(): void {
         $searchIds = $this->search->index('posts')

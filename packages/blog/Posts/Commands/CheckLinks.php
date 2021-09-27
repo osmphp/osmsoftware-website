@@ -19,7 +19,7 @@ use Osm\Framework\Console\Attributes\Option;
  */
 class CheckLinks extends Command
 {
-    public string $name = 'check:links';
+    public string $name = 'check:blog-links';
 
     public function run(): void {
         $this->scanPath();

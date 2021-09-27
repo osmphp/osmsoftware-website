@@ -13,7 +13,7 @@ use Osm\Framework\Console\Attributes\Option;
  */
 class Index extends Command
 {
-    public string $name = 'index';
+    public string $name = 'index:blog';
 
     public function run(): void {
         Indexer::new()->run($this->rebuild);

@@ -2,6 +2,8 @@
 
 declare(strict_types=1);
 
+global $osm_app; /* @var \Osm\Core\App $osm_app */
+
 /* @see \Osm\Framework\Settings\Hints\Settings */
 return (object)[
     'theme' => 'my',
@@ -38,5 +40,22 @@ return (object)[
     'logs' => (object)[
         'elastic' => (bool)($_ENV['LOG_ELASTIC'] ?? false),
         'db' => (bool)($_ENV['LOG_DB'] ?? false),
+    ],
+
+    /* @see \Osm\Docs\Docs\Hints\Settings\Docs */
+    'docs' => (object)[
+        'books' => [
+            /* @see \Osm\Docs\Docs\Hints\Settings\Book */
+            'framework' => (object)[
+                'versions' => [
+                    /* @see \Osm\Docs\Docs\Hints\Settings\Version */
+                    '0.12' => (object)[
+                        'path' => "{$osm_app->paths->temp}/docs/framework/0.12",
+                        'repo' => 'https://github.com/osmphp/framework.git',
+                        'dir' => 'docs/',
+                    ],
+                ],
+            ],
+        ],
     ],
 ];
