@@ -2,10 +2,7 @@
 
 namespace Osm\Data\Indexing\Commands;
 
-use Osm\Core\App;
-use Osm\Core\BaseModule;
-use Osm\Data\Indexing\Module;
-use Osm\Data\Indexing\Source;
+use Osm\Data\Indexing\Runner;
 use Osm\Framework\Console\Command;
 use Osm\Framework\Console\Attributes\Argument;
 use Osm\Framework\Console\Attributes\Option;
@@ -13,8 +10,9 @@ use Osm\Framework\Console\Attributes\Option;
 /**
  * @property string[] $source_pattern #[Argument]
  * @property bool $rebuild #[Option(shortcut: 'f')] Rebuild the index from scratch
- * @property Module $module
- * @property Source[] $sources
+ * @property string[] $patterns `source_pattern` converted from
+ *      `{source}[/{scope}]` parameters into the form of
+ *      `['{source}' => '{scope}|null']`
  */
 class Index extends Command
 {
@@ -22,21 +20,30 @@ class Index extends Command
 
     public function run(): void
     {
-        foreach ($this->sources as $source) {
-            $this->output->writeln($source->name);
-            foreach ($source->indexer_class_names as $indexerClassName) {
-                $this->output->writeln("    {$indexerClassName}");
-            }
+        Runner::new([
+            'rebuild' => $this->rebuild,
+            'patterns' => $this->patterns,
+            'output' => $this->output,
+        ])->run();
+    }
+
+    protected function get_patterns(): array {
+        $patterns = [];
+
+        if (empty($this->source_pattern)) {
+            return $patterns;
         }
-    }
 
-    protected function get_module(): BaseModule {
-        global $osm_app; /* @var App $osm_app */
+        foreach ($this->source_pattern as $pattern) {
+            $name = ($pos = mb_strpos($pattern, '/')) !== false
+                ? mb_substr($pattern, 0, $pos)
+                : $pattern;
 
-        return $osm_app->modules[Module::class];
-    }
+            $patterns[$name] = $pos !== false
+                ? mb_substr($pattern, $pos + 1)
+                : null;
+        }
 
-    protected function get_sources(): array {
-        return $this->module->sources;
+        return $patterns;
     }
 }
