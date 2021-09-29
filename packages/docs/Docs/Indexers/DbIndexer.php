@@ -16,6 +16,7 @@ use Osm\Docs\Docs\Sources\Docs;
 use Osm\Docs\Docs\Version;
 use Osm\Framework\Cache\Cache;
 use Osm\Framework\Db\Db;
+use Osm\Framework\Settings\Hints\Settings;
 use function Osm\__;
 
 /**
@@ -26,6 +27,8 @@ use function Osm\__;
  * @property Cache $cache
  * @property Module $module
  * @property Book[] $books
+ * @property \stdClass|Settings $settings
+ * @property Carbon $last_record_modified_at
  */
 class DbIndexer extends Indexer
 {
@@ -118,6 +121,10 @@ class DbIndexer extends Indexer
     protected function indexPage(Version $version, ?string $path): void {
         $page = Page::new(['version' => $version, 'path' => $path]);
 
+        if ($this->skip($page)) {
+            return;
+        }
+
         if ($id = $this->find($page)) {
             $this->update($id, $page);
         }
@@ -171,5 +178,32 @@ class DbIndexer extends Indexer
             ->update(['deleted_at' => Carbon::now()]);
 
         $this->idDeleted($id);
+    }
+
+    protected function skip(Page $page): bool {
+        if ($this->rebuild()) {
+            return false;
+        }
+
+        if (!isset($this->settings->docs->index_modified)) {
+            return false;
+        }
+
+        return $page->modified_at->lte($this->last_record_modified_at);
+    }
+
+    protected function get_settings(): \stdClass|Settings {
+        global $osm_app; /* @var App $osm_app */
+
+        return $osm_app->settings;
+    }
+
+    protected function get_last_record_modified_at(): ?Carbon {
+        $modifiedAt = $this->db->table('docs')
+            ->max('modified_at');
+
+        return $modifiedAt
+            ? Carbon::parse($modifiedAt)
+            : null;
     }
 }

@@ -44,6 +44,7 @@ return (object)[
 
     /* @see \Osm\Docs\Docs\Hints\Settings\Docs */
     'docs' => (object)[
+        'index_modified' => true,
         'books' => [
             /* @see \Osm\Docs\Docs\Hints\Settings\Book */
             'framework' => (object)[
