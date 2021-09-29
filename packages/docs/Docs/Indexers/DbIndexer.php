@@ -9,6 +9,7 @@ use Osm\Data\Indexing\Indexer;
 use Osm\Data\Markdown\Exceptions\InvalidPath;
 use Osm\Docs\Docs\Book;
 use Osm\Docs\Docs\Module;
+use Osm\Docs\Docs\Page;
 use Osm\Docs\Docs\Sources\DbDocs;
 use Osm\Docs\Docs\Sources\Docs;
 use Osm\Docs\Docs\Version;
@@ -91,7 +92,7 @@ class DbIndexer extends Indexer
 
         if (is_file($absolutePath)) {
             if (str_ends_with($absolutePath, '.md')) {
-                $this->indexFile($version, $path);
+                $this->indexPage($version, $path);
             }
             return;
         }
@@ -115,7 +116,40 @@ class DbIndexer extends Indexer
         return $this->module->books;
     }
 
-    protected function indexFile(Version $version, ?string $path): void {
-        throw new NotImplemented($this);
+    protected function indexPage(Version $version, ?string $path): void {
+        $page = Page::new(['version' => $version, 'path' => $path]);
+
+        if ($id = $this->find($page)) {
+            $this->update($id, $page);
+        }
+        else {
+            $this->insert($page);
+        }
+    }
+
+    protected function find(Page $page): ?int {
+        return $this->db->table('docs')
+            ->where('book', $page->version->book->name)
+            ->where('version', $page->version->name)
+            ->where('path', $page->path)
+            ->value('id');
+    }
+
+    protected function update(int $id, Page $page): void {
+        $this->db->table('docs')
+            ->where('id', $id)
+            ->update([
+                'modified_at' => $page->modified_at,
+                'deleted_at' => null,
+            ]);
+    }
+
+    protected function insert(Page $page): int {
+        return $this->db->table('docs')->insertGetId([
+            'book' => $page->version->book->name,
+            'version' => $page->version->name,
+            'path' => $page->path,
+            'modified_at' => $page->modified_at,
+        ]);
     }
 }
