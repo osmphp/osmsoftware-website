@@ -47,13 +47,12 @@ return (object)[
         'books' => [
             /* @see \Osm\Docs\Docs\Hints\Settings\Book */
             'framework' => (object)[
+                'repo' => 'https://github.com/osmphp/framework.git',
+                'path' => "{$osm_app->paths->temp}/docs/framework",
+                'dir' => 'docs/',
                 'versions' => [
                     /* @see \Osm\Docs\Docs\Hints\Settings\Version */
-                    '0.12' => (object)[
-                        'path' => "{$osm_app->paths->temp}/docs/framework/0.12",
-                        'repo' => 'https://github.com/osmphp/framework.git',
-                        'dir' => 'docs/',
-                    ],
+                    '0.12' => (object)['branch' => 'v0.12'],
                 ],
             ],
         ],

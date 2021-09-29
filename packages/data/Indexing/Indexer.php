@@ -18,8 +18,6 @@ use Symfony\Component\Console\Output\OutputInterface;
  *
  * @property OutputInterface $output A stream the indexer writes output to.
  * @property Indexer[] $after Indexers that should run prior this indexer
- * @property bool $invalidated
- * @property bool $rebuild
  */
 class Indexer extends Object_
 {
@@ -41,6 +39,16 @@ class Indexer extends Object_
     public function shouldRun(): bool {
         foreach ($this->sources as $source) {
             if ($source->rebuild || $source->invalidated) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    public function rebuild(): bool {
+        foreach ($this->sources as $source) {
+            if ($source->rebuild) {
                 return true;
             }
         }

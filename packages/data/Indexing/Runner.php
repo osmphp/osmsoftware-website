@@ -137,7 +137,8 @@ class Runner extends Object_
                 'name' => $name,
                 'rebuild' => $this->rebuild,
                 'pattern' => $this->patterns[$name] ?? null,
-                'invalidated' => true,
+                'invalidated' => empty($this->patterns) ||
+                    array_key_exists($name, $this->patterns),
             ]);
         }
 
