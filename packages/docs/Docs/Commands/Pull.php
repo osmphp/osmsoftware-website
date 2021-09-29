@@ -56,6 +56,8 @@ class Pull extends Command
         }
 
         if (is_dir("{$version->path}/.git")) {
+            $this->shell("git reset --hard HEAD",
+                $version->path);
             $this->shell("git pull origin {$version->branch}",
                 $version->path);
         }

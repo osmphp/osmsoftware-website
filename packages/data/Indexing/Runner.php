@@ -47,6 +47,7 @@ class Runner extends Object_
         foreach ($this->indexers as $indexer) {
             if ($indexer->shouldRun()) {
                 $indexer->run();
+                $indexer->report();
             }
         }
     }
@@ -83,10 +84,19 @@ class Runner extends Object_
                     continue;
                 }
 
-                $sourceName = $property->name != 'target'
-                    ? $property->name
-                    : $osm_app->classes[$property->type]
+                $sourceName = $osm_app->classes[$property->type]
                         ->attributes[Name::class]->name;
+
+                if ($property->name != 'target' &&
+                    $sourceName != $property->name)
+                {
+                    throw new InvalidSource(__(
+                        "Source property ':indexer:::source' should be named ':correct_source'", [
+                            'source' => $property->name,
+                            'indexer' => $class->name,
+                            'correct_source' => $sourceName,
+                        ]));
+                }
 
                 if (!isset($this->sources[$sourceName])) {
                     throw new InvalidSource(__(

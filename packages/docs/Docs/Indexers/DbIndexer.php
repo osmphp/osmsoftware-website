@@ -2,6 +2,7 @@
 
 namespace Osm\Docs\Docs\Indexers;
 
+use Carbon\Carbon;
 use Osm\Core\App;
 use Osm\Core\BaseModule;
 use Osm\Core\Exceptions\NotImplemented;
@@ -36,7 +37,7 @@ class DbIndexer extends Indexer
         }
 
         $this->index();
-        $this->softDelete();
+        $this->retire();
     }
 
     protected function get_db(): Db {
@@ -53,6 +54,8 @@ class DbIndexer extends Indexer
 
     protected function clear(): void {
         $this->db->table('docs')->delete();
+
+        $this->target->rebuild = true;
     }
 
     protected function index(): void {
@@ -102,10 +105,6 @@ class DbIndexer extends Indexer
             ['path' => $absolutePath]));
     }
 
-    protected function softDelete(): void {
-        throw new NotImplemented($this);
-    }
-
     protected function get_module(): BaseModule {
         global $osm_app; /* @var App $osm_app */
 
@@ -142,14 +141,35 @@ class DbIndexer extends Indexer
                 'modified_at' => $page->modified_at,
                 'deleted_at' => null,
             ]);
+
+        $this->idSaved($id);
     }
 
     protected function insert(Page $page): int {
-        return $this->db->table('docs')->insertGetId([
+        return $this->idSaved($this->db->table('docs')->insertGetId([
             'book' => $page->version->book->name,
             'version' => $page->version->name,
             'path' => $page->path,
             'modified_at' => $page->modified_at,
-        ]);
+        ]));
+    }
+
+    protected function retire(): void {
+        $query = $this->db->table('docs')
+            ->whereNull('deleted_at');
+
+        foreach ($query->get(Page::KEY_DB_COLUMNS) as $item) {
+            if (!Page::fromDb($item)) {
+                $this->retirePage($item->id);
+            }
+        }
+    }
+
+    protected function retirePage($id): void {
+        $this->db->table('docs')
+            ->where('id', $id)
+            ->update(['deleted_at' => Carbon::now()]);
+
+        $this->idDeleted($id);
     }
 }

@@ -29,4 +29,13 @@ use Osm\Core\Object_;
  */
 class Source extends Object_
 {
+    /**
+     * @var int[]
+     */
+    public array $saved_ids = [];
+
+    /**
+     * @var int[]
+     */
+    public array $deleted_ids = [];
 }

@@ -5,6 +5,7 @@ namespace Osm\Data\Indexing;
 use Osm\Core\Exceptions\NotImplemented;
 use Osm\Core\Object_;
 use Symfony\Component\Console\Output\OutputInterface;
+use function Osm\__;
 
 /**
  * Computes data in the `target` for provided `sources`, and maintains
@@ -17,12 +18,25 @@ use Symfony\Component\Console\Output\OutputInterface;
  * @property Runner $runner The index operation runner
  *
  * @property OutputInterface $output A stream the indexer writes output to.
- * @property Indexer[] $after Indexers that should run prior this indexer
+ * @property string[] $after Indexer class names that should
+ *      run prior this indexer
  */
 class Indexer extends Object_
 {
+    protected int $saved = 0;
+    protected int $deleted = 0;
+
     public function run(): void {
         throw new NotImplemented($this);
+    }
+
+    public function report(): void {
+        $this->output->writeln(__(
+            ":target: :saved record(s) inserted/updated, :deleted record(s) deleted.", [
+                'target' => $this->target->name,
+                'saved' => $this->saved,
+                'deleted' => $this->deleted,
+            ]));
     }
 
     protected function get_output(): OutputInterface {
@@ -30,10 +44,10 @@ class Indexer extends Object_
     }
 
     protected function get_after(): array {
-        return array_filter($this->runner->unsorted_indexers,
+        return array_keys(array_filter($this->runner->unsorted_indexers,
             fn(Indexer $indexer) =>
                 isset($this->sources[$indexer->target->name])
-        );
+        ));
     }
 
     public function shouldRun(): bool {
@@ -54,5 +68,25 @@ class Indexer extends Object_
         }
 
         return false;
+    }
+
+    protected function idDeleted(int $id): int {
+        if (!$this->target->rebuild) {
+            $this->target->deleted_ids[$id] = true;
+            $this->target->invalidated = true;
+        }
+        $this->deleted++;
+
+        return $id;
+    }
+
+    protected function idSaved(int $id): int {
+        if (!$this->target->rebuild) {
+            $this->target->saved_ids[$id] = true;
+            $this->target->invalidated = true;
+        }
+        $this->saved++;
+
+        return $id;
     }
 }

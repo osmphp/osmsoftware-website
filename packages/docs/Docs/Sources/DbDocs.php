@@ -8,5 +8,4 @@ use Osm\Data\Indexing\Source;
 #[Name('db__docs')]
 class DbDocs extends Source
 {
-
 }
