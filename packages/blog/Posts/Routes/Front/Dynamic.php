@@ -8,6 +8,7 @@ use FastRoute\Dispatcher;
 use FastRoute\RouteCollector;
 use Osm\Framework\Areas\Attributes\Area;
 use Osm\Framework\Areas\Front;
+use Osm\Framework\Http\DynamicRoute;
 use Osm\Framework\Http\Route;
 use function FastRoute\simpleDispatcher;
 
@@ -16,21 +17,8 @@ use function FastRoute\simpleDispatcher;
  * @property string $prefix
  */
 #[Area(Front::class)]
-class Dynamic extends Route
+class Dynamic extends DynamicRoute
 {
-    public function match(): ?Route {
-        $dispatched = $this->dispatcher->dispatch(
-            $this->http->request->getMethod(), $this->http->path);
-
-        if ($dispatched[0] !== Dispatcher::FOUND) {
-            return null;
-        }
-
-        $new = "{$dispatched[1]}::new";
-
-        return $new($dispatched[2]);
-    }
-
     protected function get_dispatcher(): Dispatcher {
         return simpleDispatcher(function (RouteCollector $r) {
             $r->addGroup($this->prefix, function (RouteCollector $r) {

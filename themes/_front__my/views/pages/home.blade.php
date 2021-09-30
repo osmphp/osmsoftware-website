@@ -43,28 +43,30 @@ $categories = $osm_app->modules[\Osm\Blog\Categories\Module::class]->categories;
             </p>
         </section>
 
-        <?php $category = $categories['news']; ?>
-        <section class="col-span-12 lg:col-start-4 lg:col-span-6 mb-6">
-            <h2 class="text-2xl sm:text-4xl text-center mt-16
-                text-{{ $category->color }}">
-                @if ($news->main_category_file)
-                    {!! $news->main_category_file->post_title_html !!}:
-                @endif
-                {{ $news->title }}
-            </h2>
-            <div class="mt-8 prose-lg max-w-none">
-                {!! $news->list_html !!}
-            </div>
-            <p class="mt-8 text-center flex flex-wrap justify-center gap-2 text-white">
-                <a class="py-2 px-4 rounded bg-gray-700 hover:bg-black"
-                    href="{{ $news->url }}" title="Details"
-                >Details</a>
-                <a class="py-2 px-4 rounded bg-{{ $category->color }}
-                    hover:bg-{{ $category->hover_color }}"
-                    href="{{ "{$osm_app->http->base_url}/blog/news/" }}" title="Old News"
-                >Old News</a>
-            </p>
-        </section>
+        @if ($news)
+            <?php $category = $categories['news']; ?>
+            <section class="col-span-12 lg:col-start-4 lg:col-span-6 mb-6">
+                <h2 class="text-2xl sm:text-4xl text-center mt-16
+                    text-{{ $category->color }}">
+                    @if ($news->main_category_file)
+                        {!! $news->main_category_file->post_title_html !!}:
+                    @endif
+                    {{ $news->title }}
+                </h2>
+                <div class="mt-8 prose-lg max-w-none">
+                    {!! $news->list_html !!}
+                </div>
+                <p class="mt-8 text-center flex flex-wrap justify-center gap-2 text-white">
+                    <a class="py-2 px-4 rounded bg-gray-700 hover:bg-black"
+                        href="{{ $news->url }}" title="Details"
+                    >Details</a>
+                    <a class="py-2 px-4 rounded bg-{{ $category->color }}
+                        hover:bg-{{ $category->hover_color }}"
+                        href="{{ "{$osm_app->http->base_url}/blog/news/" }}" title="Old News"
+                    >Old News</a>
+                </p>
+            </section>
+        @endif
 
         <?php $category = $categories['osmsoftware']; ?>
         <section class="col-span-12 lg:col-start-4 lg:col-span-6 mb-6">

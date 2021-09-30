@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "d59a327f986a6ce58343bd6ecb84d4f1",
+    "content-hash": "2e4e726d7b5ca0638122770d3cd894d2",
     "packages": [
         {
             "name": "algolia/algoliasearch-client-php",
@@ -1840,16 +1840,16 @@
         },
         {
             "name": "osmphp/framework",
-            "version": "v0.12.11",
+            "version": "v0.12.14",
             "source": {
                 "type": "git",
                 "url": "https://github.com/osmphp/framework.git",
-                "reference": "cca6a8bad81a9acfbc0a8629ff85dc8da5041645"
+                "reference": "97443ce299e8340c8fd5339c13fac6d858fe1d9e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/osmphp/framework/zipball/cca6a8bad81a9acfbc0a8629ff85dc8da5041645",
-                "reference": "cca6a8bad81a9acfbc0a8629ff85dc8da5041645",
+                "url": "https://api.github.com/repos/osmphp/framework/zipball/97443ce299e8340c8fd5339c13fac6d858fe1d9e",
+                "reference": "97443ce299e8340c8fd5339c13fac6d858fe1d9e",
                 "shasum": ""
             },
             "require": {
@@ -1861,6 +1861,7 @@
                 "illuminate/filesystem": "^8",
                 "illuminate/view": "^8",
                 "monolog/monolog": "^2",
+                "nikic/fast-route": "^1.3",
                 "osmphp/core": "^0.9",
                 "php": ">=8.0",
                 "symfony/browser-kit": "^5",
@@ -1904,9 +1905,9 @@
             "description": "Osm Framework is an open-source, insanely fast, unprecedentedly extensible, and fun to work with PHP 8 framework for creating modern Web applications. It's built on top of tried and tested Symfony and Laravel components.",
             "support": {
                 "issues": "https://github.com/osmphp/framework/issues",
-                "source": "https://github.com/osmphp/framework/tree/v0.12.11"
+                "source": "https://github.com/osmphp/framework/tree/v0.12.14"
             },
-            "time": "2021-09-29T07:17:18+00:00"
+            "time": "2021-09-30T09:02:49+00:00"
         },
         {
             "name": "phpdocumentor/reflection-common",

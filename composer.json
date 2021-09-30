@@ -13,7 +13,6 @@
         "osmphp/framework": "^0.12",
         "nesbot/carbon": "^2.48",
         "michelf/php-markdown": "^1.9",
-        "nikic/fast-route": "^1.3",
         "symfony/dom-crawler": "^5",
         "symfony/css-selector": "^5",
         "ext-curl": "*"
