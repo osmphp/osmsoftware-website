@@ -27,6 +27,7 @@ class M01_docs extends Migration
             $table->string('version')->index();
             $table->string('path')->index();
             $table->unique(['book', 'version', 'path']);
+            $table->string('url')->index();
             $table->dateTime('modified_at')->nullable();
             $table->dateTime('deleted_at')->nullable();
         });

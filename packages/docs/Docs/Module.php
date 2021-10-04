@@ -3,6 +3,7 @@
 namespace Osm\Docs\Docs;
 
 use Osm\App\App;
+use Osm\Core\Attributes\Name;
 use Osm\Core\BaseModule;
 use Osm\Framework\Cache\Attributes\Cached;
 use Osm\Framework\Settings\Hints\Settings;
@@ -12,6 +13,7 @@ use Osm\Framework\Settings\Hints\Settings;
  *
  * @property Settings $settings
  */
+#[Name('docs')]
 class Module extends BaseModule
 {
     public static ?string $app_class_name = App::class;

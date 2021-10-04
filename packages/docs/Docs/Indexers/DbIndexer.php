@@ -157,6 +157,7 @@ class DbIndexer extends Indexer
             'book' => $page->version->book->name,
             'version' => $page->version->name,
             'path' => $page->path,
+            'url' => $page->url,
             'modified_at' => $page->modified_at,
         ]));
     }
