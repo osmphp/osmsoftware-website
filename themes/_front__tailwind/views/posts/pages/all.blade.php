@@ -15,7 +15,7 @@ global $osm_app; /* @var \Osm\Core\App $osm_app */
                 <x-posts::list-item :post="$post" />
             @empty
                 <p class="my-4">
-                    {{ \Osm\__("No posts match your selection.") }}
+                    {{ \Osm\__("No posts here.") }}
                 </p>
             @endforelse
         </section>

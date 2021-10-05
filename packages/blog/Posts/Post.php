@@ -152,7 +152,6 @@ class Post extends File
         }
 
         $markdown = $this->transformRelativeLinks($markdown);
-        $markdown = $this->transformTags($markdown);
 
         return parent::html($markdown);
     }
@@ -181,16 +180,6 @@ class Post extends File
                 ? "<{$url}>"
                 : $match[0];
         }, $markdown);
-    }
-
-    protected function transformTags(string $markdown): string {
-        return preg_replace_callback(static::TAG_PATTERN, function($match) {
-            return $this->renderTag($match['tag']);
-        }, $markdown);
-    }
-
-    protected function renderTag(string $tag): string {
-        return $tag == 'toc' ? $this->renderToc() : "{{ {$tag} }}";
     }
 
     protected function renderToc(): string {

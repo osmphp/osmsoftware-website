@@ -24,10 +24,6 @@ class Module extends BaseModule
         \Osm\Data\Markdown\Module::class,
     ];
 
-    public static array $traits = [
-        Settings::class => Traits\SettingsTrait::class,
-    ];
-
     protected function get_books(): array {
         $books = [];
 

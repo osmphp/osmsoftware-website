@@ -32,6 +32,7 @@ It's implemented in the [`Responses`](https://github.com/osmphp/framework/blob/H
 
 Users of a real-world application expect something more visual, and the [`ResponsesTrait`](https://github.com/osmphp/framework/blob/HEAD/src/Pages/Traits/ResponsesTrait.php) of the `std-pages` module renders 404 page using a Blade template:
 
+    #[UseIn(Responses::class)]
     trait ResponsesTrait
     {
         protected function around_notFound(callable $proceed, string $message)
@@ -76,6 +77,7 @@ For example, all the application logs are defined as properties of the [`Logs`](
     /**
      * @property Logger $my
      */
+    #[UseIn(Logs::class)] 
     trait LogsTrait
     {
         protected function get_my(): Logger {
@@ -109,28 +111,16 @@ Let's say, there is a `Foo` class that you want to extend with a dynamic trait:
         } 
     }
 
-First, register your trait with the original class in your module:
-
-    <?php
-    ...    
-    namespace My\Base;
-    
-    use Osm\Framework\Logs\Logs;
-    ...
-    class Module extends BaseModule {
-        ...
-        public static array $traits = [
-            // original class => your trait
-            Foo::class => Traits\FooTrait::class,
-        ];
-    }
-
-Then define the trait in the `Traits` sub-namespace:
+Define the trait in the `Traits` sub-namespace:
 
     <?php
     ...    
     namespace My\Base\Traits;
     
+    use Osm\Core\Attributes\UseIn;
+    use My\Base\Foo;
+    
+    #[UseIn(Foo::class)]
     trait FooTrait {
     }
 
@@ -143,6 +133,7 @@ In order to prevent name collisions, add some unique prefix to the property and 
     /**
      * @property string $my_property
      */
+    #[UseIn(Foo::class)]
     trait FooTrait {
         protected function get_my_property(): string {
             ...
@@ -157,6 +148,7 @@ In order to prevent name collisions, add some unique prefix to the property and 
 
 Override an existing method by defining a method with the same name and the `around_` prefix. Add the additional `callable $proceed` parameter to the original signature:
 
+    #[UseIn(Foo::class)]
     trait FooTrait {
         protected function around_exists(callable $proceed, string $code): bool {
             // this is executed before the original method
@@ -170,6 +162,7 @@ Override an existing method by defining a method with the same name and the `aro
 
 In case the trait code doesn't use the original method parameters, replace them with `...$args`, both in the method signature, and in the `$proceed` call:
 
+    #[UseIn(Foo::class)]
     trait FooTrait {
         protected function around_exists(callable $proceed, ...$args): bool {
             // this is executed before the original method
@@ -188,6 +181,8 @@ Multiple modules can add their dynamic traits to the same class. In this case ne
 Let's illustrate stacking with an example. Module `Y` requires module `X`, and both `X` and `Y` modules override the `Foo::bar()` method:
 
     namespace X\Traits;
+
+    #[UseIn(Foo::class)]
     trait FooTrait {
         protected function around_bar(callable $proceed): void {
             $proceed();
@@ -195,6 +190,8 @@ Let's illustrate stacking with an example. Module `Y` requires module `X`, and b
     } 
     ...
     namespace Y\Traits;
+
+    #[UseIn(Foo::class)]
     trait FooTrait {
         protected function around_bar(callable $proceed): void {
             $proceed();

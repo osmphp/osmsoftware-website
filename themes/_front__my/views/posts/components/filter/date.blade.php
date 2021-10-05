@@ -2,6 +2,7 @@
 global $osm_app; /* @var \Osm\Core\App $osm_app */
 /* @var \Osm\Blog\Posts\Filter\Date $filter */
 ?>
+@if (!empty($filter->items))
 <h2 class="text-xl mt-8 mb-4">{!! $filter->title_html !!}</h2>
 <ul>
     @foreach($filter->items as $yearItem)
@@ -54,3 +55,4 @@ global $osm_app; /* @var \Osm\Core\App $osm_app */
         </li>
     @endforeach
 </ul>
+@endif

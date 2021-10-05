@@ -10,7 +10,7 @@ use Osm\Core\Object_;
  */
 class Placeholder extends Object_
 {
-    public function render(): ?string {
+    public function render(File $file): ?string {
         throw new NotImplemented($this);
     }
 }

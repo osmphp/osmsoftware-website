@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Osm\Data\Markdown;
 
 use Carbon\Carbon;
-use Carbon\CarbonInterval;
 use Michelf\MarkdownExtra;
 use Osm\Data\Markdown\Exceptions\InvalidJson;
 use Osm\Data\Markdown\Exceptions\TooManyDuplicateHeadings;
@@ -14,6 +13,7 @@ use Osm\Core\Object_;
 use function Osm\__;
 use function Osm\merge;
 use Osm\Core\Attributes\Serialized;
+use Osm\Framework\Cache\Attributes\Cached;
 
 /**
  * @property string $path #[Serialized]
@@ -31,6 +31,10 @@ use Osm\Core\Attributes\Serialized;
  * @property string $text #[Serialized]
  * @property string $html #[Serialized]
  * @property string $reading_time #[Serialized]
+ *
+ * @property PlaceholderRenderer $placeholder_renderer
+ *      #[Cached('{placeholder_renderer_cache_key}')]
+ * @property string $placeholder_renderer_cache_key
  */
 class File extends Object_
 {
@@ -43,7 +47,6 @@ class File extends Object_
     // obsolete patterns
     const HEADER_PATTERN = '/^(?<depth>#+)\s*(?<title>[^#{\r\n]+)#*[ \t]*(?:{(?<attributes>[^}\r\n]*)})?\r?$/mu';
     const IMAGE_LINK_PATTERN = "/!\\[(?<description>[^\\]]*)\\]\\((?<url>[^\\)]+)\\)/u";
-    const TAG_PATTERN = "/{{\s*(?<tag>[^ }]+)\s*}}/u";
 
     protected function get_absolute_path(): string {
         return "{$this->root_path}/{$this->path}";
@@ -200,6 +203,8 @@ class File extends Object_
             return null;
         }
 
+        $markdown = $this->placeholder_renderer->render($this, $markdown);
+
         $html = MarkdownExtra::defaultTransform($markdown);
 
         // fix code blocks
@@ -214,5 +219,13 @@ class File extends Object_
         $html = $this->html($markdown);
 
         return trim(str_replace(['<p>', '</p>'], '', $html));
+    }
+
+    protected function get_placeholder_renderer_cache_key(): string {
+        return "placeholder_renderer__{$this->__class->name}";
+    }
+
+    protected function get_placeholder_renderer(): PlaceholderRenderer {
+        return PlaceholderRenderer::new(['class_name' => $this->__class->name]);
     }
 }

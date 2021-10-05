@@ -14,7 +14,7 @@ $title = \Osm\__(":year Posts", ['year' => $posts->page_type->year]);
                 <x-posts::list-item :post="$post" />
             @empty
                 <p class="my-4">
-                    {{ \Osm\__("No posts match your selection.") }}
+                    {{ \Osm\__("No posts here.") }}
                 </p>
             @endforelse
         </section>

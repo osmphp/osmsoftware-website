@@ -16,7 +16,7 @@ $title = \Osm\__("Search results for ':phrase'", [
                 <x-posts::list-item :post="$post" />
             @empty
                 <p class="my-4">
-                    {{ \Osm\__("No posts match your selection.") }}
+                    {{ \Osm\__("No posts match the search phrase.") }}
                 </p>
             @endforelse
         </section>
