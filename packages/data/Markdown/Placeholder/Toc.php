@@ -10,6 +10,8 @@ use Osm\Data\Markdown\Placeholder;
 #[Name('toc'), In_(File::class)]
 class Toc extends Placeholder
 {
+    public bool $starts_on_new_line = true;
+
     public function render(File $file): ?string
     {
         $markdown = '';

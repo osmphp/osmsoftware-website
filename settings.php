@@ -50,7 +50,7 @@ return (object)[
             'framework' => (object)[
                 'repo' => 'https://github.com/osmphp/framework.git',
                 'path' => "{$osm_app->paths->temp}/docs/framework",
-                'dir' => 'docs/',
+                'dir' => 'docs',
                 'versions' => [
                     /* @see \Osm\Docs\Docs\Hints\Settings\Version */
                     '0.12' => (object)['branch' => 'v0.12'],

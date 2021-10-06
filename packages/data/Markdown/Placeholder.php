@@ -7,6 +7,7 @@ use Osm\Core\Object_;
 
 /**
  * @property string $name
+ * @property bool $starts_on_new_line
  */
 class Placeholder extends Object_
 {

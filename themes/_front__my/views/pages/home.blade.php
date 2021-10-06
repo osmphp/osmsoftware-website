@@ -30,7 +30,7 @@ $categories = $osm_app->modules[\Osm\Blog\Categories\Module::class]->categories;
                 >Download</a>
                 <a class="py-2 px-4 rounded bg-{{ $category->color }}
                     hover:bg-{{ $category->hover_color }}"
-                    href="https://github.com/osmphp/framework#documentation" title="Docs"
+                    href="{{ "{$osm_app->http->base_url}/docs/framework/" }}" title="Docs"
                 >Docs</a>
                 <a class="py-2 px-4 rounded bg-{{ $category->color }}
                     hover:bg-{{ $category->hover_color }}"

@@ -41,8 +41,8 @@ class File extends Object_
     const MAX_DUPLICATE_HEADINGS = 100;
 
     // Regex patterns
-    const H1_PATTERN = '/^#\s*(?<title>[^#{\r\n]+)\s*/mu';
-    const SECTION_PATTERN = '/^(?<depth>#+)\s*(?<title>[^#{\r\n]+)#*[ \t]*(?:{(?<attributes>[^}\r\n]*)})?\r?$\s*(?<text>[\s\S]*?)(?=^#|\Z)/mu';
+    const H1_PATTERN = '/^#\s*(?<title>[^#{\r\n]+)[\r\n]*/mu';
+    const SECTION_PATTERN = '/^(?<depth>#+)\s*(?<title>[^#{\r\n]+)#*[ \t]*(?:{(?<attributes>[^}\r\n]*)})?\r?$[\r\n]*(?<text>[\s\S]*?)(?=^#|\Z)/mu';
 
     // obsolete patterns
     const HEADER_PATTERN = '/^(?<depth>#+)\s*(?<title>[^#{\r\n]+)#*[ \t]*(?:{(?<attributes>[^}\r\n]*)})?\r?$/mu';
