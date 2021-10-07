@@ -36,10 +36,10 @@ global $osm_app; /* @var \Osm\Core\App $osm_app */
         <p class="text-sm italic text-gray-400 md:pl-4">
             {{ $post->created_at->diffForHumans() }} ∙ {{ $post->reading_time }}
         </p>
-        @if ($post->list_html)
+        @if ($post->abstract_html)
             <a href="{{ $post->url }}" title="{{ $post->title }}">
                 <section class="prose max-w-none my-4 sm:text-lg md:pl-4">
-                    {!! $post->list_html !!}
+                    {!! $post->abstract_html !!}
                 </section>
             </a>
         @endif

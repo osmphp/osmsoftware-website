@@ -6,7 +6,7 @@ More details:
 
 {{ toc }}
 
-### meta.list_text
+### meta.abstract
 
 New Osm Framework version comes with improved, configurable and easily
 customizable Gulp script, modular NPM dependencies, standard page layout Blade

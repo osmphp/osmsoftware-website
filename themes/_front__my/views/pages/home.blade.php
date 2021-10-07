@@ -54,7 +54,7 @@ $categories = $osm_app->modules[\Osm\Blog\Categories\Module::class]->categories;
                     {{ $news->title }}
                 </h2>
                 <div class="mt-8 prose-lg max-w-none">
-                    {!! $news->list_html !!}
+                    {!! $news->abstract_html !!}
                 </div>
                 <p class="mt-8 text-center flex flex-wrap justify-center gap-2 text-white">
                     <a class="py-2 px-4 rounded bg-gray-700 hover:bg-black"

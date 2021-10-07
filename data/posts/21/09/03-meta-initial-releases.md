@@ -6,7 +6,7 @@ Contents:
 
 {{ toc }}
 
-## meta.list_text
+### meta.abstract
 
 This article describes our package release process before `v1.0.0`. In short,
 every change is released as soon as it's ready, and all dependent packages are

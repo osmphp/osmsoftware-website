@@ -6,7 +6,7 @@ More details:
 
 {{ toc }}
 
-### meta.list_text
+### meta.abstract
 
 The first *osm.software* blog articles have been written, edited and revised. Content changes are deployed in semi-automated way. The website got some SEO improvements, and now
 it scores 100% in Google Lighthouse.

@@ -54,7 +54,7 @@ return (object)[
                 'versions' => [
                     /* @see \Osm\Docs\Docs\Hints\Settings\Version */
                     '0.12' => (object)['branch' => 'v0.12'],
-                    //'0.13' => (object)['branch' => 'v0.12'],
+                    '0.13' => (object)['branch' => 'v0.13'],
                 ],
             ],
         ],

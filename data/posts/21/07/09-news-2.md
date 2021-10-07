@@ -4,7 +4,7 @@ Osm Framework introduced JS controllers, and JS unit tests. [osmcommerce.com](ht
  
 {{ toc }}
 
-### meta.list_text
+### meta.abstract
 
 Osm Framework introduced JS controllers, and JS unit tests. *osmcommerce.com*
 website project was renamed to *osm.software*, it

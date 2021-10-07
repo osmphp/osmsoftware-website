@@ -6,7 +6,7 @@ More details:
 
 {{ toc }}
 
-### meta.list_text
+### meta.abstract
 
 From now on, this website is *deployed on push*, and by the way, you can *easily play* with the website copy locally. In the Osm framework, new `Osm_Project` application allows reflecting over modules and classes regardless to which application they belong. New *experimental project* is aimed at quick creation of the Admin UI.
 

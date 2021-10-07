@@ -6,7 +6,7 @@ More details:
 
 {{ toc }}
 
-### meta.list_text
+### meta.abstract
 
 Osm Framework introduced production mode and maintenance mode. *osm.software* website went live.
 

@@ -6,7 +6,7 @@ Contents:
 
 {{ toc }}
 
-### meta.list_text
+### meta.abstract
 
 This article explains how to write and publish blog posts.
 
@@ -126,9 +126,9 @@ Currently, only one metadata property is supported:
 
 ### `meta.*` Sections
  
-Alternatively, you can provide additional meta information in Markdown format in `meta.*` sections: For example, `list_text` field specifies text to be rendered on blog post list pages. 
+Alternatively, you can provide additional meta information in Markdown format in `meta.*` sections: For example, `abstract` field specifies text to be rendered on blog post list pages. 
 
-    ### meta.list_text
+    ### meta.abstract
     
     This very website, `osm.software`, is built using Osm Framework. 
     It's open-source, but before diving into implementation details, 
@@ -138,8 +138,8 @@ The `meta.*` sections are not rendered on the blog post page.
 
 Currently, only two `meta.*` section are supported:
 
-* `list_text` section specifies text to be rendered on blog post list pages. Don't use links in this section.
-* `description` section specifies text to be rendered in blog post page's meta description that is shown on search engine result pages. Don't use Markdown formatting in this section. If omitted, `list_text` is used.
+* `abstract` section specifies text to be rendered on blog post list pages. Don't use links in this section.
+* `description` section specifies text to be rendered in blog post page's meta description that is shown on search engine result pages. Don't use Markdown formatting in this section. If omitted, `abstract` is used.
 
 ### Custom Metadata
 

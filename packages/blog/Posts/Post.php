@@ -18,8 +18,6 @@ use Symfony\Component\DomCrawler\Crawler;
 use function Osm\__;
 
 /**
- * @property ?string $list_text
- * @property ?string $list_html
  * @property Carbon $created_at
  * @property string $url_key
  * @property string $url
@@ -33,7 +31,6 @@ use function Osm\__;
  * @property CategoryModule $category_module
  * @property string[] $broken_links
  * @property string[] $external_broken_links
- * @property ?string $meta_description
  */
 class Post extends File
 {
@@ -82,14 +79,6 @@ class Post extends File
         global $osm_app; /* @var App $osm_app */
 
         return $osm_app->http;
-    }
-
-    protected function get_list_text(): ?string {
-        return $this->meta->list_text ?? null;
-    }
-
-    protected function get_list_html(): ?string {
-        return $this->html($this->list_text);
     }
 
     protected function get_main_category(): ?string {
@@ -313,9 +302,5 @@ class Post extends File
         }
 
         return $url;
-    }
-
-    protected function get_meta_description(): ?string {
-        return $this->meta?->description ?? $this->list_text;
     }
 }

@@ -7,7 +7,7 @@ Details:
 
 {{ toc }}
 
-## meta.list_text
+### meta.abstract
 
 After pushing changes to GitHub, *osm.software* website
 is updated **without any additional manual action**. On push, GitHub executes the

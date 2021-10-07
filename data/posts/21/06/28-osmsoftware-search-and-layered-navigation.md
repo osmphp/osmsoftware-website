@@ -4,7 +4,7 @@ Readers of [osm.software](https://osm.software/blog/) blog can search the blog f
 
 {{ toc }}
 
-### meta.list_text
+### meta.abstract
 
 Readers of *osm.software* blog can search the blog for a specific phrase, and
 narrow down listed articles using multi-select layered navigation. Let's see how

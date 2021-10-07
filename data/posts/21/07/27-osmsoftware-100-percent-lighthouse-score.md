@@ -11,7 +11,7 @@ More information:
 
 {{ toc }}
 
-### meta.list_text
+### meta.abstract
 
 Today, *osm.software* reached an important milestone - 100% *Lighthouse* score.
 

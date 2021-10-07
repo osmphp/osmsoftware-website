@@ -20,7 +20,7 @@ class RenderPage extends VersionRoute
         $item = $this->db->table('docs')
             ->where('book', $this->book_name)
             ->where('version', $this->version_name)
-            ->where('url', $this->path)
+            ->where('url', "/{$this->path}")
             ->first(Page::KEY_DB_COLUMNS);
 
         if ($item) {

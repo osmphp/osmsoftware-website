@@ -5,7 +5,7 @@ Tailwind CSS Typography. Osm Core allows debugging accidental assignments of the
  
 {{ toc }}
 
-### meta.list_text
+### meta.abstract
 
 *osmcommerce.com* (now *osm.software*) blog got multi-select layered navigation,
 category management, FontAwesome icons, Tailwind CSS Typography. Osm Core allows

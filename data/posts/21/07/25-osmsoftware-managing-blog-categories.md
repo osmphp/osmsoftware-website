@@ -4,7 +4,7 @@ This article explains how to manage and assign blog categories.
 
 {{ toc }}
 
-### meta.list_text
+### meta.abstract
 
 This article explains how to manage and assign blog categories.
 

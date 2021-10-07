@@ -32,10 +32,10 @@ global $osm_app; /* @var \Osm\Core\App $osm_app */
             @endforeach
         </p>
         <p>{{ $post->created_at->diffForHumans() }} ∙ {{ $post->reading_time }}</p>
-        @if ($post->list_html)
+        @if ($post->abstract_html)
             <a href="{{ $post->url }}" title="{{ $post->title }}">
                 <section class="prose max-w-none my-5">
-                    {!! $post->list_html !!}
+                    {!! $post->abstract_html !!}
                 </section>
             </a>
         @endif

@@ -6,7 +6,7 @@ Contents:
 
 {{ toc }}
 
-## meta.list_text
+### meta.abstract
 
 This article provides a practical example of contributing changes to Osm Framework
 and other `osmphp/*` GitHub repositories. It's based

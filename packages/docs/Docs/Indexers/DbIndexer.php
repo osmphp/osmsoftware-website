@@ -157,8 +157,8 @@ class DbIndexer extends Indexer
             'book' => $page->version->book->name,
             'version' => $page->version->name,
             'path' => $page->path,
-            'parent_url' => $page->parent_url,
             'url' => $page->url,
+            'level' => $page->level,
             'sort_order' => $page->sort_order,
             'modified_at' => $page->modified_at,
         ]));

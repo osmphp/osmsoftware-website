@@ -21,6 +21,7 @@ use Osm\Core\Attributes\Serialized;
  *      $path stores the book pages
  *
  * @property string $root_path
+ * @property string $absolute_url
  */
 class Version extends Object_
 {
@@ -40,5 +41,9 @@ class Version extends Object_
 
     protected function get_dir(): string {
         return $this->book->dir;
+    }
+
+    protected function get_absolute_url(): string {
+        return "{$this->book->absolute_url}/{$this->name}";
     }
 }

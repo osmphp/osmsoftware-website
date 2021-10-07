@@ -31,6 +31,9 @@ use Osm\Framework\Cache\Attributes\Cached;
  * @property string $text #[Serialized]
  * @property string $html #[Serialized]
  * @property string $reading_time #[Serialized]
+ * @property ?string $abstract #[Serialized]
+ * @property ?string $abstract_html #[Serialized]
+ * @property ?string $meta_description #[Serialized]
  *
  * @property PlaceholderRenderer $placeholder_renderer
  *      #[Cached('{placeholder_renderer_cache_key}')]
@@ -227,5 +230,17 @@ class File extends Object_
 
     protected function get_placeholder_renderer(): PlaceholderRenderer {
         return PlaceholderRenderer::new(['class_name' => $this->__class->name]);
+    }
+
+    protected function get_abstract(): ?string {
+        return $this->meta->abstract ?? null;
+    }
+
+    protected function get_abstract_html(): ?string {
+        return $this->html($this->abstract);
+    }
+
+    protected function get_meta_description(): ?string {
+        return $this->meta?->description ?? $this->abstract;
     }
 }

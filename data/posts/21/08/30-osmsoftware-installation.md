@@ -6,7 +6,7 @@ Contents:
 
 {{ toc }}
 
-## meta.list_text
+### meta.abstract
 
 Install PHP 8, MySql, Node, Gulp and ElasticSearch. Clone the project. Edit
 project settings. Finally, run few commands in the command line.

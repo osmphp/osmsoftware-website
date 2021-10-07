@@ -24,6 +24,7 @@ use Osm\Framework\Settings\Hints\Settings;
  *      version. If omitted, the last defined version is considered the
  *      default version.
  * @property Version[] $versions #[Serialized]
+ * @property string $absolute_url
  *
  * @property \stdClass|Settings $settings
  * @property Version $default_version
@@ -47,5 +48,11 @@ class Book extends Object_
 
     protected function get_default_version(): Version {
         return $this->versions[$this->default_version_name];
+    }
+
+    protected function get_absolute_url(): string {
+        global $osm_app; /* @var App $osm_app */
+
+        return "{$osm_app->base_url}{$this->url}";
     }
 }

@@ -3,7 +3,7 @@
 This article describes how we use GitHub issues and projects, both for new
 development and for support.
 
-## meta.list_text
+### meta.abstract
 
 This article describes how we use GitHub issues and projects, both for new development and for support.
 
