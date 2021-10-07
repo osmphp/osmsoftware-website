@@ -51,6 +51,7 @@ return (object)[
                 'repo' => 'https://github.com/osmphp/framework.git',
                 'path' => "{$osm_app->paths->temp}/docs/framework",
                 'dir' => 'docs',
+                'color' => 'green-700',
                 'versions' => [
                     /* @see \Osm\Docs\Docs\Hints\Settings\Version */
                     '0.12' => (object)['branch' => 'v0.12'],

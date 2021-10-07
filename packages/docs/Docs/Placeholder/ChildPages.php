@@ -36,7 +36,7 @@ class ChildPages extends Placeholder
                 " {$childPage->title}\n\n{$childPage->abstract}\n\n";
 
             if (empty($childPage->children)) {
-                $markdown .= "[" . __("Read more"). "]($$childPage->absolute_url)\n\n";
+                $markdown .= "[" . __("Read more"). "]($childPage->absolute_url)\n\n";
             }
             else {
                 $markdown .= $this->renderChildren($childPage,

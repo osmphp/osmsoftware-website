@@ -17,6 +17,7 @@ use function Osm\__;
  * @property int $level
  * @property Db $db
  * @property string $absolute_url
+ * @property Page[] $parents
  */
 class Page extends File
 {
@@ -166,5 +167,30 @@ class Page extends File
 
     protected function get_absolute_url(): string {
         return "{$this->version->absolute_url}{$this->url}";
+    }
+
+    protected function get_parents(): array {
+        $parents = [];
+        $urls = explode('/', $this->url);
+
+        if (count($urls) < 3) {
+            return $parents;
+        }
+
+        for ($i = 1; $i < count($urls) - 1; $i++) {
+            $item = $this->db->table('docs')
+                ->select(static::KEY_DB_COLUMNS)
+                ->where('book', $this->version->book->name)
+                ->where('version', $this->version->name)
+                ->where('url', implode('/',
+                    array_slice($urls, 0, $i + 1)) . '.html')
+                ->first();
+
+            if ($item) {
+                $parents[] = static::fromDb($item);
+            }
+        }
+
+        return $parents;
     }
 }

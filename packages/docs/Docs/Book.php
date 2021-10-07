@@ -24,6 +24,7 @@ use Osm\Framework\Settings\Hints\Settings;
  *      version. If omitted, the last defined version is considered the
  *      default version.
  * @property Version[] $versions #[Serialized]
+ * @property string $color #[Serialized]
  * @property string $absolute_url
  *
  * @property \stdClass|Settings $settings
@@ -54,5 +55,9 @@ class Book extends Object_
         global $osm_app; /* @var App $osm_app */
 
         return "{$osm_app->base_url}{$this->url}";
+    }
+
+    protected function get_color(): string {
+        return 'gray-700';
     }
 }

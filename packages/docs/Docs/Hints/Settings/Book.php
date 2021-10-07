@@ -19,6 +19,7 @@ namespace Osm\Docs\Docs\Hints\Settings;
  *      default version.
  * If omitted
  * @property Version[] $versions
+ * @property string $color
  */
 class Book
 {

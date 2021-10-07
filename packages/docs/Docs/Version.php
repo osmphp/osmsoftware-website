@@ -22,6 +22,7 @@ use Osm\Core\Attributes\Serialized;
  *
  * @property string $root_path
  * @property string $absolute_url
+ * @property ?Page $index_page
  */
 class Version extends Object_
 {
@@ -45,5 +46,11 @@ class Version extends Object_
 
     protected function get_absolute_url(): string {
         return "{$this->book->absolute_url}/{$this->name}";
+    }
+
+    protected function get_index_page(): ?Page {
+        $page = Page::new(['version' => $this, 'path' => 'index.md']);
+
+        return $page->exists ? $page : null;
     }
 }

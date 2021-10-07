@@ -60,7 +60,7 @@ class PlaceholderRenderer extends Object_
         File $file): string
     {
         // don't render unknown placeholders
-        if (!($placeholder = $this->placeholders[$match['placeholder'][0]])) {
+        if (!($placeholder = $this->placeholders[$match['placeholder'][0]] ?? null)) {
             return $match[0][0];
         }
 
