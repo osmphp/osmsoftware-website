@@ -6,9 +6,7 @@ global $osm_app; /* @var \Osm\Core\App $osm_app */
     :description="$page->meta_description"
 >
     <div class="container mx-auto px-4 grid grid-cols-12">
-        <article class="col-start-1 col-span-12 md:col-start-5 md:col-span-8
-            xl:col-start-4 xl:col-span-6"
-        >
+        <article class="col-start-1 col-span-12 md:col-start-4 md:col-span-9">
             <h1 class="text-2xl sm:text-4xl pt-4 mb-4 border-t border-gray-300
                 md:pl-4 xl:pr-4 text-{{ $page->version->book->color }}"
             >
@@ -41,9 +39,6 @@ global $osm_app; /* @var \Osm\Core\App $osm_app */
         </article>
         <aside class="left-drawer left-drawer--closed">
             <x-docs::tree :version="$page->version"/>
-        </aside>
-        <aside class="hidden xl:block xl:col-start-10 xl:col-span-3 row-start-1
-            border-t border-gray-300 border-l">
         </aside>
     </div>
 </x-std-pages::layout>
