@@ -22,7 +22,7 @@ CODE_CHANGES=$(git diff --name-only $BRANCH..origin/$BRANCH :^data/)
 # do full update
 if [[ $ALL_CHANGES ]] && ! [[ $CODE_CHANGES ]]; then
     git merge origin/$BRANCH
-    $OSM index
+    $OSM index:blog
     echo "DATA UPDATED!"
 else
     $OSM http:down
@@ -34,7 +34,7 @@ else
     npm install
     gulp
     $OSM migrate:up
-    $OSM index
+    $OSM index:blog
     $OSM http:up
     echo "APP UPDATED!"
 fi
