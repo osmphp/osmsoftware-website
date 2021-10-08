@@ -141,6 +141,11 @@ class Page extends File
         $lastChild = null;
 
         while ($offset < count($pages)) {
+            if (!$pages[$offset]) {
+                $offset++;
+                continue;
+            }
+
             if ($pages[$offset]->level <= $this->level) {
                 // next sibling
                 break;
