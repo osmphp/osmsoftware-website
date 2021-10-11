@@ -2,13 +2,23 @@
 
 Computed properties are one of Osm Framework pillars. They help to execute code only once, and only if it's actually needed. Computed properties control object serialization and caching. They provide meaningful insights into class interdependencies. Finally, computed properties are easy to test.
 
+**Note**. This post is moved to [Osm Framework documentation](https://osm.software/docs/framework/writing-php-code/computed-properties.html).
+
 Contents:
 
 {{ toc }}
 
+## meta
+
+    {
+        "canonical_url": "https://osm.software/docs/framework/writing-php-code/computed-properties.html"
+    }
+
 ### meta.abstract
 
 Computed properties are one of Osm Framework pillars. They help to execute code only once, and only if it's actually needed. Computed properties control object serialization and caching. They provide meaningful insights into class interdependencies. Finally, computed properties are easy to test.
+
+**Note**. This post is moved to *Osm Framework documentation*.
 
 ## Example
 

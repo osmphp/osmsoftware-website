@@ -2,13 +2,23 @@
 
 Osm Framework uses [Monolog](https://github.com/Seldaek/monolog/blob/main/doc/01-usage.md) library for logging. Use standard logs defined in the `$osm_app->logs` object, or add your own. Control logging in the `settings.{app_name}.php` and `.env.{app_name}` files.  
 
+**Note**. This post is moved to [Osm Framework documentation](https://osm.software/docs/framework/other-features/logging.html).
+
 Details:
 
 {{ toc }}
 
+## meta
+
+    {
+        "canonical_url": "https://osm.software/docs/framework/other-features/logging.html"
+    }
+
 ### meta.abstract
 
 Osm Framework uses *Monolog* library for logging. Use standard loggers defined in the `$osm_app->logs` object, or add your own. Control logging in the `settings.{app_name}.php` and `.env.{app_name}` files.  
+
+**Note**. This post is moved to *Osm Framework documentation*.
 
 ## Usage
  

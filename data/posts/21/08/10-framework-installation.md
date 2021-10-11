@@ -3,13 +3,23 @@
 Once the PHP 8, Node and Gulp are installed, create new
 projects quickly using the command line.
 
+**Note**. This post is moved to [Osm Framework documentation](https://osm.software/docs/framework/getting-started/installation.html).
+
 Contents:
 
 {{ toc }}
 
+## meta
+
+    {
+        "canonical_url": "https://osm.software/docs/framework/getting-started/installation.html"
+    }
+
 ### meta.abstract
 
 Once PHP 8, Node and Gulp are installed, create new projects quickly using the command line.
+
+**Note**. This post is moved to *Osm Framework documentation*.
 
 ## Prerequisites
 

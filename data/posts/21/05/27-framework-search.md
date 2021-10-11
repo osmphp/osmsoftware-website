@@ -6,13 +6,23 @@ data better. Under the hood, search and layered navigation
 interact with ElasticSearch, or other search engine, and this article describes
 how.
 
+**Note**. This post is moved to [Osm Framework documentation](https://osm.software/docs/framework/processing-data/search.html).
+
 {{ toc }}
+
+## meta
+
+    {
+        "canonical_url": "https://osm.software/docs/framework/processing-data/search.html"
+    }
 
 ### meta.abstract
 
 Full-text search and layered navigation is a common feature for e-commerce
 applications. It's also used in this blog. Actually, it makes browsing any
 non-trivial data better. Under the hood, search and layered navigation interact with ElasticSearch, or other search engine, and this article describes how.
+
+**Note**. This post is moved to *Osm Framework documentation*.
 
 ## Configuration
 

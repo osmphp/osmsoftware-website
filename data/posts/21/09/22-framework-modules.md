@@ -4,15 +4,25 @@ Modular software development is a well-known practice of dividing your applicati
 
 Modular development also encourages reuse. It's like a puzzle. Using one set of modules, you'll get an e-commerce application, using another set of modules - you'll get a blog application.
 
+**Note**. This post is moved to [Osm Framework documentation](https://osm.software/docs/framework/writing-php-code/modules.html).
+
 Details:
 
 {{ toc }}
+
+## meta
+
+    {
+        "canonical_url": "https://osm.software/docs/framework/writing-php-code/modules.html"
+    }
 
 ### meta.abstract
 
 Modular software development is a well-known practice of dividing your application into several modules, each doing one thing, and doing it well. It increases readability and simplifies maintenance, as application concerns are fully separated from one another, easier to reason about, and to debug.
 
 Modular development also encourages reuse. It's like a puzzle. Using one set of modules, you'll get an e-commerce application, using another set of modules - you'll get a blog application.
+
+**Note**. This post is moved to *Osm Framework documentation*.
 
 ## Creating Modules
 

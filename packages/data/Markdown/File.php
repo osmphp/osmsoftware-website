@@ -34,6 +34,7 @@ use Osm\Framework\Cache\Attributes\Cached;
  * @property ?string $abstract #[Serialized]
  * @property ?string $abstract_html #[Serialized]
  * @property ?string $meta_description #[Serialized]
+ * @property ?string $canonical_url #[Serialized]
  *
  * @property PlaceholderRenderer $placeholder_renderer
  *      #[Cached('{placeholder_renderer_cache_key}')]
@@ -242,5 +243,9 @@ class File extends Object_
 
     protected function get_meta_description(): ?string {
         return $this->meta?->description ?? $this->abstract;
+    }
+
+    protected function get_canonical_url(): ?string {
+        return $this->meta->canonical_url ?? null;
     }
 }

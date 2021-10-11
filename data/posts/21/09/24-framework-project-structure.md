@@ -2,13 +2,23 @@
 
 After you got a project up and running, let's have a look what's inside. Every directory has its purpose. Learn where to put your creative efforts!
 
+**Note**. This post is moved to [Osm Framework documentation](https://osm.software/docs/framework/getting-started/project-structure.html).
+
 Details:
 
 {{ toc }}
 
+## meta
+
+    {
+        "canonical_url": "https://osm.software/docs/framework/getting-started/project-structure.html"
+    }
+
 ### meta.abstract
 
 After you got a project up and running, let's have a look what's inside. Every directory has its purpose. Learn where to put your creative efforts!
+
+**Note**. This post is moved to *Osm Framework documentation*.
 
 ## `.github/` - GitHub Settings
 

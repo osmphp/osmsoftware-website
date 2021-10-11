@@ -1,10 +1,22 @@
 # Command Line Aliases
 
+Install and use `osm`, `osmc`, `osmt` and `osmh` *command line aliases* for faster command typing.
+
+**Note**. This post is moved to [Osm Framework documentation](https://osm.software/docs/framework/getting-started/command-line-aliases.html).
+
 {{ toc }}
+
+## meta
+
+    {
+        "canonical_url": "https://osm.software/docs/framework/getting-started/command-line-aliases.html"
+    }
 
 ### meta.abstract
 
 Install and use `osm`, `osmc`, `osmt` and `osmh` *command line aliases* for faster command typing.
+
+**Note**. This post is moved to *Osm Framework documentation*.
 
 ## Overview
 

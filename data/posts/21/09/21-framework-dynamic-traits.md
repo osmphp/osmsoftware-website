@@ -2,13 +2,23 @@
 
 Using dynamic traits, customize anything. Inject your code in the beginning, in the end, or instead of any standard method. Even more, add new properties and methods to the existing standard classes.
 
+**Note**. This post is moved to [Osm Framework documentation](https://osm.software/docs/framework/writing-php-code/dynamic-traits.html).
+
 Details:
 
 {{ toc }}
 
+## meta
+
+    {
+        "canonical_url": "https://osm.software/docs/framework/writing-php-code/dynamic-traits.html"
+    }
+
 ### meta.abstract
 
 Using dynamic traits, customize anything. Inject your code in the beginning, in the end, or instead of any standard method. Even more, add new properties and methods to the existing standard classes.
+
+**Note**. This post is moved to *Osm Framework documentation*.
 
 ## Examples
 
