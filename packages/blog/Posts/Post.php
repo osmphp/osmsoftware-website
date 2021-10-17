@@ -36,12 +36,6 @@ class Post extends File
 {
     const PATH_PATTERN = '|^(?<year>[0-9]{2})/(?<month>[0-9]{2})/(?<day>[0-9]{2})-(?<url_key>.*)\.md$|u';
 
-    // [title](url), but not ![title](url)
-    const LINK_PATTERN_1 = '/(?<!\!)\[(?<title>[^]]*)\]\((?<url>[^)]*)\)/u';
-
-    // <url>
-    const LINK_PATTERN_2 = '/\<(?<url>[^>]*)\>/u';
-
     protected function get_root_path(): string {
         global $osm_app; /* @var App $osm_app */
 
@@ -135,40 +129,10 @@ class Post extends File
         ));
     }
 
-    protected function html(?string $markdown): ?string {
-        if (!$markdown) {
-            return null;
-        }
-
-        $markdown = $this->transformRelativeLinks($markdown);
-
-        return parent::html($markdown);
-    }
-
-    protected function resolveRelativeUrl(string $path): ?string {
-        $path = $this->removeHashTag($path, $hashTag);
-
-        $absolutePath = realpath(dirname($this->absolute_path) . '/' . $path);
-
-        return $path && $absolutePath
-            ? Post::new([
-                'path' => mb_substr($absolutePath, mb_strlen("{$this->root_path}/")),
-            ])->url . $hashTag
-            : null;
-    }
-
-    protected function transformRelativeLinks(string $markdown): string {
-        $markdown = preg_replace_callback(static::LINK_PATTERN_1, function($match) {
-            return ($url = $this->resolveRelativeUrl($match['url']))
-                ? "[{$match['title']}]({$url})"
-                : $match[0];
-        }, $markdown);
-
-        return preg_replace_callback(static::LINK_PATTERN_2, function($match) {
-            return ($url = $this->resolveRelativeUrl($match['url']))
-                ? "<{$url}>"
-                : $match[0];
-        }, $markdown);
+    protected function generateRelativeUrl(string $absolutePath): ?string {
+        return static::new([
+            'path' => mb_substr($absolutePath, mb_strlen("{$this->root_path}/")),
+        ])->url;
     }
 
     protected function renderToc(): string {
@@ -287,20 +251,5 @@ class Post extends File
         curl_close($ch);
 
         return $returnCode == 200;
-    }
-
-    protected function removeHashTag(?string $url, ?string &$hashTag = null)
-        : ?string
-    {
-        if (!$url) {
-            return $url;
-        }
-
-        if (($pos = mb_strpos($url, '#')) !== false) {
-            $hashTag = mb_substr($url, $pos);
-            $url = mb_substr($url, 0, $pos);
-        }
-
-        return $url;
     }
 }

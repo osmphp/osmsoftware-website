@@ -198,4 +198,11 @@ class Page extends File
 
         return $parents;
     }
+
+    protected function generateRelativeUrl(string $absolutePath): ?string {
+        return static::new([
+            'version' => $this->version,
+            'path' => mb_substr($absolutePath, mb_strlen("{$this->root_path}/")),
+        ])->absolute_url;
+    }
 }

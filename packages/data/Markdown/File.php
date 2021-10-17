@@ -52,6 +52,13 @@ class File extends Object_
     const HEADER_PATTERN = '/^(?<depth>#+)\s*(?<title>[^#{\r\n]+)#*[ \t]*(?:{(?<attributes>[^}\r\n]*)})?\r?$/mu';
     const IMAGE_LINK_PATTERN = "/!\\[(?<description>[^\\]]*)\\]\\((?<url>[^\\)]+)\\)/u";
 
+    // [title](url), but not ![title](url)
+    const LINK_PATTERN_1 = '/(?<!\!)\[(?<title>[^]]*)\]\((?<url>[^)]*)\)/u';
+
+    // <url>
+    const LINK_PATTERN_2 = '/\<(?<url>[^>]*)\>/u';
+
+
     protected function get_absolute_path(): string {
         return "{$this->root_path}/{$this->path}";
     }
@@ -207,12 +214,43 @@ class File extends Object_
             return null;
         }
 
+        $markdown = $this->transformRelativeLinks($markdown);
+
         $markdown = $this->placeholder_renderer->render($this, $markdown);
 
         $html = MarkdownExtra::defaultTransform($markdown);
 
         // fix code blocks
         return str_replace("\n</code>", '</code>', $html);
+    }
+
+    protected function transformRelativeLinks(string $markdown): string {
+        $markdown = preg_replace_callback(static::LINK_PATTERN_1, function($match) {
+            return ($url = $this->resolveRelativeUrl($match['url']))
+                ? "[{$match['title']}]({$url})"
+                : $match[0];
+        }, $markdown);
+
+        return preg_replace_callback(static::LINK_PATTERN_2, function($match) {
+            return ($url = $this->resolveRelativeUrl($match['url']))
+                ? "<{$url}>"
+                : $match[0];
+        }, $markdown);
+    }
+
+    protected function resolveRelativeUrl(string $path): ?string {
+        $path = $this->removeHashTag($path, $hashTag);
+
+        $absolutePath = realpath(dirname($this->absolute_path) . '/' . $path);
+
+        return $path && $absolutePath &&
+            ($url = $this->generateRelativeUrl($absolutePath))
+                ? $url . $hashTag
+                : null;
+    }
+
+    protected function generateRelativeUrl(string $absolutePath): ?string {
+        return null;
     }
 
     protected function inlineHtml(?string $markdown): ?string {
@@ -247,5 +285,20 @@ class File extends Object_
 
     protected function get_canonical_url(): ?string {
         return $this->meta->canonical_url ?? null;
+    }
+
+    protected function removeHashTag(?string $url, ?string &$hashTag = null)
+        : ?string
+    {
+        if (!$url) {
+            return $url;
+        }
+
+        if (($pos = mb_strpos($url, '#')) !== false) {
+            $hashTag = mb_substr($url, $pos);
+            $url = mb_substr($url, 0, $pos);
+        }
+
+        return $url;
     }
 }
