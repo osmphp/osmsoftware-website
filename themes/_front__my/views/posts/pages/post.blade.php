@@ -7,8 +7,8 @@ global $osm_app; /* @var \Osm\Core\App $osm_app */
     :canonical-url='$post->canonical_url'
 >
     <div class="container mx-auto px-4 grid grid-cols-12">
-        <article class="col-start-1 col-span-12 md:col-start-5 md:col-span-8
-            xl:col-start-4 xl:col-span-6"
+        <article class="col-start-1 col-span-12
+            md:col-start-5 md:col-span-8 lg:col-start-4 lg:col-span-9"
         >
             <h1 class="text-2xl sm:text-4xl pt-4 mb-4
                 md:pl-4 text-{{ $post->main_category_file->color }}"
@@ -47,7 +47,5 @@ global $osm_app; /* @var \Osm\Core\App $osm_app */
         </article>
         {{--<aside class="left-drawer left-drawer--closed">
         </aside>--}}
-        <aside class="hidden xl:block xl:col-start-10 xl:col-span-3 row-start-1">
-        </aside>
     </div>
 </x-std-pages::layout>
