@@ -23,6 +23,6 @@ Project's [GitHub repository](https://github.com/osmphp/data) will later be used
 
 ## Follow! 
 
-I'll share the project's ideas, successes, failures, and bi-weekly status reports on Twitter, on IndieHackers, an in the [blog](https://osm.software/blog/data/), so follow me and stay tuned!
+I'll share the project's ideas, successes, failures, and bi-weekly status reports on [Twitter](https://twitter.com/v_osmianski), on [IndieHackers](https://www.indiehackers.com/osmianski), an in the [blog](https://osm.software/blog/data/), so follow me and stay tuned!
 
   
