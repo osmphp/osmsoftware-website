@@ -18,6 +18,8 @@ module.exports = {
                     /blue-500$/,
                     /green-500$/,
                     /green-600$/,
+                    /red-800$/,
+                    /red-900$/,
                 ],
             }
         }
