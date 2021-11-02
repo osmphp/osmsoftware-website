@@ -1,6 +1,6 @@
 # Osm Admin
 
-Previously known as *The Big Red Button*.
+Previously known as *The Big Red Button* project.
 
 A package for defining application data structures and logic using PHP 8 classes and attributes, pressing *the big red button* (it's also the project codename), and getting fully functioning Admin Panel and API.
 
