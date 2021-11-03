@@ -1,6 +1,6 @@
 # Project Structure
 
-The project repository, [`osmphp/data`](https://github.com/osmphp/data) follows a typical Osm Framework-based [project structure](https://osm.software/docs/framework/getting-started/project-structure.html). However, this repository is going to be a reusable Composer package, and has important structural differences presented in this article. 
+The project repository, [`osmphp/admin`](https://github.com/osmphp/admin), follows a typical Osm Framework-based [project structure](https://osm.software/docs/framework/getting-started/project-structure.html). However, this repository is going to be a reusable Composer package, and has important structural differences presented in this article. 
 
 More details:
 
@@ -8,24 +8,24 @@ More details:
 
 ### meta.abstract
 
-The project repository, *`osmphp/data`* follows a typical Osm Framework-based *project structure*. However, this repository is going to be a reusable Composer package, and has important structural differences presented in this article. 
+The project repository, *`osmphp/admin`*, follows a typical Osm Framework-based *project structure*. However, this repository is going to be a reusable Composer package, and has important structural differences presented in this article. 
 
-## Project Namespace (`Osm\Data`)
+## Project Namespace (`Osm\Admin`)
 
-By default, project modules are defined under `My` namespace. In this project, the root project namespace is `Osm\Data`. It's configured in the `composer.json`:
+By default, project modules are defined under `My` namespace. In this project, the root project namespace is `Osm\Admin`. It's configured in the `composer.json`:
 
     ...
     "autoload": {
         "psr-4": {
-            "Osm\\Data\\": "src/",
-            "Osm\\Data\\Tools\\": "tools/"
+            "Osm\\Admin\\": "src/",
+            "Osm\\Admin\\Tools\\": "tools/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Osm\\Data\\Tests\\": "tests/",
-            "Osm\\Data\\TestsMigrations\\": "tests_migrations/",
-            "Osm\\Data\\Samples\\": "samples/"
+            "Osm\\Admin\\Tests\\": "tests/",
+            "Osm\\Admin\\TestsMigrations\\": "tests_migrations/",
+            "Osm\\Admin\\Samples\\": "samples/"
         }
     }
     ...
@@ -34,26 +34,26 @@ By default, project modules are defined under `My` namespace. In this project, t
 
 The `src/` directory contains reusable modules for any data-intensive application.
 
-These modules are not included into any application. You can require them individually, or require `Osm\Data\All\Module` module that requires them all.
+These modules are not included into any application. You can require them individually, or require `Osm\Admin\All\Module` module that requires them all.
 
 ## Sample Application (`samples/`)
 
-In the `samples/` directory, I create a hypothetical e-commerce application. This sample application `Osm_Data_Samples`, is executed in unit tests. 
+In the `samples/` directory, I create a hypothetical e-commerce application. This sample application `Osm_Admin_Samples`, is executed in unit tests. 
 
 ## Viewing Sample Application In Browser
 
-The sample application defines the HTTP entry point, `public/Osm_Data_Samples/index.php`. Execute it under the native PHP Web server:
+The sample application defines the HTTP entry point, `public/Osm_Admin_Samples/index.php`. Execute it under the native PHP Web server:
 
-    php -S 0.0.0.0:8000 -t public/Osm_Data_Samples public/Osm_Data_Samples/router.php
+    php -S 0.0.0.0:8000 -t public/Osm_Admin_Samples public/Osm_Admin_Samples/router.php
     
 Alternatively, put it under Nginx (mine configuration below):
 
     server {
         listen 127.0.0.1:80;
         listen [::1]:80;
-        server_name data.local;
+        server_name admin.local;
     
-        root /home/vo/projects/data/public/Osm_Data_Samples;
+        root /home/vo/projects/admin/public/Osm_Admin_Samples;
     
         index index.html index.php;
     
@@ -64,8 +64,8 @@ Alternatively, put it under Nginx (mine configuration below):
         location = /favicon.ico { access_log off; log_not_found off; }
         location = /robots.txt  { access_log off; log_not_found off; }
     
-        access_log /var/log/nginx/data.local-access.log combined;
-        error_log  /var/log/nginx/data.local-error.log error;
+        access_log /var/log/nginx/admin.local-access.log combined;
+        error_log  /var/log/nginx/admin.local-error.log error;
     
         sendfile off;
     
@@ -97,7 +97,7 @@ Alternatively, put it under Nginx (mine configuration below):
     
 And a line added to `/etc/hosts`:
 
-    127.0.0.1		data.local
+    127.0.0.1		admin.local
 
 ## Two Test Suites
 
