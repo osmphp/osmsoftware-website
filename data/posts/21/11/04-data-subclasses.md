@@ -20,7 +20,7 @@ This article describes how subclasses are defined and stored in Osm Admin.
 
 In the base class, `Product`, add `type` property using `Type` trait:
 
-    use Osm\Admin\Tables\Traits\Type;
+    use Osm\Admin\Base\Traits\Type;
     ...
     
     /**
