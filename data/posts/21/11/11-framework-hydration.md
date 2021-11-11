@@ -46,7 +46,7 @@ Convert the `$order` to a plain untyped object, and send it to the browser using
 
 After receiving an order JSON from the browser, convert it back to an `Order` instance using the `hydrate()` function:
 
-    use function Osm\dehydrate;
+    use function Osm\hydrate;
     ...
     $order = hydrate(Order::class, json_decode($json));
 
@@ -135,3 +135,6 @@ If you dehydrate an object and then hydrate it back, you get an exact copy of th
 
 For complex object trees, write unit tests for complex object trees to make sure that `#[Serialized]` attributes and `__wakeup()` methods work as expected. 
 
+## Implementation
+
+If you are interested in the implementation details, check the [source code](https://github.com/osmphp/core/blob/HEAD/runtime/functions.php).
