@@ -128,6 +128,7 @@ For example, in case order lines about sold products and services differ in stru
         ...
     }
         
+**Notice**. Internally, `SubTypes` trait introduces `type` property that stores the type name introduced by `#[Type]` attribute. Avoid using `type` property name for your own properties.
 
 ## Testing
 
