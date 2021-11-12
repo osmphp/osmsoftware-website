@@ -134,6 +134,9 @@ class Posts extends Object_
         if ($this->limit) {
             $query->limit($this->limit);
         }
+        else {
+            $query->limit(10000);
+        }
 
         return $query;
     }
