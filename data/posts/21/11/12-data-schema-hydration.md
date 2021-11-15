@@ -72,7 +72,7 @@ As you see, the `Schema` object contains an array of `Class_` objects for each c
 
 ## Unit Tests
 
-In the [test_01_schema_hydration.php](https://github.com/osmphp/admin/blob/HEAD/tests_migrations/test_01_schema_hydration.php) file, There are two unit tests: one tests dehydration/hydration process, the other one - native PHP serialization/un-serialization process:
+In the [test_01_schema_hydration.php](https://github.com/osmphp/admin/blob/HEAD/tests_migrations/test_01_schema_hydration.php) file, There are two unit tests: one tests dehydration/hydration process, the other one - native PHP serialization/un-serialization process. Hydration is used to store objects in the database and send/receive them over HTTP. Serialization is used to store objects in cache:
 
     public function test_hydration() {
         // GIVEN a schema reflected from PHP classes
@@ -100,7 +100,7 @@ In the [test_01_schema_hydration.php](https://github.com/osmphp/admin/blob/HEAD/
 
 In both cases, the successful recovery of the schema object is verified using `assertSchemaHydrated()` method. For each class, this method calls `assertClassHydrated()` method, which, in turn, for each property class `assertPropertyHydrated()` method.
 
-## Testing Subclasses
+### Testing Subclasses
 
 One thing to check is hydration of subclasses. If a property is of a `Property\Regular` class, then it should be hydrated back as `Property\Regular`. If it doesn't, then either the base class isn't using the `SubTypes` trait, or the subclasses don't use `#[Type]` attribute:
 
@@ -125,7 +125,7 @@ Here is how it's verified:
         ...
     }
 
-## Testing Parent References
+### Testing Parent References
 
 The other easy-to-miss thing is parent references. Each class object is assigned a reference to its parent schema object, and each property object is assigned a reference to its parent class object. In order to avoid having circular references, the parent references are not dehydrated, and after hydration they should be manually restored in the `__wakeup()` method:
 
@@ -174,7 +174,7 @@ Here is how it's verified:
         ...            
     }
 
-## Testing Other Data
+### Testing Other Data
 
 The rest assertions check that all the data is properly restored. Some data is `#[Serialized]` into the dehydrated state as is, other is computed from the serialized data. 
 
