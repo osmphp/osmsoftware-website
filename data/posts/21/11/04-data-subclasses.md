@@ -20,17 +20,17 @@ This article describes how subclasses are defined and stored in Osm Admin.
 
 In the base class, `Product`, add `type` property using `Type` trait:
 
-    use Osm\Admin\Base\Traits\Type;
+    use Osm\Core\Traits\SubTypes;
     ...
     
     /**
      * @property string $sku #[Serialized]
      * @property string $description #[Serialized]
      */
-    #[Table('products')]
+    #[Storage\Table('products')]
     class Product extends Object_
     {
-        use Id, Type;
+        use Id, SubTypes;
     }
 
 In child classes, assign the type property using `#[Type]` attribute:
