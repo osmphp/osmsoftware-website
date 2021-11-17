@@ -4,6 +4,8 @@ Recently, I partly implemented data schema migration. It takes data class defini
 
 This article describes how schema migration works, and what's not implemented yet, but most probably will be.
 
+**Note**. This topic is continued in [the new article](17-data-database.md).   
+
 {{ toc }} 
 
 ### meta.abstract
@@ -11,6 +13,8 @@ This article describes how schema migration works, and what's not implemented ye
 I partly implemented data schema migration. It takes data class definitions, and incrementally creates or alters underlying database tables.
 
 The article below describes how schema migration works, and what's not implemented yet, but most probably will be.
+
+**Note**. This topic is continued in the *new article*.
 
 ## Running Schema Migration
 
