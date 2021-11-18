@@ -170,9 +170,7 @@ Provide the computation logic for the `level` and `id_path` properties in the `i
         }
         
         protected function index_id_path(?Scope $parent, int $id): string {
-            return $parent 
-                ? "{$parent->id_path}/{id}"
-                : "{$id}"
+            return $parent ? "{$parent->id_path}/{$id}" : "{$id}";
         }
     }
 
