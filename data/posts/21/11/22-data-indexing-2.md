@@ -2,7 +2,7 @@
 
 Today, I implemented computation of indexed properties during insert. The implementation dictated some changes in indexed property definitions compared to the [initial design](18-data-indexing.md), and how indexers are reflected into the data schema.
 
-Also, I implemented a table query class working on top of Laravel [`Query\Builder`](https://laravel.com/docs/queries). More about it next time, for now I'll review how indexed properties are computed during INSERT operation.
+Also, I implemented a table query class working on top of Laravel [`Query\Builder`](https://laravel.com/docs/queries). More about it [next time](23-data-queries.md), for now I'll review how indexed properties are computed during INSERT operation.
 
 More details:
 
@@ -12,7 +12,7 @@ More details:
 
 Today, I implemented computation of indexed properties during insert. The implementation dictated some changes in indexed property definitions compare to the *initial design*, and how indexers are reflected into the data schema.
 
-Also, I implemented a table query class working on the top of Laravel `Query\Builder`. More about it next time, for now I'll review how indexed properties are computed during INSERT operation.
+Also, I implemented a table query class working on the top of Laravel `Query\Builder`. More about it *next time*, for now I'll review how indexed properties are computed during INSERT operation.
 
 ## Indexers And Indexed Properties
 
