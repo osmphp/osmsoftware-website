@@ -1,6 +1,6 @@
 # Query Formulas
 
-After 3 days of intensive work, I've got dot syntax working!
+After 3 days of intensive work, I've got the dot syntax working!
 
 Along the way, I refactored the query internals once again, which reminds me a heuristics saying that you've got to implement something three times to get it right :)
 
