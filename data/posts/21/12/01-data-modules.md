@@ -2,7 +2,7 @@
 
 I'm still working on indexing, and it seems get one more refactoring. But more on that later.
 
-Today, let's review Osm Admin modules, their responsibilities and dependencies.
+Meanwhile, let's review Osm Admin modules, their responsibilities and dependencies.
 
 Contents:
 
