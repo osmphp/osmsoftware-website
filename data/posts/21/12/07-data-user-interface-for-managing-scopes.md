@@ -4,11 +4,19 @@ So far, I've been concerned about how application data is modeled, stored and ha
 
 Yet, the final objective a user interface for viewing and editing it visually. 
 
-Let's dream a bit about how this it might look like.
+Let's dream a bit about how it might look like.
 
 Contents:
 
 {{ toc }}
+
+### meta.abstract
+
+So far, I've been concerned about how application data is modeled, stored and handled internally. That's the M part of the MVC (Model-View-Controller) pattern.
+
+Yet, the final objective a user interface for viewing and editing it visually.
+
+Let's dream a bit about how it might look like.
 
 ## Visual Sketch 
 
