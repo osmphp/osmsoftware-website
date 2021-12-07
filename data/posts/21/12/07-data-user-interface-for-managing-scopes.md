@@ -1,10 +1,6 @@
 # User Interface For Managing Scopes
 
-So far, I've been concerned about how application data is modeled, stored and handled internally. That's the M part of the MVC (Model-View-Controller) pattern. 
-
-Yet, the final objective a user interface for viewing and editing it visually. 
-
-Let's dream a bit about how it might look like.
+So far, I've been concerned about how application data is modeled, stored and handled internally. Yet, the final objective a user interface for viewing and editing it visually. Let's dream a bit about how it might look like.
 
 Contents:
 
@@ -12,11 +8,7 @@ Contents:
 
 ### meta.abstract
 
-So far, I've been concerned about how application data is modeled, stored and handled internally. That's the M part of the MVC (Model-View-Controller) pattern.
-
-Yet, the final objective a user interface for viewing and editing it visually.
-
-Let's dream a bit about how it might look like.
+So far, I've been concerned about how application data is modeled, stored and handled internally. Yet, the final objective a user interface for viewing and editing it visually. Let's dream a bit about how it might look like.
 
 ## Visual Sketch 
 
