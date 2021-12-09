@@ -4,6 +4,8 @@ In Osm Admin, a *form* is an integral part of the class user interface. It's a v
 
 In this article, I'll review what's in a class form, and how it's reflected from the application code.
 
+Contents:
+
 {{ toc }}
 
 ### meta.abstract
