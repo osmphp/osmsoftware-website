@@ -1,30 +1,23 @@
 const defaultTheme = require('tailwindcss/defaultTheme');
 
 module.exports = {
-    purge: {
-        content: [
-            'temp/*/*/views/**/*.php',
-        ],
-        options: {
-            safelist: {
-                standard: [
-                    /gray-700$/,
-                    /black$/,
-                    /yellow-600$/,
-                    /yellow-700$/,
-                    /green-700$/,
-                    /green-800$/,
-                    /blue-400$/,
-                    /blue-500$/,
-                    /green-500$/,
-                    /green-600$/,
-                    /red-800$/,
-                    /red-900$/,
-                ],
-            }
-        }
-    },
-    darkMode: false, // or 'media' or 'class'
+    content: [
+        'temp/*/*/views/**/*.php',
+    ],
+    safelist: [
+        { pattern: /gray-700$/ },
+        { pattern: /black$/ },
+        { pattern: /yellow-600$/ },
+        { pattern: /yellow-700$/ },
+        { pattern: /green-700$/ },
+        { pattern: /green-800$/ },
+        { pattern: /blue-400$/ },
+        { pattern: /blue-500$/ },
+        { pattern: /green-500$/ },
+        { pattern: /green-600$/ },
+        { pattern: /red-800$/ },
+        { pattern: /red-900$/ },
+    ],
     theme: {
         fontFamily: {
           'sans': ['"Titillium Web"', ...defaultTheme.fontFamily.sans],
