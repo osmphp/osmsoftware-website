@@ -4,7 +4,7 @@ Today, I finished implementing an object creation form.
 
 It works according to the specs on [Interfaces](08-data-interfaces.md) and [Forms](09-data-forms.md). Currently, it only supports string and integer input fields; later, there will be a lot more.
 
-Let's review how works:
+Let's review how it works:
 
 {{ toc }}
 
@@ -14,7 +14,7 @@ Today, I finished implementing an object creation form.
 
 It works according to the specs on *Interfaces* and *Forms*. Currently, it only supports string and integer input fields; later, there will be a lot more.
 
-Let's review how works.
+Let's review how it works.
 
 ## Configuration
 
