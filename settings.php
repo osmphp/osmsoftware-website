@@ -55,7 +55,8 @@ return (object)[
                 'versions' => [
                     /* @see \Osm\Docs\Docs\Hints\Settings\Version */
                     '0.12' => (object)['branch' => 'v0.12'],
-                    '0.13' => (object)array_merge(['branch' => 'v0.13'],
+                    '0.13' => (object)['branch' => 'v0.13'],
+                    '0.14' => (object)array_merge(['branch' => 'v0.14'],
                         isset($_ENV['FRAMEWORK_DOC_PATH'])
                             ? [
                                 'branch' => null,
