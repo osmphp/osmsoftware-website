@@ -50,7 +50,9 @@ Run the following commands in the project directory:
     # install dependencies
     composer install
 
-    # compile the tools application
+    # compile the applications
+    osmc Osm_App
+    osmc Osm_Project
     osmc Osm_Tools
 
     # collect JS dependencies from all installed modules
@@ -70,6 +72,7 @@ Run the following commands in the project directory:
     osm migrate:up
 
     # fill in the MySql database and ElasticSearch index with the website data
+    osm index:blog
     osm index
 
 **Note**. Some commands may show no output. Don't worry - it means they worked as expected :)
