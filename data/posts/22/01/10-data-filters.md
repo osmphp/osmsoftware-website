@@ -55,7 +55,7 @@ To make a filterable property, add a `#[Filter\*]` attribute to it. For example:
 
 Currently, I focus on making filters work. Displaying filter options will be implemented later. 
 
-However, let's list different ways the user will apply filters visually in the [user interface](../../21/12/07-data-user-interface-for-managing-scopes.md).
+However, let's list different ways a user will apply filters visually in the [grid/form user interface](../../21/12/07-data-user-interface-for-managing-scopes.md).
 
 ### Grid Column Filters
 
