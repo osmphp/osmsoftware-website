@@ -22,7 +22,7 @@ global $osm_app; /* @var \Osm\Core\App $osm_app */
                 <span>
                     ({{ $yearItem->count }})
                 </span></a>
-            <ul class="flex flex-wrap">
+            <ul class="flex flex-wrap mb-6">
                 @foreach($yearItem->months as $monthItem)
                     @if ($monthItem->count)
                     <li class="w-24">
