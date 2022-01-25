@@ -66,6 +66,23 @@ return (object)[
                     ),
                 ],
             ],
+            'admin' => (object)[
+                'repo' => 'https://github.com/osmphp/admin.git',
+                'path' => "{$osm_app->paths->temp}/docs/admin",
+                'dir' => 'docs',
+                'color' => 'red-800',
+                'versions' => [
+                    /* @see \Osm\Docs\Docs\Hints\Settings\Version */
+                    '0.1' => (object)array_merge(['branch' => 'v0.1'],
+                        isset($_ENV['ADMIN_DOC_PATH'])
+                            ? [
+                                'branch' => null,
+                                'path' => $_ENV['ADMIN_DOC_PATH'],
+                            ]
+                            : []
+                    ),
+                ],
+            ],
         ],
     ],
 ];

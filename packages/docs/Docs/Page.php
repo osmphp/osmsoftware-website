@@ -171,7 +171,11 @@ class Page extends File
     }
 
     protected function get_absolute_url(): string {
-        return "{$this->version->absolute_url}{$this->url}";
+        $book = $this->version->book;
+
+        return count($book->versions) === 1
+            ? "{$book->absolute_url}{$this->url}"
+            : "{$this->version->absolute_url}{$this->url}";
     }
 
     protected function get_parents(): array {
