@@ -170,10 +170,10 @@ For example:
 
 ### Explicit Columns
 
-You may add `#[Db]` attribute to create an explicit table column for the property:
+You may add `#[Explicit]` attribute to create an explicit table column for the property:
 
     /**
-     * @property ?string $name #[Db]
+     * @property ?string $name #[Explicit]
      * ...
     */
     class Product extends Record
@@ -198,7 +198,7 @@ Column type used, and other database schema details are dependent on the propert
 By default, an explicit `string` property is stored as `TEXT`.  You can force it to be `VARCHAR` using `#[Length]` attribute specifying a value that is small enough for it:
 
     /**
-     * @property ?string $name #[Db, Length(255)]
+     * @property ?string $name #[Explicit, Length(255)]
      * ...
     */
     class Product extends Record
@@ -211,7 +211,7 @@ By default, an explicit `string` property is stored as `TEXT`.  You can force it
 By default, an explicit `int` property is stored as signed `INT`.  Change that using `#[Tiny]`, [`Small]`,  `#[Long]` and `#[Unsigned]` attributes:
 
     /**
-     * @property int $qty #[Default_(0), Db, Unsigned, Long]
+     * @property int $qty #[Default_(0), Explicit, Unsigned, Long]
     */
     class Product extends Record
     {
@@ -223,7 +223,7 @@ By default, an explicit `int` property is stored as signed `INT`.  Change that u
 By default, an explicit `float` property is stored as `DECIMAL(18, 2)`.  Change that using `#[Precision]`  and `[Scale]` attributes:
 
     /**
-     * @property float $price #[Default_(0.0), Db, Scale(4)]
+     * @property float $price #[Default_(0.0), Explicit, Scale(4)]
     */
     class Product extends Record
     {
@@ -241,7 +241,7 @@ Non-record objects can’t be explicit - they are always stored in the `data` co
 On the contrary, a record object can’t be implicit. For it, a foreign key column is explicitly created. For example:
 
     /**
-     * @property ?Category $parent #[Db]
+     * @property ?Category $parent #[Explicit]
      * ...
      */
     class Category extends Record
@@ -269,7 +269,7 @@ However, a record array is neither stored in `data` column, nor in an explicit c
     }
     
     /**
-     * @property Order $order [Db]
+     * @property Order $order [Explicit]
      */
     class Line extends Record
     {
@@ -291,7 +291,7 @@ However, a record array is neither stored in `data` column, nor in an explicit c
 You may also compute property values on the fly, and use them in queries:
 
     /**
-     * @property ?Category $parent #[Db]
+     * @property ?Category $parent #[Explicit]
      * @property bool $root #[Virtual("parent.id IS NULL")]
      * @property bool $top #[Virtual("parent.parent.id IS NULL")]
      * ...
@@ -311,7 +311,7 @@ You may also compute property values on the fly, and use them in queries:
 Alternatively, you may store computed value in the database:
 
     /**
-     * @property ?Category $parent #[Db]
+     * @property ?Category $parent #[Explicit]
      * @property ?int $level #[Computed("(parent.level ?? -1) + 1")]
      * @property ?string $id_path #[
      *      Computed("(parent.id_path IS NOT NULL " . 
@@ -329,7 +329,7 @@ Alternatively, you may store computed value in the database:
 Finally, you may allow user to override the computed value:
 
     /**
-     * @property ?Category $parent #[Db]
+     * @property ?Category $parent #[Explicit]
      * @property string $name #[Overridable("parent.name")]
      * ...
      */
