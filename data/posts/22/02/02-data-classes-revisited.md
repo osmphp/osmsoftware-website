@@ -362,7 +362,7 @@ All properties, except `#[System]`, are shown on the form page:
 
 - most properties are displayed as `#[Input]`
 - date/time properties as displayed as `#[Date]`
-- `bool` properties are displayed as `#[Switch]`
+- `bool` properties are displayed as `#[Switch_]`
 - record properties are displayed as `#[Relation]`
 - object array properties are displayed as grids
 - scalar array properties are displayed as `#[Multiselect]`

@@ -73,7 +73,8 @@ return (object)[
                 'color' => 'red-800',
                 'versions' => [
                     /* @see \Osm\Docs\Docs\Hints\Settings\Version */
-                    '0.1' => (object)array_merge(['branch' => 'v0.1'],
+                    '0.1' => (object)['branch' => 'v0.1'],
+                    '0.2' => (object)array_merge(['branch' => 'v0.2'],
                         isset($_ENV['ADMIN_DOC_PATH'])
                             ? [
                                 'branch' => null,
