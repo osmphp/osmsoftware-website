@@ -90,6 +90,12 @@ It should appear as if it loads all matching objects, but actually, only load *v
 
 After implementing initial prototype, grids will load all objects.
 
+## Keyboard Navigation
+
+A keyboard-only user should be as comfortable using Osm Admin as mouse/touch user. Navigating the page, invoking context menus, using keyboard shortcuts.
+
+Currently, keyboard navigation is not implemented.
+
 ## Documentation And Tests
 
 An easy-to-follow documentation should be written, and kept up to date.
