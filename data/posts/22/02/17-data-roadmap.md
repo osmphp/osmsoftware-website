@@ -88,7 +88,15 @@ A grid should be able to work with large amounts of data.
 
 It should appear as if it loads all matching objects, but actually, only load *visible* objects, and load the rest as user scrolls down/up.
 
-After implementing initial prototype, grids will load all objects.  
+After implementing initial prototype, grids will load all objects.
+
+## Documentation And Tests
+
+An easy-to-follow documentation should be written, and kept up to date.
+
+Automated tests should have enough coverage to give users confidence to use Osm Admin, and kept up to date.
+
+Currently, the documentation only contains some introduction, installation instruction, and class diagrams, and the test suites are mainly used for TDD.  
 
 
  
