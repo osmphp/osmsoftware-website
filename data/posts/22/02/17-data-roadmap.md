@@ -96,6 +96,22 @@ A keyboard-only user should be as comfortable using Osm Admin as mouse/touch use
 
 Currently, keyboard navigation is not implemented.
 
+## Customization
+
+Osm Admin should provide a consistent way of customizing everything:
+
+* custom query actions (in addition to CRUD)
+* custom grid views (for the same type of objects)
+* custom query logic
+* custom controller logic
+* custom UI controls
+* custom filter types
+* custom indexing logic
+* custom validation rules
+* custom class/property attributes
+
+Currently, you can customize everything using dynamic traits, but for the listed use-cases, a more straightforward approach is needed.
+
 ## Documentation And Tests
 
 An easy-to-follow documentation should be written, and kept up to date.
