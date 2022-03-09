@@ -71,7 +71,7 @@ $categories = $osm_app->modules[\Osm\Blog\Categories\Module::class]->categories;
         </section>
 
         @if ($news)
-            <?php $category = $categories['news']; ?>
+            <?php $category = $news->main_category_file; ?>
             <section class="col-span-12 lg:col-start-1 lg:col-span-6 mb-6">
                 <h2 class="text-2xl sm:text-4xl text-center mt-16
                     text-{{ $category->color }}">
@@ -85,12 +85,8 @@ $categories = $osm_app->modules[\Osm\Blog\Categories\Module::class]->categories;
                 </div>
                 <p class="mt-8 text-center flex flex-wrap justify-center gap-2 text-white">
                     <a class="py-2 px-4 rounded bg-gray-700 hover:bg-black"
-                        href="{{ $news->url }}" title="Details"
-                    >Details</a>
-                    <a class="py-2 px-4 rounded bg-{{ $category->color }}
-                        hover:bg-{{ $category->hover_color }}"
-                        href="{{ "{$osm_app->http->base_url}/blog/news/" }}" title="Old News"
-                    >Old News</a>
+                        href="{{ $news->url }}" title="Read The Latest Blog Post"
+                    >Read The Latest Blog Post</a>
                 </p>
             </section>
         @endif

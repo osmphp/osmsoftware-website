@@ -19,9 +19,7 @@ class Home extends Route
     public function run(): Response {
         return view_response('pages::home', [
             'news' => Posts::new([
-                'page_type' => PageType\Category::new([
-                    'category_url_key' => 'news',
-                ]),
+                'page_type' => PageType\Home::new(),
             ])->first,
         ]);
     }
