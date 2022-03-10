@@ -1,6 +1,6 @@
 # Full Search Reindexing
 
-Today I finished indexing design, described typical indexing logic, implemented full search reindexing.
+Today, I finished indexing design, described typical indexing logic, implemented full search reindexing.
 
 Here is how it went:
  
