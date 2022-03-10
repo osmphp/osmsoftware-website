@@ -8,7 +8,7 @@ Here is how it went:
 
 ### meta.abstract
 
-Today I finished indexing design, described typical indexing logic, implemented full search reindexing.
+Today, I finished indexing design, described typical indexing logic, implemented full search reindexing.
 
 ## Merging `index()` And `reindex()`
 
