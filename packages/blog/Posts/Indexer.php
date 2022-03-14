@@ -70,7 +70,9 @@ class Indexer extends Object_
     }
 
     public function clearSearchIndex(): void {
-        foreach ($this->search->index('posts')->ids() as $id) {
+        $ids = $this->search->index('posts')->limit(10000)->ids();
+
+        foreach ($ids as $id) {
             $this->search->index('posts')->delete($id);
         }
     }
