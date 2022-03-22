@@ -22,10 +22,12 @@ class RedirectToDefaultVersion extends BookRoute
             ));
         }
 
+        // temporary (not permanent) redirect to prevent caching of the
+        // redirect response in the browser
         return new RedirectResponse(
             "{$this->http->base_url}{$this->book->url}" .
             "/{$this->book->default_version_name}" .
             mb_substr($this->http->path, mb_strlen($this->book->url)) .
-            "{$this->http->request->server->get('QUERY_STRING')}", 301);
+            "{$this->http->request->server->get('QUERY_STRING')}");
     }
 }
