@@ -104,7 +104,7 @@ Let's call the "adding or removing a parameter" an *action*. An action can be wr
     }
 
     /**
-     * Removes specified multi-value filter option from the URL.
+     * Sets specified parameter.
      *
      * String syntax: 'color=red'
      *
@@ -123,7 +123,7 @@ Let's call the "adding or removing a parameter" an *action*. An action can be wr
     }
 
     /**
-     * Removes specified multi-value filter option from the URL.
+     * Adds an option to specified multi-value filter.
      *
      * String syntax: '+color=red'
      *
