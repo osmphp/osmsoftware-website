@@ -10,7 +10,7 @@ Contents:
 
 ### meta.abstract
 
-The `Query::bulkUpdate()` method us implemented in the TDD way.
+The `Query::bulkUpdate()` method is implemented in the TDD way.
 
 ## Failing Test
 
