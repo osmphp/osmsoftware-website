@@ -176,7 +176,7 @@ class File extends Object_
     protected function generateId(string $heading): string {
         $id = mb_strtolower($heading);
 
-        $id = preg_replace('/[^\w\d\- ]+/u', ' ', $id);
+        $id = preg_replace('/[^\w\d\s]+/u', '', $id);
         $id = preg_replace('/\s+/u', '-', $id);
         $id = preg_replace('/^\-+/u', '', $id);
         $id = preg_replace('/\-+$/u', '', $id);
