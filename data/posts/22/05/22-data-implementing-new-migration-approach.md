@@ -1,6 +1,6 @@
 # Implementing New Migration Approach
 
-I must say, it's a bit disturbing to implement the same thing for the third time. Still, the goal is to get it finished, and have it sustainable, so let's continue.
+I must say, it's a bit disturbing to implement the same thing for the third time. Still, the goal is to get it finished, and have it sustainable.
 
 After the effort, the code has become su much easier to read!
 
@@ -10,7 +10,7 @@ Check it out:
 
 ### meta.abstract
 
-I must say, it's a bit disturbing to implement the same thing for the third time. Still, the goal is to get it finished, and have it sustainable, so let's continue.
+I must say, it's a bit disturbing to implement the same thing for the third time. Still, the goal is to get it finished, and have it sustainable.
 
 After the effort, the code has become su much easier to read!
 
