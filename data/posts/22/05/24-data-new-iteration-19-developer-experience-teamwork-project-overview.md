@@ -5,6 +5,8 @@ Yesterday started as usual, planning new iteration, and then BAM! - one folk - S
 * `README` explains what the project is about, and how to get started as a contributor;
 * I'm fixing things to make the project actually runnable just after installing it. 
  
+Here is how the day went:
+
 {{ toc }}
 
 ### meta.abstract
