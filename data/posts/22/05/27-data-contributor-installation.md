@@ -42,7 +42,7 @@ For now, there will be three commands:
     # as an argument. If it's omitted, `$NAME.local` is used. By default, the
     # domain name maps to the localhost, `127.0.0.1`, use `--ip=1.2.3.4` to
     # override that.
-    sudo osmt config:hosts
+    sudo osmt config:host
 
     # copy the `nginx_virtual_host.conf` file to Nginx configuration, and 
     # restart Nginx. If the file already exists in the Nginx configuration, it
