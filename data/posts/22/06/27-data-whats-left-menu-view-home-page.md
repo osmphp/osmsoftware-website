@@ -20,7 +20,7 @@ I've already made it fairly easy to create and run a project, create and alter a
 
 Now I'm working on a menu that allows entering table/form UI of every data class defined in the application.
 
-Next, I want to add a page header and fix how the sidebar behaves on mobile.
+**Later**. Next, I want to add a page header and fix how the sidebar behaves on mobile.
 
 Then, I want to experiment with GitPod and automate setting up of the development environment. 
 
