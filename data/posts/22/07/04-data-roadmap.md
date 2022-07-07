@@ -2,7 +2,7 @@
 
 It's July already, and I feel that summer finally starts for me. On one hand, better late than newer. On the other hand, it means a lot less time for coding, and more time for reflection. 
 
-Let's start with a backlog.
+Let's start with a backlog vs roadmap.
 
 > Is it getting better or it still the same? - U2
  
