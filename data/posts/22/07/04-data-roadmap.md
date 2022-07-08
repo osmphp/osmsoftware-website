@@ -30,7 +30,7 @@ By the way, I really enjoyed [this presentation about roadmaps and backlogs](htt
 
 It should be easily found - a link on the homepage, and a link on the GitHub organization profile will be fine for now.
 
-And let it be a blog post in the "Meta" category for now - I'll find a better place for it later.
+I ended up with [a GitHub project board](https://github.com/orgs/osmphp/projects/6/views/1) listing major features as columns, and tasks as cards in those columns. 
  
 ### meta.abstract
 
