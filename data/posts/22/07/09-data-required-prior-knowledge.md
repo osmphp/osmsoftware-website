@@ -1,4 +1,4 @@
-# Required Prior Knowledge
+# User Types And Required Prior Knowledge
 
 Before diving into what should be in the docs, let's define what you should more or less know before using Osm Admin.
 
