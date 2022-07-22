@@ -14,8 +14,8 @@ class Toc extends Placeholder
 
     public function render(File $file): ?string
     {
-
         $markdown = '';
+
         foreach ($file->toc as $urlKey => $tocEntry) {
             $markdown .= str_repeat(' ', ($tocEntry->depth - 2) * 4)
                 . "* [" . $tocEntry->title . "]({$file->url}#{$urlKey})\n";
