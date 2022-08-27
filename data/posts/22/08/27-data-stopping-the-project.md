@@ -37,4 +37,4 @@ Currently, I’m looking for another problem worth solving, so if you have one a
 
 ### meta.abstract
 
-For financial reasons, I stop working on the Osm Admin project. Does it hurt? A lot. Is it necessary Unfortunately, yes. This post is a short retrospection of the project. 
+I stopped working on the Osm Admin project, for financial reasons. Did it hurt? A lot. Was it necessary? Unfortunately, yes. This post is a short retrospection on this matter. 
